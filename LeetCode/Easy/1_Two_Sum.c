@@ -23,7 +23,7 @@ int main(void) {
 }
 
 int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
-
+    int *List = malloc(sizeof(returnSize));
     int count = 0;
     for (int i = 0; i < numsSize; i++) {
         int diff = target - nums[i];
@@ -34,14 +34,14 @@ int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
                 //printf("%d %d", count, countplus);
                 printf("[%d %d]\n", count, i);
                 printf("[%d %d]\n", countplus, j);
-                //returnSize[count] = i;
-                //returnSize[countplus] = j;
+                List[count] = i;
+                List[countplus] = j;
                 count = count + 2;
             }
         }
     }
 
-    return returnSize;
+    return List;
 }
 
 

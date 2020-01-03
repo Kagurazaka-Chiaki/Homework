@@ -8,7 +8,7 @@ void PrintArray(int *Array, int Length);
 
 int main(void) {
     //int k = reverse(2147483647);
-    printf("{%d}\n", reverse(121));
+    printf("{%d}\n", reverse(1563847412));
     return 0;
 }
 
@@ -37,7 +37,7 @@ int reverse(int x) {
     
     int sum = 0;
     for (long i = 1; x >= i; i = i * 10) {
-        int temp = sum;
+        long temp = sum;
         sum = sum + ((((x % (i * 10)) - (x % i)) / i) * (k / i));
         if (sum - temp != ((((x % (i * 10)) - (x % i)) / i) * (k / i))) {
             return 0;
@@ -48,7 +48,7 @@ int reverse(int x) {
         sum = sum * (-1);
     }
 
-    return sum;
+    return (int) sum;
 }
 
 void PrintArray(int *Array, int Length) {

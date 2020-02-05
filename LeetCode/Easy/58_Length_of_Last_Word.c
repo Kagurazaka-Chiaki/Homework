@@ -24,3 +24,18 @@ int lengthOfLastWord(char * s) {
         return sum - 1;
     }
 }
+
+int lengthOfLastWord(char * s){
+    int len = strlen(s);
+    int flag = 0;
+    int sumflag = 0;
+    int sum = 0;
+    for (int i = len - 1; i > -1; i--) {
+        if (s[i] != ' ') { flag = 1; }
+        if (s[i] == ' ' && flag == 1) { flag = 0; sumflag = 1; }
+        //printf("{%d %d} ", flag, sumflag);
+        if (flag == 1 && sumflag == 0) { sum++; }
+    }
+    //printf("\n%d", sum);
+    return sum;
+}

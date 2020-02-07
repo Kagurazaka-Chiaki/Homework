@@ -15,4 +15,48 @@ int strStr(char * haystack, char * needle){
     return -1;
 }
 
-/* 超时了！！*/
+/* 上面的暴力匹配超时了！！！ */
+
+
+int *GetNext(char *P);
+
+int strStr(char * haystack, char * needle){
+    //printf("[%d %d]\n", strlen(haystack), strlen(needle));
+    int len_T = strlen(haystack);
+    int len_P = strlen(needle);
+    if (len_P == 0) { return 0; }
+    int *next = GetNext(needle);
+    //for (int i = 0; i < len_P; i++) {
+    //    printf("[%d]", next[i]);
+    //}
+    int i = 0;
+    int j = 0;
+    while(i < len_T && j < len_P) {
+        if (j == -1 || (haystack[i] == needle[j])) {
+            i++; j++;
+        } else {
+            j = next[j];
+        }
+        if (j == len_P) { return i - j; }
+    }
+    return -1;
+}
+
+int *GetNext(char *P) {
+    int len = strlen(P);
+    int *next = (int *)malloc(len * sizeof(int));
+    int pos = -1;
+    next[++pos] = -1;
+    int j = 0;
+    int k = -1;
+    while (j < len -1) {
+        if (k == -1 || P[j] == P[k]) {
+            j++;
+            k++;
+            next[++pos] = k;
+        } else {
+            k = next[k];
+        }
+    }
+    return next;
+}

@@ -21,9 +21,11 @@ int main(void) {
 
     return 0;
 }
-
-int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
-    int *List = malloc(sizeof(returnSize));
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+int* twoSum(int* nums, int numsSize, int target, int* returnSize){
+    int *List = (int *)malloc(80000 * sizeof(int));
     int count = 0;
     for (int i = 0; i < numsSize; i++) {
         int diff = target - nums[i];
@@ -32,15 +34,15 @@ int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
                 int countplus = count + 1;
                 //printf("[%d %d %d %d %d]-", diff, i, nums[i], nums[j], j);
                 //printf("%d %d", count, countplus);
-                printf("[%d %d]\n", count, i);
-                printf("[%d %d]\n", countplus, j);
+                //printf("[%d %d]\n", count, i);
+                //printf("[%d %d]\n", countplus, j);
                 List[count] = i;
                 List[countplus] = j;
                 count = count + 2;
             }
         }
     }
-
+    *returnSize = count;
     return List;
 }
 

@@ -1,3 +1,7 @@
+/**
+ * 集合链表的结构
+**/
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>

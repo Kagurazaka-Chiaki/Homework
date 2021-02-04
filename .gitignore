@@ -1,2 +1,15 @@
+*
 
-*.exe
+!*.gitignore
+
+!*.c
+
+!*.cpp
+
+!*.py
+
+!*.sh
+
+!Makefile
+
+!*/

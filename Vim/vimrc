@@ -1,0 +1,94 @@
+"  <-- 这是注释
+
+"  colorscheme dark_plus
+"  colorscheme github
+colorscheme codedark
+
+"  设定默认解码
+
+"  set fencs=utf-8
+
+"  set encoding=utf-8
+
+"  打开语法高亮
+syntax on
+
+"  打开文件类型检测功能
+filetype on
+
+"  不同文件类型采用不同缩进
+filetype indent on
+
+"  关闭 vi 模式
+set nocp
+
+"  显示行号
+set number
+
+" 高亮当前行
+set cursorline
+highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
+
+" 高亮当前列
+" set cursorcolumn
+
+"  允许使用鼠标点击定位
+set mouse=a
+
+"  允许区域选择
+set selection=exclusive
+set selectmode=mouse,key
+
+"  统一缩进为 4
+set softtabstop=4
+
+"  设定 tab 长度为 4
+set tabstop=4
+
+"  设定 << 和 >> 命令移动时的宽度为 4
+set shiftwidth=4
+
+"  空格替代制表符
+set expandtab
+
+"  允许使用退格键，或set backspace=2
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+"  在被分割的窗口间显示空白，便于阅读
+set fillchars=vert:\ ,stl:\ ,stlnc:\
+
+"  自动补全
+filetype plugin indent on
+set completeopt=longest,menu
+
+"  设定字体
+"  set guifont=Consolas
+"  set guifontwide=新宋体
+
+"  开启插件
+filetype plugin on
+filetype plugin indent on
+
+"  搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
+set ignorecase smartcase    
+
+"  禁止在搜索到文件两端时重新搜索
+set nowrapscan              
+
+"  输入搜索内容时就显示搜索结果
+set incsearch              
+
+"  搜索时高亮显示被找到的文本
+set hlsearch               
+
+" 总是显示状态栏
+set laststatus=2
+
+" 显示光标当前位置
+set ruler
+
+" 设置 ~ 来显示一个尾随空格
+set listchars=trail:~
+
+" ��������

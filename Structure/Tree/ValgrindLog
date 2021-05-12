@@ -1,0 +1,157 @@
+==4644== Memcheck, a memory error detector
+==4644== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==4644== Using Valgrind-3.14.0-353a3587bb-20181007X and LibVEX; rerun with -h for copyright info
+==4644== Command: ./BinaryTree
+==4644== Parent PID: 4639
+==4644== 
+--4644-- 
+--4644-- Valgrind options:
+--4644--    -v
+--4644--    --leak-check=full
+--4644--    --track-origins=yes
+--4644--    --log-file=ValgrindLog
+--4644-- Contents of /proc/version:
+--4644--   Linux version 4.19.104-microsoft-standard (oe-user@oe-host) (gcc version 8.2.0 (GCC)) #1 SMP Wed Feb 19 06:37:35 UTC 2020
+--4644-- 
+--4644-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-avx-avx2-bmi
+--4644-- Page sizes: currently 4096, max supported 4096
+--4644-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+--4644-- Reading syms from /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree
+--4644-- Reading syms from /lib/x86_64-linux-gnu/ld-2.28.so
+--4644--   Considering /usr/lib/debug/.build-id/f2/5dfd7b95be4ba386fd71080accae8c0732b711.debug ..
+--4644--   .. build-id is valid
+--4644-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
+--4644--   Considering /usr/lib/debug/.build-id/32/2e77af97f403c3d34ff09edf60b089e72ec889.debug ..
+--4644--   .. build-id is valid
+--4644--    object doesn't have a dynamic symbol table
+--4644-- Scheduler: using generic scheduler lock implementation.
+--4644-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==4644== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-4644-by-cmy-on-???
+==4644== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-4644-by-cmy-on-???
+==4644== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-4644-by-cmy-on-???
+==4644== 
+==4644== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==4644== don't want to do, unless you know exactly what you're doing,
+==4644== or are doing some strange experiment):
+==4644==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=4644 ...command...
+==4644== 
+==4644== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==4644==   /path/to/gdb ./BinaryTree
+==4644== and then give GDB the following command
+==4644==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=4644
+==4644== --pid is optional if only one valgrind process is running
+==4644== 
+--4644-- REDIR: 0x401e2f0 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--4644-- REDIR: 0x401e0d0 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (vgPlain_amd64_linux_REDIR_FOR_index)
+--4644-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--4644--   Considering /usr/lib/debug/.build-id/34/fbc4cdfbfce1bfc3d2e522a01a050bf724c930.debug ..
+--4644--   .. build-id is valid
+--4644-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+--4644--   Considering /usr/lib/debug/.build-id/ca/bb7898ea982d936cbfadd70ae831c6eb63623f.debug ..
+--4644--   .. build-id is valid
+==4644== WARNING: new redirection conflicts with existing -- ignoring it
+--4644--     old: 0x0401e2f0 (strlen              ) R-> (0000.0) 0x580c9ce2 vgPlain_amd64_linux_REDIR_FOR_strlen
+--4644--     new: 0x0401e2f0 (strlen              ) R-> (2007.0) 0x04838d80 strlen
+--4644-- REDIR: 0x401ab10 (ld-linux-x86-64.so.2:strcmp) redirected to 0x4839e40 (strcmp)
+--4644-- REDIR: 0x401e830 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x483d860 (mempcpy)
+--4644-- Reading syms from /lib/x86_64-linux-gnu/libc-2.28.so
+--4644--   Considering /usr/lib/debug/.build-id/18/b9a9a8c523e5cfe5b5d946d605d09242f09798.debug ..
+--4644--   .. build-id is valid
+--4644-- REDIR: 0x48d4f70 (libc.so.6:memmove) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d4160 (libc.so.6:strncpy) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d5250 (libc.so.6:strcasecmp) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d3b70 (libc.so.6:strcat) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d4190 (libc.so.6:rindex) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d6890 (libc.so.6:rawmemchr) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48ef230 (libc.so.6:wmemchr) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48eecd0 (libc.so.6:wcscmp) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d50e0 (libc.so.6:mempcpy) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d4f10 (libc.so.6:bcmp) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d4100 (libc.so.6:strncmp) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d3be0 (libc.so.6:strcmp) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d5040 (libc.so.6:memset) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48eeca0 (libc.so.6:wcschr) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d40a0 (libc.so.6:strnlen) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d3c70 (libc.so.6:strcspn) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d52a0 (libc.so.6:strncasecmp) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d3c40 (libc.so.6:strcpy) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d53e0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48f04d0 (libc.so.6:wcsnlen) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d41c0 (libc.so.6:strpbrk) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d3ba0 (libc.so.6:index) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d4070 (libc.so.6:strlen) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48db280 (libc.so.6:memrchr) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d52f0 (libc.so.6:strcasecmp_l) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d4ee0 (libc.so.6:memchr) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48eedb0 (libc.so.6:wcslen) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d4460 (libc.so.6:strspn) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d5220 (libc.so.6:stpncpy) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d51f0 (libc.so.6:stpcpy) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d68c0 (libc.so.6:strchrnul) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x48d5340 (libc.so.6:strncasecmp_l) redirected to 0x482b1b0 (_vgnU_ifunc_wrapper)
+--4644-- REDIR: 0x49a7fa0 (libc.so.6:__strrchr_avx2) redirected to 0x4838790 (rindex)
+--4644-- REDIR: 0x48d0350 (libc.so.6:malloc) redirected to 0x4835710 (malloc)
+--4644-- REDIR: 0x49a7db0 (libc.so.6:__strchrnul_avx2) redirected to 0x483d390 (strchrnul)
+--4644-- REDIR: 0x49a8690 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x483d4a0 (mempcpy)
+==4644== Conditional jump or move depends on uninitialised value(s)
+==4644==    at 0x401EF8: TreeValueNext (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==    by 0x401EED: TreeValueNext (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==    by 0x401EED: TreeValueNext (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==    by 0x402086: main (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==  Uninitialised value was created by a heap allocation
+==4644==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==4644==    by 0x40206D: main (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644== 
+==4644== Conditional jump or move depends on uninitialised value(s)
+==4644==    at 0x401F06: TreeValueNext (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==    by 0x401EED: TreeValueNext (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==    by 0x401EED: TreeValueNext (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==    by 0x402086: main (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==  Uninitialised value was created by a heap allocation
+==4644==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==4644==    by 0x40206D: main (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644== 
+--4644-- REDIR: 0x48d09a0 (libc.so.6:free) redirected to 0x4836940 (free)
+==4644== 
+==4644== HEAP SUMMARY:
+==4644==     in use at exit: 12 bytes in 1 blocks
+==4644==   total heap usage: 11 allocs, 10 frees, 4,308 bytes allocated
+==4644== 
+==4644== Searching for pointers to 1 not-freed blocks
+==4644== Checked 68,456 bytes
+==4644== 
+==4644== 12 bytes in 1 blocks are definitely lost in loss record 1 of 1
+==4644==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==4644==    by 0x40206D: main (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644== 
+==4644== LEAK SUMMARY:
+==4644==    definitely lost: 12 bytes in 1 blocks
+==4644==    indirectly lost: 0 bytes in 0 blocks
+==4644==      possibly lost: 0 bytes in 0 blocks
+==4644==    still reachable: 0 bytes in 0 blocks
+==4644==         suppressed: 0 bytes in 0 blocks
+==4644== 
+==4644== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)
+==4644== 
+==4644== 1 errors in context 1 of 3:
+==4644== Conditional jump or move depends on uninitialised value(s)
+==4644==    at 0x401F06: TreeValueNext (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==    by 0x401EED: TreeValueNext (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==    by 0x401EED: TreeValueNext (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==    by 0x402086: main (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==  Uninitialised value was created by a heap allocation
+==4644==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==4644==    by 0x40206D: main (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644== 
+==4644== 
+==4644== 1 errors in context 2 of 3:
+==4644== Conditional jump or move depends on uninitialised value(s)
+==4644==    at 0x401EF8: TreeValueNext (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==    by 0x401EED: TreeValueNext (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==    by 0x401EED: TreeValueNext (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==    by 0x402086: main (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644==  Uninitialised value was created by a heap allocation
+==4644==    at 0x483577F: malloc (vg_replace_malloc.c:299)
+==4644==    by 0x40206D: main (in /mnt/d/GitHub/Homework/Structure/Tree/BinaryTree)
+==4644== 
+==4644== ERROR SUMMARY: 3 errors from 3 contexts (suppressed: 0 from 0)

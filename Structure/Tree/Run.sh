@@ -9,7 +9,7 @@ function Main() {
 
     ps $$
     echo
-    Run Temp
+    Run BinaryTree
     echo -e "\n退出状态 $?"
 
     return 0;

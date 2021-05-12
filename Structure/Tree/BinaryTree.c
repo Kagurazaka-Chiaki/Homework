@@ -1,6 +1,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -214,7 +215,6 @@ struct BiTNode *NormalInsertBiTNode(struct BiTNode *Root, int Value) {
 
 struct BiTNode *AVLInsertBiTNode(struct BiTNode *Root, int Value) {
     if (Root == NULL) { return InitBiTNode(Value); }
-
     if (Root->Data < Value) {
         Root->Right = InsertBiTNode(Root->Right, Value);
     } else if (Root->Data > Value) {
@@ -331,6 +331,38 @@ void FreeBiTree(struct BiTNode *Root) {
     free(Root);
 }
 
+bool Range(int X, int A, int B) {
+    if (A <= X && X <= B) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
+}
+
+int TreeValueNext(struct BiTNode *Root, int Value, int *Stack) {
+    if (Root == NULL) { return -1; }
+
+    TreeValueNext(Root->Left, Value, Stack);
+
+    if (Stack[0] == 0 && Stack[1] == 0) {
+        Stack[0] = Root->Data;
+        if (Value <= Stack[0]) {
+            Stack[2] = Stack[0];
+        }
+    }
+
+    if (Stack[0] != 0) {
+        Stack[1] = Stack[0];
+        Stack[0] = Root->Data;
+        if (Value >= Stack[1] && Value <= Stack[0]) {
+            Stack[2] = Stack[0];
+        }
+    }
+
+    TreeValueNext(Root->Right, Value, Stack);
+
+    return Root->Data;
+}
 
 int main(void) {
 
@@ -343,12 +375,16 @@ int main(void) {
     // DFS(Root);
 
     struct BiTree *Tree = InitBiTree();
-    int Array[10] = { 2, 5, 7, 8, 9, 10, 14, 18, 28, 60 };
-    for (int i = 0; i < 10; i++) {
+    int Array[8] = { 25, 20, 30, 18, 22, 32, 35, 24 };
+    for (int i = 0; i < 8; i++) {
         Tree->Root = InsertBiTNode(Tree->Root, Array[i]);
         DFS(Tree->Root);
         printf("\n");
     }
+
+    int *S = (int *) malloc(3 * sizeof(int));
+    TreeValueNext(Tree->Root, 19, S);
+    printf("\n[%d]\n", S[2]);
 
     // Tree->Root = RotateLeft(Tree->Root);
     // DFS(Tree->Root);

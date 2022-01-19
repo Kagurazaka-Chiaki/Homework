@@ -9,12 +9,29 @@
 
 !*.sh
 
-!Makefile
+!Script/Makefile
+
+Makefile
 
 !*/
 
 build/
 
+.vs/
+.idea/
 .vscode/
+
+Testing/
+CTestTestfile.cmake
+
+cmake_install.cmake
+DartConfiguration.tcl
+
+CPackSourceConfig.cmake
+CPackConfig.cmake
+
+CMakeFiles/
+
+out/
 
 *.exe

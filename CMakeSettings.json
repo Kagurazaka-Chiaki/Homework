@@ -1,0 +1,34 @@
+{
+  "configurations": [
+    {
+      "name": "Linux-Clang-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "cmakeExecutable": "cmake",
+      "cmakeCommandArgs": "-DBoost_NO_WARN_NEW_VERSIONS=1",
+      "buildCommandArgs": "-DBoost_NO_WARN_NEW_VERSIONS=1",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [
+        "clang_cl_x64"
+      ],
+      "rsyncCommandArgs": "-t --delete --delete-excluded",
+      "cmakeToolchain": "D:/Develop/Linux/vcpkg/scripts/buildsystems/vcpkg.cmake",
+      "intelliSenseMode": "linux-gcc-x64"
+    },
+    {
+      "name": "Windows-MSVC-Debug",
+      "generator": "Ninja",
+      "configurationType": "Debug",
+      "cmakeExecutable": "cmake",
+      "cmakeCommandArgs": "-DBoost_NO_WARN_NEW_VERSIONS=1",
+      "buildCommandArgs": "-DBoost_NO_WARN_NEW_VERSIONS=1",
+      "ctestCommandArgs": "",
+      "inheritEnvironments": [
+        "msvc_x64"
+      ],
+      "rsyncCommandArgs": "-t --delete --delete-excluded",
+      "cmakeToolchain": "D:/Develop/Windows/vcpkg/scripts/buildsystems/vcpkg.cmake",
+      "intelliSenseMode": "windows-msvc-x64"
+    }
+  ]
+}

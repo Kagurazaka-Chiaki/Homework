@@ -29,6 +29,7 @@ DartConfiguration.tcl
 
 CPackSourceConfig.cmake
 CPackConfig.cmake
+CMakeCache.txt
 
 CMakeFiles/
 

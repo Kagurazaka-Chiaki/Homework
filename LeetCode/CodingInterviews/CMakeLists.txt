@@ -28,12 +28,28 @@ else (WIN32)
 endif ()
 
 
+if (MSVC)
+    # 设置 msvc 输入代码编码格式为 utf-8
+    set(CMAKE_C_FLAGS /source-charset:utf-8)
+endif()
+
 find_package(Boost COMPONENTS filesystem system unit_test_framework REQUIRED)
 
-message("[find] ${Boost_LIBRARIES}")
+message(STATUS "[find] ${Boost_LIBRARIES}")
+
+# Build
+message(STATUS "Building ...")
+file(GLOB SINGLE_CPP_SRC_LIST src/*.cpp)
+foreach(SRC_PATH ${SINGLE_CPP_SRC_LIST})
+    string(REGEX MATCH "[0-9]+.cpp" file_name ${SRC_PATH})
+    string(REGEX MATCH "[0-9]+" target_name ${SRC_PATH})
+    message(STATUS "Add Executable ${file_name}")
+    add_executable(${target_name} src/${file_name})
+endforeach(SRC_PATH ${SINGLE_CPP_SRC_LIST})
+
 
 # Unit tests
-message("[test] Unit tests")
+message(STATUS "[test] Unit tests")
 add_subdirectory(test)
 
 # Gather all sources except the main entry point
@@ -50,17 +66,6 @@ include_directories(${Boost_INCLUDE_DIRS})
 # add_executable(CodingCPP_test src/example.cpp)
 #target_link_libraries(CodingCPP ${Boost_LIBRARIES})
 
-add_executable(09 src/09.cpp)
-add_executable(30 src/30.cpp)
-
-add_executable(06 src/06.cpp)
-add_executable(24 src/24.cpp)
-add_executable(35 src/35.cpp)
-
-add_executable(05 src/05.cpp)
-
-# message("${Boost_INCLUDE_DIRS}")
-# message("${Boost_LIBRARIES}")
 
 # set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 # set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

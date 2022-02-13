@@ -1,25 +1,26 @@
-!*.gitignore
-
-!*.c
-!*.h
-
-!*.cpp
-
-!*.py
-
-!*.sh
-
-!Script/Makefile
-
-Makefile
-
 !*/
 
-build/
+!*.gitignore
 
+# Editor files #
+################
 .vs/
 .idea/
 .vscode/
+
+# Source files #
+################
+!*.c
+!*.h
+!*.cpp
+!*.py
+!*.sh
+
+#  Cmake Output #
+#################
+cmake-build-debug
+
+build/
 
 Testing/
 CTestTestfile.cmake
@@ -35,4 +36,21 @@ CMakeFiles/
 
 out/
 
+# Compiled Source #
+###################
+*.com
+*.class
+*.dll
 *.exe
+*.o
+*.so
+
+# Special #
+###########
+!Script/Makefile
+!Makefile
+
+# Linux Build #
+###############
+
+linuxbuild/

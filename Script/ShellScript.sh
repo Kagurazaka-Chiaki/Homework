@@ -5,29 +5,29 @@
 # 抛出异常
 function RaiseError() {
     echo -e "Input Error: ${2}"
-    exit ${1}
+    exit "${1}"
 }
 
 function MakeNewFile() {
     FileName="Test0$i"
     echo "Create $FileName"
-    mkdir $FileName
+    mkdir "$FileName"
     return 0;
 }
 
 function Remove() {
     FileName="Test0$i"
     echo "Remove $FileName"
-    rm -rf $FileName
+    rm -rf "$FileName"
     return 0;
 }
 
 function Loop() {
     case ${1} in
-        1) for i in $(ls); do echo "$i"; done; ;;
-        2) for i in {4..9..1}; do Remove $i; done; ;;
-        3) for ((i=3;i<10;i++)); do MakeNewFile $i; done; ;;
-        4) i=0; while (($i<5)); do echo $i; let i++; done; ;;
+        1) for i in *.*; do echo "$i"; done; ;;
+        2) for i in {4..9..1}; do Remove "$i"; done; ;;
+        3) for ((i=3;i<10;i++)); do MakeNewFile "$i"; done; ;;
+        4) i=0; while ((i < 5)); do echo $i; (( i++ )); done; ;;
         5) while true; do echo "Loop"; done; ;;
     esac
     return 0;
@@ -52,7 +52,7 @@ function Main() {
 }
 
 # 获取命令行参数
-Main $*
+Main "$*"
 
 # 退出脚本
 exit 0

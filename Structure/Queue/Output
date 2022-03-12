@@ -1,0 +1,6 @@
+1---
+Length: 1 | Head: 0x4a220a0 | Tail: 0x4a220a0
+0x4a220a0 -> {(nil) [10] (nil)}
+R: 0x4a220a0 -> {(nil) [10] (nil)}
+Find: 0x4a220a0 -> {(nil) [10] (nil)}
+Length: 0 | Head: (nil) | Tail: (nil)

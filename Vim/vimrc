@@ -7,8 +7,14 @@ colorscheme codedark
 "  设定默认解码
 
 "  set fencs=utf-8
-
 "  set encoding=utf-8
+
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set enc=utf8
+set fencs=utf8,gbk,gb2312,gb18030
+
+"  文件编辑在右侧 
+let g:termdebug_wide=1
 
 "  打开语法高亮
 syntax on
@@ -51,11 +57,11 @@ set shiftwidth=4
 "  空格替代制表符
 set expandtab
 
-"  允许使用退格键，或set backspace=2
+"  允许使用退格键, 或set backspace=2
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
-"  在被分割的窗口间显示空白，便于阅读
+"  在被分割的窗口间显示空白, 便于阅读
 set fillchars=vert:\ ,stl:\ ,stlnc:\
 
 "  自动补全
@@ -70,7 +76,7 @@ set completeopt=longest,menu
 filetype plugin on
 filetype plugin indent on
 
-"  搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
+"  搜索时忽略大小写, 但在有一个或以上大写字母时仍保持对大小写敏感
 set ignorecase smartcase    
 
 "  禁止在搜索到文件两端时重新搜索
@@ -91,4 +97,4 @@ set ruler
 " 设置 ~ 来显示一个尾随空格
 set listchars=trail:~
 
-" ��������
+" ��������

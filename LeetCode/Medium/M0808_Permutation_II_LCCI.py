@@ -1,5 +1,5 @@
 class Solution:
-    def permutation(self, S: str) -> List[str]:
+    def permutation(self, S: str) -> list[str]:
         if S == "":
             return [""]
 

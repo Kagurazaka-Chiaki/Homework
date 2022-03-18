@@ -1,7 +1,20 @@
+/**
+ *
+**/
+
+
+#include <iostream>
+#include <deque>
+#include <stack>
+#include <vector>
+#include <string>
+#include <unordered_map>
+
+
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        vector<int> List;
+    std::vector<int> twoSum(std::vector<int>& nums, int target) {
+        std::vector<int> List;
         if (nums.size() == 0) {
             return List;
         } 
@@ -25,7 +38,11 @@ public:
             }
             return List;
         }
-        
-
     }
 };
+
+int main(int argc, char const *argv[]) {
+    /* code */
+    (void) argc; (void) argv;
+    return 0;
+}

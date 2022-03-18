@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.18)
 
 # Definitions
-set(PROJECT_NAME_STR CodingCPP)
+set(PROJECT_NAME_STR Offer)
 
 # Project title and define versioning
 project(${PROJECT_NAME_STR} VERSION 0.1.0)

@@ -1,3 +1,12 @@
+/**
+ * @brief 67. 二进制求和
+ * 
+ * https://leetcode-cn.com/problems/add-binary/
+ * 
+ * 全加器
+ * 
+**/
+
 char * addBinary(char * a, char * b){    
     int Apos = strlen(a);
     int Bpos = strlen(b);

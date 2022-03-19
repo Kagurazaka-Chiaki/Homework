@@ -1,3 +1,11 @@
+/**
+ * @brief 27. 移除元素
+ * 
+ * https://leetcode-cn.com/problems/remove-element/
+ * 
+**/
+
+
 int removeElement(int* nums, int numsSize, int val){
     int i = 0;
     for (int j = 0; j < numsSize; j++) {

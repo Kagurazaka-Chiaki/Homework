@@ -1,3 +1,10 @@
+/**
+ * @brief 28. 实现 strStr()
+ * 
+ * https://leetcode-cn.com/problems/implement-strstr/
+ * 
+**/
+
 int strStr(char * haystack, char * needle){
     if(strlen(needle) == 0) { return 0; }
     int count = 0;

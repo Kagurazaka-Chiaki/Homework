@@ -1,6 +1,13 @@
 /**
+ * @brief 66. 加一
+ * 
+ * https://leetcode-cn.com/problems/plus-one/
+ * 
+**/
+
+/**
  * Note: The returned array must be malloced, assume caller calls free().
- */
+**/
 int* plusOne(int* digits, int digitsSize, int* returnSize){
     //printf("%d\n", digits[digitsSize - 1]);
     if (digits[digitsSize - 1] < 9) {

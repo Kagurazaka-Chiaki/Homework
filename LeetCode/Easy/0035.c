@@ -1,3 +1,10 @@
+/**
+ * @brief 35. 搜索插入位置
+ * 
+ * https://leetcode-cn.com/problems/search-insert-position/
+ * 
+**/
+
 int searchInsert(int* nums, int numsSize, int target){
     int pos = 0;
     int flag1 = 0;

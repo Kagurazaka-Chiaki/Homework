@@ -1,3 +1,13 @@
+/**
+ * @brief 0053_Maximum_Subarray.c
+ * 
+ * https://leetcode-cn.com/problems/maximum-subarray/
+ * 
+ * 线段树 ？
+ * 
+**/
+
+
 #include <stdio.h>
 
 int maxSubArray(int* nums, int numsSize){

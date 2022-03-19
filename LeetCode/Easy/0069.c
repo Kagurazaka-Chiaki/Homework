@@ -1,3 +1,11 @@
+/**
+ * @brief 69. x 的平方根 
+ * 
+ * https://leetcode-cn.com/problems/sqrtx/
+ * 
+**/
+
+
 int mySqrt(int x){
     long long i = 0;
     while(true) {

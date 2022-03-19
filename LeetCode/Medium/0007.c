@@ -1,30 +1,35 @@
+/**
+ * 7. 整数反转
+ * 
+ * https://leetcode-cn.com/problems/reverse-integer/
+ * 
+**/
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 #define SIZE 100
 
-bool isPalindrome(int x);
+int reverse(int x);
 void PrintArray(int *Array, int Length);
 
 int main(void) {
-    
-    printf("{%d}\n", isPalindrome(121));
+    //int k = reverse(2147483647);
+    printf("{%d}\n", reverse(1563847412));
     return 0;
 }
 
-bool isPalindrome(int x) {
-    int save = x;
+int reverse(int x) {
 
-    // if (x > 2147483647 || x < -2147483647) {
-    //     return 0;
-    // }
+    if (x > 2147483647 || x < -2147483647) {
+        return 0;
+    }
 
-    // int flag = 0;
-    // if (x < 0) {
-    //     x = ~x + 1;
-    //     flag = 1;
-    // }
+    int flag = 0;
+    if (x < 0) {
+        x = ~x + 1;
+        flag = 1;
+    }
 
     int count = 0;
     for (long i = 1; x >= i; i = i * 10) {
@@ -39,22 +44,18 @@ bool isPalindrome(int x) {
     
     int sum = 0;
     for (long i = 1; x >= i; i = i * 10) {
-        // int temp = sum;
+        long temp = sum;
         sum = sum + ((((x % (i * 10)) - (x % i)) / i) * (k / i));
-        // if (sum - temp != 0) {
-        //     return 0;
-        // }
+        if (sum - temp != ((((x % (i * 10)) - (x % i)) / i) * (k / i))) {
+            return 0;
+        }
     }
     
-    // if (flag == 1) {
-    //     sum = sum * (-1);
-    // }
-
-    if (save != sum) {
-        return false;
-    } else {
-        return true;
+    if (flag == 1) {
+        sum = sum * (-1);
     }
+
+    return (int) sum;
 }
 
 void PrintArray(int *Array, int Length) {

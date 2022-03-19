@@ -1,3 +1,11 @@
+/**
+ * 14. 最长公共前缀
+ * 
+ * https://leetcode-cn.com/problems/longest-common-prefix/
+ * 
+**/
+
+
 char * longestCommonPrefix(char ** strs, int strsSize){
     if (strsSize == 0) { return ""; }
     char *LCP = strs[0];

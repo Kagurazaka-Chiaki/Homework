@@ -1,0 +1,19 @@
+/**
+ * @brief 剑指 Offer 64. 求 1 + 2 + ... + n
+ * 
+ * https://leetcode-cn.com/problems/qiu-12n-lcof/
+ * 
+ * 函数指针
+ * 
+**/
+
+typedef int (* fun)(int);
+
+int teminator(int n) {
+    return 0;
+}
+
+int sumNums(int n){
+    static fun f[2] = {teminator, sumNums};
+    return n + f[!!n](n - 1);
+}

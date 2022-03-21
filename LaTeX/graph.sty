@@ -1,0 +1,85 @@
+\ProvidesPackage{graph}[2022 v1.2 Cui Mingyuan]
+% 绘图
+\RequirePackage{tikz}                 
+% \begin{tikzpicture} \end{tikzpicture}
+
+\usetikzlibrary{patterns, shapes, fit, trees}
+\RequirePackage{tkz-fct}
+\RequirePackage{wrapfig}
+\RequirePackage{subfig}
+
+\newcommand{\havcoordinate}[4]{
+  \foreach \i in {#1,...,#2} {
+    \foreach \j in {#3,...,#4} {
+      \coordinate (\i-\j) at ({(\i-\j)/2},{(\j+1)});
+    }
+  }
+  \foreach \i in {#1,...,#2} {
+    \foreach \j in {#3,...,#4} {
+      \coordinate (\i--\j) at ({(\i-\j)/2},{(\j+1+1/2)});
+    }
+  }
+}
+
+\tikzset{
+  hav-emp/.style = {
+      regular polygon,
+      regular polygon sides=4,
+      draw, minimum size=7mm,
+      inner sep=0
+    },
+  hav-one/.style = {
+      regular polygon,
+      regular polygon sides=4,
+      draw, minimum size=7mm,
+      inner sep=0, pattern=north east lines,
+      pattern color=blue
+    },
+  hav-two/.style = {
+      regular polygon,
+      regular polygon sides=4,
+      draw, minimum size=7mm,
+      inner sep=0, pattern=north west lines,
+      pattern color=red
+    },
+  hav-thr/.style = {
+      regular polygon, 
+      regular polygon sides=4,
+      draw, minimum size=7mm,
+      inner sep=0, pattern=horizontal lines,
+      pattern color=green
+    },
+  hav-fou/.style = {
+      regular polygon,
+      regular polygon sides=4,
+      draw, minimum size=7mm,
+      inner sep=0, pattern=vertical lines,
+      pattern color=yellow
+    },
+}
+
+\tikzset{
+    treenode/.style = {
+        shape=rectangle, rounded corners, draw, 
+        align=center, top color=white,  bottom color=blue!20
+    },
+    root/.style     = {
+        treenode, font=\Large, bottom color=yellow!30
+    },
+    env/.style      = {
+        treenode, font=\ttfamily\normalsize
+    },
+    dummy/.style    = {
+        circle, draw
+    },
+    skip/.style    = {
+        treenode, font=\ttfamily\normalsize, bottom color=red!30
+    },
+    read/.style    = {
+        treenode, font=\ttfamily\normalsize, bottom color=green!30
+    },
+}
+
+% 直接作图
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}

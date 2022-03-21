@@ -1,0 +1,98 @@
+\ProvidesPackage{style}[2022 v1.1 Cui Mingyuan]
+
+% \documentclass[12pt, a4paper]{article}    % LaTeX article
+% \RequirePackage[utf8]{inputenc}           % UTF-8
+% \RequirePackage{txfonts}                  % 免费 txfonts 宏包
+\RequirePackage{fontspec}                   % 设置字体？？？
+\RequirePackage{upgreek}                    % 直立体希腊字母
+\RequirePackage{amsmath, amssymb, amsfonts} % AMS 数学宏包
+\RequirePackage{mathtools}                  % (大括号) 数学宏包
+\RequirePackage{xfrac}                      % 行内小分式 % \sfrac{...}
+% \RequirePackage[document]{ragged2e}       % ragged2e 宏包 % 对齐
+% \RequirePackage{mhchem}                   % 化学宏包 \ce{...}
+\RequirePackage{hyperref, siunitx}          % 超链接和SI单位
+\RequirePackage{setspace}                   % 行距
+% \setlength{\parindent}{4em}
+% \setlength{\parskip}{1em}
+\renewcommand{\baselinestretch}{1.2}        % 1.2倍行距
+% \RequirePackage{IEEEeqnarray}             % IEEE公式
+\RequirePackage[level]{datetime}            % 日期
+\RequirePackage{ulem}                       % 下划线
+\RequirePackage{framed}                     % 文本框
+\RequirePackage{parskip}                    % 段落空行
+\RequirePackage{nameref}                    % 图片名称引用
+\RequirePackage{xcolor}                     % 颜色
+\RequirePackage{bookmark}
+
+% \RequirePackage{subfigure}
+\RequirePackage{varwidth}                   % 子图
+
+\RequirePackage{multirow}
+\RequirePackage{diagbox}
+
+% \RequirePackage{listings}                 % 代码着色
+% 本地 MikTeX 编译缺 pygmentize 包
+% 暂时不清楚怎么解决
+% \RequirePackage{minted}
+
+% 伪代码
+\RequirePackage{algpseudocode}
+% \RequirePackage{algorithm}
+% \RequirePackage{clrscode3e}               % 算法导论风格
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% 该宏包不能分页, 如果遇到了, 那一定是算法的问题            %
+\RequirePackage[ruled,vlined,linesnumbered]{algorithm2e}    % 
+% \tcp*[r]                                                  %
+% right justified side comment, ends the line (default)     %
+% \tcp*[f]                                                  %
+% right justified comment, without end line;                %
+% useful with "if-then-else" macros for example             %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% 
+% \normalem %%%% disable auto underline
+% \begin{algorithm}[H]
+% \DontPrintSemicolon
+% % \caption{...}\label{algorithm}
+% % \KwData{...}
+% % \KwResult{...}
+% % \SetKwProg{Fn}{Function}{:}{}
+% \SetKwProg{Prog}{Function}{}{end}
+% \Prog{\Fn}(x, y, z) {
+%     [...]
+%     \uIf{[...]}{
+%         \uIf{[...]} {
+%             [...]
+%         }
+%     } \uElseIf{[...]} {
+%           [...]
+%     }
+% }{}
+% \end{algorithm}
+% \ULforem  %%%% enable auto underline
+
+% 多行公式
+% \begin{gather*} \begin{split} \end{split} \end{gather*}
+
+% 三线表
+\RequirePackage{booktabs}
+% \begin{center} \begin{tabular}{} \end{tabular} \end{center}
+
+% \begin{flushleft} \( \textsc{Solution.} \) \end{flushleft}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% 定义常用命令
+\newcommand{\bbZ}{\mathbb{Z}} % 正整数
+\newcommand{\bbN}{\mathbb{N}} % 自然数
+\newcommand{\bbQ}{\mathbb{Q}} % 有理数
+\newcommand{\bbR}{\mathbb{R}} % 实数
+\newcommand{\bbC}{\mathbb{C}} % 复数
+
+% 一般规范
+% 矩阵转置 A^{\mathrm{T}}
+% 数学环境内，只有变量用默认意大利体
+\newcommand{\rmi}{\mathrm{i}} % 虚数单位 i
+\newcommand{\rme}{\mathrm{e}} % 数学常数 e
+\newcommand{\rmd}{\mathrm{d}} % 微分算子 d
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %

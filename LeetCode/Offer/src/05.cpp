@@ -1,6 +1,32 @@
-#include <iostream>
+/**
+ * @brief 剑指 Offer 05. 替换空格
+ * 
+ * https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/
+ * 
+**/
 
+
+#include <iostream>
 #include <string>
+
+using namespace std;
+
+
+class Solution {
+public:
+    string replaceSpace(string s) {
+        string result = "";
+        for (char c : s) {
+            if (c == ' ') {
+                result += "%20";
+            } else {
+                result += c;
+            }
+        }
+        return result;
+    }
+};
+
 
 std::string replaceSpace(std::string s) {
     int count = 0;
@@ -53,3 +79,24 @@ int main(int argc, char const *argv[]) {
 // [ 0  W] -> [ 0  W]
 //
 // We%20are%20happy.
+
+
+#include <cstdlib>
+
+#define MAX 10000
+
+char* replaceSpace(char* s){
+    char *result = (char *)malloc((3 * MAX + 1) * sizeof(char));
+    int return_size = 0;
+    for(int i = 0; s[i] != '\0'; ++i) {
+        if(s[i] == ' ') {
+            result[return_size++] = '%%';
+            result[return_size++] = '2';
+            result[return_size++] = '0';
+        }else {
+            result[return_size++] = s[i];
+        }
+    }
+    result[return_size] = '\0';
+    return result;
+}

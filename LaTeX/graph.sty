@@ -80,6 +80,24 @@
     },
 }
 
+\tikzset{
+    box/.style = {
+        rectangle,              % 矩形节点
+        rounded corners = 0pt,  % 圆角
+        minimum width = 30pt,   % 最小宽度
+        minimum height = 20pt,  % 最小高度
+        inner sep = 5pt,        % 文字和边框的距离
+        draw = black            % 边框颜色
+    },
+    cir/.style = {
+        circle,                 % 圆形节点
+        minimum width = 20pt,   % 最小宽度
+        minimum height = 20pt,  % 最小高度
+        inner sep = 5pt,        % 文字和边框的距离
+        draw = black            % 边框颜色
+    }
+}
+
 % 直接作图
 \RequirePackage{pgfplots}
 \pgfplotsset{compat=1.18}

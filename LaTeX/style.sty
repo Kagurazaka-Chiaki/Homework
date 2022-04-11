@@ -34,14 +34,18 @@
 % 本地 MikTeX 编译缺 pygmentize 包
 % 暂时不清楚怎么解决
 % \RequirePackage{minted}
+% \begin{center}
+% \begin{minted}[escapeinside=||,mathescape=true,fontsize=\small]{Python}
+% \end{minted}
+% \end{center}
 
 % 伪代码
 \RequirePackage{algpseudocode}
 % \RequirePackage{algorithm}
 % \RequirePackage{clrscode3e}               % 算法导论风格
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-% 该宏包不能分页, 如果遇到了, 那一定是算法的问题            %
-\RequirePackage[ruled,vlined,linesnumbered]{algorithm2e}    % 
+% 该宏包不能分页, 如果遇到了, 那一定是算法的问题                %
+\RequirePackage[ruled,vlined,linesnumbered]{algorithm2e}    %
 % \tcp*[r]                                                  %
 % right justified side comment, ends the line (default)     %
 % \tcp*[f]                                                  %
@@ -95,5 +99,9 @@
 \newcommand{\rme}{\mathrm{e}} % 数学常数 e
 \newcommand{\rmd}{\mathrm{d}} % 微分算子 d
 \newcommand{\rmT}{\mathrm{T}} % 矩阵转置 T
+
+% 二元运算
+\newcommand{\add}{\mathrm{add}} % 加
+\newcommand{\mul}{\mathrm{mul}} % 乘
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %

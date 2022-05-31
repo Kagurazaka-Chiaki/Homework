@@ -36,11 +36,11 @@ target_link_libraries(${PROJECT_UNIT_TESTS_NAME} ${Boost_LIBRARIES} ${Boost_UNIT
 
 enable_testing()
 
-# add_test(test_main ${PROJECT_UNIT_TESTS_NAME})
+add_test(test_main ${PROJECT_UNIT_TESTS_NAME})
 add_test(test_0509 ${PROJECT_UNIT_TESTS_NAME})
 
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
+#set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+#set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+#include(CPack)
 
 message(STATUS "---------- Leave Test ${PROJECT_NAME_STR}")

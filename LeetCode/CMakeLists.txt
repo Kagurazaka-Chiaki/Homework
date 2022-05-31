@@ -8,10 +8,10 @@ project(${PROJECT_NAME_STR} VERSION 0.1.0)
 
 message(STATUS "Enter ${PROJECT_NAME_STR}")
 
-# message(STATUS "Subdirectory [Offer]")
-# add_subdirectory(Offer)
+message(STATUS "Subdirectory [Offer]")
+add_subdirectory(Offer)
 
-message(STATUS "Subdirectory [Dynamic Programming]")
-add_subdirectory(DP)
+# message(STATUS "Subdirectory [Dynamic Programming]")
+# add_subdirectory(DP)
 
 message(STATUS "Leave Project ${PROJECT_NAME_STR}")

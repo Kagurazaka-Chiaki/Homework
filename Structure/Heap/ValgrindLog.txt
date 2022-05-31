@@ -1,0 +1,118 @@
+==448== Memcheck, a memory error detector
+==448== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==448== Using Valgrind-3.16.1-36d6727e1d-20200622X and LibVEX; rerun with -h for copyright info
+==448== Command: ./Heap
+==448== Parent PID: 443
+==448== 
+--448-- 
+--448-- Valgrind options:
+--448--    -v
+--448--    --leak-check=full
+--448--    --track-origins=yes
+--448--    --log-file=ValgrindLog.txt
+--448-- Contents of /proc/version:
+--448--   Linux version 5.10.102.1-microsoft-standard-WSL2 (oe-user@oe-host) (x86_64-msft-linux-gcc (GCC) 9.3.0, GNU ld (GNU Binutils) 2.34.0.20200220) #1 SMP Wed Mar 2 00:30:59 UTC 2022
+--448-- 
+--448-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-bmi-f16c-rdrand
+--448-- Page sizes: currently 4096, max supported 4096
+--448-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+--448-- Reading syms from /mnt/e/Github/Homework/Structure/Heap/Heap
+--448-- Reading syms from /lib/x86_64-linux-gnu/ld-2.31.so
+--448--   Considering /usr/lib/debug/.build-id/32/438eb3b034da54caf58c7a65446639f7cfe274.debug ..
+--448--   .. build-id is valid
+--448-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
+--448--   Considering /usr/lib/debug/.build-id/54/299c4aec0e5e5f3d7b8135341351d0e1dbfc64.debug ..
+--448--   .. build-id is valid
+--448--    object doesn't have a dynamic symbol table
+--448-- Scheduler: using generic scheduler lock implementation.
+--448-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==448== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-448-by-cmy-on-???
+==448== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-448-by-cmy-on-???
+==448== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-448-by-cmy-on-???
+==448== 
+==448== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==448== don't want to do, unless you know exactly what you're doing,
+==448== or are doing some strange experiment):
+==448==   /usr/bin/vgdb --pid=448 ...command...
+==448== 
+==448== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==448==   /path/to/gdb ./Heap
+==448== and then give GDB the following command
+==448==   target remote | /usr/bin/vgdb --pid=448
+==448== --pid is optional if only one valgrind process is running
+==448== 
+--448-- REDIR: 0x401f970 (ld-linux-x86-64.so.2:strlen) redirected to 0x580ca5f2 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--448-- REDIR: 0x401f750 (ld-linux-x86-64.so.2:index) redirected to 0x580ca60c (vgPlain_amd64_linux_REDIR_FOR_index)
+--448-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--448--   Considering /usr/lib/debug/.build-id/f2/7641e081d3c37b410d7f31da4e2bf21040f356.debug ..
+--448--   .. build-id is valid
+--448-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+--448--   Considering /usr/lib/debug/.build-id/25/7cdcdf80e04f91ca9e3b185ee3b52995e89946.debug ..
+--448--   .. build-id is valid
+==448== WARNING: new redirection conflicts with existing -- ignoring it
+--448--     old: 0x0401f970 (strlen              ) R-> (0000.0) 0x580ca5f2 vgPlain_amd64_linux_REDIR_FOR_strlen
+--448--     new: 0x0401f970 (strlen              ) R-> (2007.0) 0x0483bda0 strlen
+--448-- REDIR: 0x401c190 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483cc90 (strcmp)
+--448-- REDIR: 0x401feb0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4840740 (mempcpy)
+--448-- Reading syms from /lib/x86_64-linux-gnu/libc-2.31.so
+--448--   Considering /usr/lib/debug/.build-id/2e/5abcee94f3bcbed7bba094f341070a2585a2ba.debug ..
+--448--   .. build-id is valid
+--448-- REDIR: 0x48e8ea0 (libc.so.6:memmove) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e8250 (libc.so.6:strncpy) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e91c0 (libc.so.6:strcasecmp) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e7b70 (libc.so.6:strcat) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e82b0 (libc.so.6:rindex) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48ea550 (libc.so.6:rawmemchr) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x4902710 (libc.so.6:wmemchr) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x49022b0 (libc.so.6:wcscmp) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e9000 (libc.so.6:mempcpy) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e8e30 (libc.so.6:bcmp) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e81f0 (libc.so.6:strncmp) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e7c20 (libc.so.6:strcmp) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e8f60 (libc.so.6:memset) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x4902270 (libc.so.6:wcschr) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e8150 (libc.so.6:strnlen) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e7cf0 (libc.so.6:strcspn) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e9210 (libc.so.6:strncasecmp) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e7c90 (libc.so.6:strcpy) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e9360 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x4903910 (libc.so.6:wcsnlen) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x49022f0 (libc.so.6:wcscpy) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e82f0 (libc.so.6:strpbrk) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e7bd0 (libc.so.6:index) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e8110 (libc.so.6:strlen) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48ee8b0 (libc.so.6:memrchr) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e9260 (libc.so.6:strcasecmp_l) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e8df0 (libc.so.6:memchr) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x4902390 (libc.so.6:wcslen) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e8590 (libc.so.6:strspn) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e9160 (libc.so.6:stpncpy) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e9100 (libc.so.6:stpcpy) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48ea590 (libc.so.6:strchrnul) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x48e92b0 (libc.so.6:strncasecmp_l) redirected to 0x482e1b0 (_vgnU_ifunc_wrapper)
+--448-- REDIR: 0x49b9990 (libc.so.6:__strrchr_avx2) redirected to 0x483b7b0 (rindex)
+--448-- REDIR: 0x48e40f0 (libc.so.6:malloc) redirected to 0x4838710 (malloc)
+--448-- REDIR: 0x49b97a0 (libc.so.6:__strchrnul_avx2) redirected to 0x48402b0 (strchrnul)
+--448-- REDIR: 0x49bcb30 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x48403c0 (mempcpy)
+--448-- REDIR: 0x48e4720 (libc.so.6:free) redirected to 0x4839940 (free)
+==448== 
+==448== HEAP SUMMARY:
+==448==     in use at exit: 4 bytes in 1 blocks
+==448==   total heap usage: 9 allocs, 8 frees, 4,176 bytes allocated
+==448== 
+==448== Searching for pointers to 1 not-freed blocks
+==448== Checked 75,152 bytes
+==448== 
+==448== 4 bytes in 1 blocks are definitely lost in loss record 1 of 1
+==448==    at 0x483877F: malloc (vg_replace_malloc.c:307)
+==448==    by 0x401164: init_node (in /mnt/e/Github/Homework/Structure/Heap/Heap)
+==448==    by 0x4013F0: main (in /mnt/e/Github/Homework/Structure/Heap/Heap)
+==448== 
+==448== LEAK SUMMARY:
+==448==    definitely lost: 4 bytes in 1 blocks
+==448==    indirectly lost: 0 bytes in 0 blocks
+==448==      possibly lost: 0 bytes in 0 blocks
+==448==    still reachable: 0 bytes in 0 blocks
+==448==         suppressed: 0 bytes in 0 blocks
+==448== 
+==448== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

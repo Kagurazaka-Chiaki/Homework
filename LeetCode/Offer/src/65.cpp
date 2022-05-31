@@ -1,3 +1,11 @@
+/**
+ *
+**/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
 class Solution {
 
     void swap(int *a, int *b) {
@@ -20,3 +28,9 @@ public:
         return a;
     }
 };
+
+int main(int argc, char const *argv[]) {
+    (void) argc; (void) argv;
+    /* code */
+    return 0;
+}

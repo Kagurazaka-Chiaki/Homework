@@ -1,11 +1,16 @@
 "  <-- 这是注释
 
+"  设置颜色
+set termguicolors
+
 "  colorscheme dark_plus
 "  colorscheme github
 colorscheme codedark
 
-"  设定默认解码
+"  GUI 字体
+set guifont=Consolas:h11
 
+"  设定默认解码
 "  set fencs=utf-8
 "  set encoding=utf-8
 
@@ -13,7 +18,7 @@ set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set enc=utf8
 set fencs=utf8,gbk,gb2312,gb18030
 
-"  文件编辑在右侧 
+"  文件编辑在右侧
 let g:termdebug_wide=1
 
 "  打开语法高亮
@@ -39,7 +44,9 @@ highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 " set cursorcolumn
 
 "  允许使用鼠标点击定位
-set mouse=a
+"  set mouse=a
+"  可视模式, 允许复制
+set mouse=v
 
 "  允许区域选择
 set selection=exclusive
@@ -77,16 +84,16 @@ filetype plugin on
 filetype plugin indent on
 
 "  搜索时忽略大小写, 但在有一个或以上大写字母时仍保持对大小写敏感
-set ignorecase smartcase    
+set ignorecase smartcase
 
 "  禁止在搜索到文件两端时重新搜索
-set nowrapscan              
+set nowrapscan
 
 "  输入搜索内容时就显示搜索结果
-set incsearch              
+set incsearch
 
 "  搜索时高亮显示被找到的文本
-set hlsearch               
+set hlsearch
 
 " 总是显示状态栏
 set laststatus=2

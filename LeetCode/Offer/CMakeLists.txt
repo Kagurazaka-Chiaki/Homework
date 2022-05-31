@@ -33,9 +33,9 @@ if (MSVC)
     set(CMAKE_C_FLAGS /source-charset:utf-8)
 endif()
 
-find_package(Boost COMPONENTS filesystem system unit_test_framework REQUIRED)
+# find_package(Boost COMPONENTS filesystem system unit_test_framework REQUIRED)
 
-message(STATUS "[find] ${Boost_LIBRARIES}")
+# message(STATUS "[find] ${Boost_LIBRARIES}")
 
 # Build
 message(STATUS "Building ...")

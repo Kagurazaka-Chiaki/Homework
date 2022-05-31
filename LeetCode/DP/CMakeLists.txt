@@ -30,12 +30,14 @@ if (MSVC)
     set(CMAKE_C_FLAGS /source-charset:utf-8)
 endif()
 
-find_package(Boost COMPONENTS filesystem system unit_test_framework REQUIRED)
+find_package(Catch2 CONFIG REQUIRED)
+# target_link_libraries(main PRIVATE Catch2::Catch2 Catch2::Catch2WithMain)
 
-message(STATUS "[find] ${Boost_LIBRARIES}")
+# find_package(Boost COMPONENTS filesystem system unit_test_framework REQUIRED)
+# message(STATUS "[find] ${Boost_LIBRARIES}")
 
-# set(INCLUDE_DIRECTORIES include)
-include_directories("include")
+set(INCLUDE_DIRECTORIES include)
+include_directories(include)
 
 # Build
 message(STATUS "Building ...")
@@ -57,7 +59,7 @@ add_subdirectory(test)
 #file(GLOB_RECURSE SRC_FILES src/*/*.cpp)
 
 # Assign the include directories
-include_directories(${Boost_INCLUDE_DIRS})
+# include_directories(${Boost_INCLUDE_DIRS})
 
 # Build
 #set(SOURCE_FILES src/main.cpp $<TARGET_OBJECTS:demo_objects>)

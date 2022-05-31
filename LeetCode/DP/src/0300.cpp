@@ -2,17 +2,14 @@
  *
 **/
 
-
-#include <iostream>
-#include <algorithm>
-#include <deque>
+#include <bits/stdc++.h>
 
 using namespace std;
 
 #define INF 0x3f3f3f3f
 
 int lengthOfLIS(vector<int>& nums) {
-
+    return 0;
 }
 
 int main(int argc, char const *argv[]) {

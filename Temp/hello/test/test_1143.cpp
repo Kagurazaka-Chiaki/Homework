@@ -1,15 +1,6 @@
-#ifdef STAND_ALONE
-#   define BOOST_TEST_MODULE DemoTests
-#endif
+#include <bits/stdc++.h>
 
-#include <boost/test/unit_test.hpp>
+#include <catch2/catch_all.hpp>
 
-
-BOOST_AUTO_TEST_SUITE(test)
-
-BOOST_AUTO_TEST_CASE(normal_test) {
-    BOOST_CHECK_EQUAL(1, 1);
-    printf("In test\n ---------------------------------");
-}
-
-BOOST_AUTO_TEST_SUITE_END()
+TEST_CASE("sort3 for integers") {}
+TEST_CASE("sort3 for std::string") {}

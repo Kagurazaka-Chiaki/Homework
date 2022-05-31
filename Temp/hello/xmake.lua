@@ -6,11 +6,19 @@ add_rules("mode.debug", "mode.release")
 add_requires("catch2")
 
 target("hello")
-    set_kind("binary")
-    -- add_files("src/1143.cpp")
     add_includedirs("include")
     add_files("src/main.cpp")
-    -- add_files("test/test_1143.cpp")
+target_end()
+
+target("1143")
+    add_includedirs("include")
+    add_files("src/1143.cpp")
+target_end()
+
+target("test")
+    add_files("test/*.cpp")
+    add_packages("catch2")
+target_end()
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io

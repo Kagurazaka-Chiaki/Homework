@@ -1,6 +1,3 @@
-// #define BOOST_TEST_MODULE DemoTests
-// #include <boost/test/unit_test.hpp>
-
 // And write tests in the same file:
 #include <catch.hpp>
 

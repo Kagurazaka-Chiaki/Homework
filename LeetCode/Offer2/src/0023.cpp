@@ -1,11 +1,22 @@
 /**
+ *
+**/
+
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+/**
  * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     ListNode *next;
- *     ListNode(int x) : val(x), next(NULL) {}
- * };
- */
+**/
+
+struct ListNode {
+     int val;
+    ListNode *next;
+     ListNode(int x) : val(x), next(NULL) {}
+};
+
 class Solution {
     unordered_map<ListNode *,int> hash;
 public:
@@ -24,3 +35,10 @@ public:
         return nullptr;
     }
 };
+
+
+int main(int argc, char const *argv[]) {
+    (void) argc; (void) argv;
+    /* code */
+    return 0;
+}

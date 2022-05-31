@@ -2,9 +2,7 @@
  *
 **/
 
-#include <iostream>
-#include <algorithm>
-#include <deque>
+#include <bits/stdc++.h>
 
 using namespace std;
 

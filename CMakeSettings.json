@@ -17,7 +17,7 @@
       "name": "Windows-MSVC-Debug",
       "generator": "Visual Studio 17 2022 Win64",
       "configurationType": "Debug",
-      "cmakeExecutable": "D:/CMake/bin/cmake.exe",
+      "cmakeExecutable": "cmake",
       //"cmakeCommandArgs": "-DBoost_NO_WARN_NEW_VERSIONS=1",
       //"buildCommandArgs": "-DBoost_NO_WARN_NEW_VERSIONS=1",
       "ctestCommandArgs": "",

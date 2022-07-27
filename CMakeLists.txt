@@ -28,6 +28,9 @@ message(STATUS "Enter Project ${PROJECT_NAME_STR}")
 # add_library(Homework Homework.cpp)
 
 message(STATUS "Subdirectory [LeetCode]")
-add_subdirectory(LeetCode)
+# add_subdirectory(LeetCode)
+
+message(STATUS "Subdirectory [Temp]")
+add_subdirectory(Temp)
 
 message(STATUS "Leave Project ${PROJECT_NAME_STR}")

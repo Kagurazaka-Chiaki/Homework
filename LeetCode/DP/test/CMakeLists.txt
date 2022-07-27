@@ -35,16 +35,18 @@ enable_testing()
 # target_link_libraries(${PROJECT_UNIT_TESTS_NAME} ${Boost_LIBRARIES})
 
 add_executable(foo test_main.cpp)
-target_link_libraries(foo PRIVATE Catch2::Catch2WithMain)
+# target_link_libraries(foo PRIVATE Catch2::Catch2WithMain)
+target_link_libraries(foo Catch2::Catch2)
 
 add_executable(foo2 test_0509.cpp)
-target_link_libraries(foo2 PRIVATE Catch2::Catch2WithMain)
+target_link_libraries(foo2 Catch2::Catch2)
+# target_link_libraries(foo2 PRIVATE Catch2::Catch2WithMain)
 
 catch_discover_tests(foo)
 catch_discover_tests(foo2)
 
-set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-include(CPack)
+# set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+# set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+# include(CPack)
 
 message(STATUS "---------- Leave Test ${PROJECT_NAME_STR}")

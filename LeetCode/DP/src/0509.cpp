@@ -2,12 +2,12 @@
  *
 **/
 
-#include "Solution.hpp"
 
 #include <iostream>
 #include <algorithm>
 #include <vector>
 
+#include "dplib/solution.hpp"
 
 int recursion(std::vector<int>& note, int n) {
     if (n == 1 || n == 2) { return 1; }
@@ -16,7 +16,7 @@ int recursion(std::vector<int>& note, int n) {
     return note[n];
 }
 
-int Solution::fib(int n) {
+int dp::solution::fib(int n) {
     // 递归
     // if (n == 1 || n == 2) {
     //     return 1;
@@ -47,12 +47,12 @@ int Solution::fib(int n) {
 }
 
 
-int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
-    /* code */
+// int main(int argc, char const *argv[]) {
+//     (void) argc; (void) argv;
+//     /* code */
 
-    Solution S;
-    printf("%d", S.fib(5));
+//     auto S = dp::solution();
+//     printf("%d", S.fib(5));
 
-    return 0;
-}
+//     return 0;
+// }

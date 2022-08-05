@@ -1,52 +1,15 @@
-cmake_minimum_required(VERSION 3.18)
 
-message(STATUS "---------- Enter Test ${PROJECT_NAME_STR}")
+message(STATUS "-> Enter Test ${PROJECT_NAME_STR}")
 
-# Project settings
-set(PROJECT_UNIT_TESTS_NAME Offer_Unit_Tests)
+# Build tests
+file(GLOB SINGLE_CPP_TEST_LIST ${TEST_DIR}/*.cpp)
+foreach(TEST_SRC_PATH ${SINGLE_CPP_TEST_LIST})
+    string(REGEX MATCH "test_[0-9]+.cpp" file_name ${TEST_SRC_PATH})
+    string(REGEX MATCH "test_[0-9]+" target_name ${TEST_SRC_PATH})
+    message(STATUS "-- -> Add Executable ${target_name} ${file_name}")
+    add_executable(${target_name} ${file_name})
+    target_link_libraries(${target_name} PRIVATE Catch2::Catch2WithMain DP)
+    add_test("test.${target_name}" ${target_name})
+endforeach(TEST_SRC_PATH ${SINGLE_CPP_TEST_LIST})
 
-# Dependencies
-# find_package(Boost COMPONENTS filesystem system unit_test_framework REQUIRED)
-find_package(Catch2 REQUIRED)
-message(STATUS "Catch2_FOUND      = ${Catch2_FOUND}" )
-
-include(Catch)
-
-include(CTest)
-enable_testing()
-
-# Gather the header and source files
-# file(GLOB UNIT_TESTS_INC_FILES ${PROJECT_SOURCE_DIR}/test/*.hpp)
-# file(GLOB UNIT_TESTS_SRC_FILES ${PROJECT_SOURCE_DIR}/test/*.cpp)
-
-# Include paths
-# set(UNIT_TESTS_INCLUDES ${PROJECT_INCLUDE_DIR}
-#        ${PROJECT_SOURCE_DIR}/src
-#        ${Boost_INCLUDE_DIR}
-# )
-
-# Assign the include directories
-# include_directories(${Boost_INCLUDE_DIRS})
-# include_directories(${UNIT_TESTS_INCLUDES})
-
-# Build unit tests
-# add_definitions(-DBOOST_TEST_DYN_LINK)
-# add_executable(${PROJECT_UNIT_TESTS_NAME} ${UNIT_TESTS_SRC_FILES} ${SRC_FILES})
-# target_link_libraries(${PROJECT_UNIT_TESTS_NAME} ${Boost_LIBRARIES})
-
-add_executable(foo test_main.cpp)
-# target_link_libraries(foo PRIVATE Catch2::Catch2WithMain)
-target_link_libraries(foo Catch2::Catch2)
-
-add_executable(foo2 test_0509.cpp)
-target_link_libraries(foo2 Catch2::Catch2)
-# target_link_libraries(foo2 PRIVATE Catch2::Catch2WithMain)
-
-catch_discover_tests(foo)
-catch_discover_tests(foo2)
-
-# set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-# set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-# include(CPack)
-
-message(STATUS "---------- Leave Test ${PROJECT_NAME_STR}")
+message(STATUS "-> Leave Test ${PROJECT_NAME_STR}")

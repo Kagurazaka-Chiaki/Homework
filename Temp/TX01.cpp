@@ -18,27 +18,27 @@
 #include <memory>
 #include <vector>
 
-// #include <Eigen/Dense>
+#include <Eigen/Dense>
 
 using namespace std;
 
-auto calc(vector<int> const &input) -> vector<int> {
-  vector<int> result;
+// auto calc(vector<int> const &input) -> vector<int> {
+//   vector<int> result;
 
-  return result;
-}
+//   return result;
+// }
 
-struct vertex {
-  std::unique_ptr<int> data;
+// struct vertex {
+//   std::unique_ptr<int> data;
 
-  vertex(int const &data) { this->data = std::make_unique<int>(data); };
+//   vertex(int const &data) { this->data = std::make_unique<int>(data); };
 
-  auto operator*() -> int { return *data; }
+//   auto operator*() -> int { return *data; }
 
-  auto operator<(vertex const &other) const -> bool {
-    return *data < *(other.data);
-  }
-};
+//   auto operator<(vertex const &other) const -> bool {
+//     return *data < *(other.data);
+//   }
+// };
 
 // auto main(int argc, char const *argv[]) -> int {
 //     (void) argc; (void) argv;
@@ -54,12 +54,12 @@ struct vertex {
 //     return 0;
 // }
 
-struct Info {
-  string name;
-  int score;
+// struct Info {
+//   string name;
+//   int score;
 
-  bool operator<(const Info &x) const { return score < x.score; }
-};
+//   bool operator<(const Info &x) const { return score < x.score; }
+// };
 
 // int main()
 // {
@@ -82,30 +82,30 @@ struct Info {
 //     return 0;
 // }
 
-struct Comparator {
-  bool operator()(shared_ptr<string> const &left, shared_ptr<string> const &right) const {
-    return left->compare(*right) < 0;
-        // The comparer should return whether the first string should go
-        // before the second string. Either return x.compare(y) < 0
-  }
-};
+// struct Comparator {
+//   bool operator()(shared_ptr<string> const &left, shared_ptr<string> const &right) const {
+//     return left->compare(*right) < 0;
+//         // The comparer should return whether the first string should go
+//         // before the second string. Either return x.compare(y) < 0
+//   }
+// };
 
-int main() {
-    map<shared_ptr<string>, int, Comparator> test;
-    test.insert(make_pair(make_shared<string>("test1"), 123));
-    test.insert(make_pair(make_shared<string>("test2"), 234));
-    test.insert(make_pair(make_shared<string>("test3"), 369));
-    test.insert(make_pair(make_shared<string>("test4"), 258));
-    // test.insert(make_pair(make_shared<string>("test4"),99));
+// int main() {
+//     map<shared_ptr<string>, int, Comparator> test;
+//     test.insert(make_pair(make_shared<string>("test1"), 123));
+//     test.insert(make_pair(make_shared<string>("test2"), 234));
+//     test.insert(make_pair(make_shared<string>("test3"), 369));
+//     test.insert(make_pair(make_shared<string>("test4"), 258));
+//     // test.insert(make_pair(make_shared<string>("test4"),99));
 
-    //  cout<<"test:"<<test[make_shared<string>("test5")]<<endl;//carefull
-    cout << "size:" << test.size() << endl;
-    shared_ptr<string> key = make_shared<string>("test4");
-    int count = test.count(key);
-    if (count == 1) {
-        map<shared_ptr<string>, int, Comparator>::iterator it = test.find(key);
-        cout << "value:" << it->second << endl;
-    }
+//     //  cout<<"test:"<<test[make_shared<string>("test5")]<<endl;//carefull
+//     cout << "size:" << test.size() << endl;
+//     shared_ptr<string> key = make_shared<string>("test4");
+//     int count = test.count(key);
+//     if (count == 1) {
+//         map<shared_ptr<string>, int, Comparator>::iterator it = test.find(key);
+//         cout << "value:" << it->second << endl;
+//     }
 
-    return 0;
-}
+//     return 0;
+// }

@@ -27,13 +27,13 @@ public:
     }
 };
 
-int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
-    /* code */
-    // text1 = "abcde", text2 = "ace" -> 3
-    string text_1 = "abcde";
-    string text_2 = "ace";
-    int result = Solution().longestCommonSubsequence(text_1, text_2);
-    printf("result = %d", result);
-    return 0;
-}
+// int main(int argc, char const *argv[]) {
+//     (void) argc; (void) argv;
+//     /* code */
+//     // text1 = "abcde", text2 = "ace" -> 3
+//     string text_1 = "abcde";
+//     string text_2 = "ace";
+//     int result = Solution().longestCommonSubsequence(text_1, text_2);
+//     printf("result = %d", result);
+//     return 0;
+// }

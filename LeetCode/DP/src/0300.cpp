@@ -12,9 +12,9 @@ int lengthOfLIS(vector<int>& nums) {
     return 0;
 }
 
-int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
-    /* code */
-    cout << "Hello" << endl;
-    return 0;
-}
+// int main(int argc, char const *argv[]) {
+//     (void) argc; (void) argv;
+//     /* code */
+//     cout << "Hello" << endl;
+//     return 0;
+// }

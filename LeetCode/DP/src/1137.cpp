@@ -2,15 +2,15 @@
  *
 **/
 
-#include "Solution.hpp"
 
 #include <iostream>
 #include <algorithm>
 #include <vector>
 
+#include "dplib/solution.hpp"
 
 // dp 值迭代
-int Solution::tribonacci(int n) {
+int dp::solution::tribonacci(int n) {
     if (n == 0) { return 0; }
     if (n == 1 || n == 2) { return 1; }
     int a_0 = 0, a_1 = 1, a_2 = 1;
@@ -24,12 +24,12 @@ int Solution::tribonacci(int n) {
 }
 
 
-int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+// int main(int argc, char const *argv[]) {
+//     (void) argc; (void) argv;
 
-    Solution S;
-    printf("%d\n", S.tribonacci(4));
-    printf("%d\n", S.tribonacci(25));
+//     auto S = dp::solution();
+//     printf("%d\n", S.tribonacci(4));
+//     printf("%d\n", S.tribonacci(25));
 
-    return 0;
-}
+//     return 0;
+// }

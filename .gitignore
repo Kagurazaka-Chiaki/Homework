@@ -13,10 +13,11 @@
 !*.c
 !*.h
 !*.cpp
+!*.hpp
 !*.py
 !*.sh
 
-#  Cmake Output #
+#  CMake Output #
 #################
 cmake-build-debug
 cmake-build-debug-msvc
@@ -39,6 +40,11 @@ CMakeCache.txt
 CMakeFiles/
 
 out/
+
+# Cache #
+#########
+.cache/
+
 
 # Compiled Source #
 ###################

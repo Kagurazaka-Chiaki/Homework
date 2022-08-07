@@ -1,11 +1,6 @@
 ﻿/**
  *
-**/
-
-
-#include <iostream>
-#include <algorithm>
-#include <vector>
+ **/
 
 #include "dplib/solution.hpp"
 
@@ -22,14 +17,3 @@ int dp::solution::tribonacci(int n) {
     }
     return a_2;
 }
-
-
-// int main(int argc, char const *argv[]) {
-//     (void) argc; (void) argv;
-
-//     auto S = dp::solution();
-//     printf("%d\n", S.tribonacci(4));
-//     printf("%d\n", S.tribonacci(25));
-
-//     return 0;
-// }

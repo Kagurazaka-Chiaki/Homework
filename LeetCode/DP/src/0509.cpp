@@ -1,15 +1,11 @@
 ﻿/**
  *
-**/
+ **/
 
-
-#include <iostream>
-#include <algorithm>
-#include <vector>
 
 #include "dplib/solution.hpp"
 
-int recursion(std::vector<int>& note, int n) {
+int recursion(std::vector<int> &note, int n) {
     if (n == 1 || n == 2) { return 1; }
     if (note[n] != 0) { return note[n]; } // 剪枝
     note[n] = recursion(note, n - 1) + recursion(note, n - 2);
@@ -45,14 +41,3 @@ int dp::solution::fib(int n) {
     }
     return curr;
 }
-
-
-// int main(int argc, char const *argv[]) {
-//     (void) argc; (void) argv;
-//     /* code */
-
-//     auto S = dp::solution();
-//     printf("%d", S.fib(5));
-
-//     return 0;
-// }

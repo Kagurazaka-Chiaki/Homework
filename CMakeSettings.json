@@ -18,8 +18,6 @@
       "generator": "Visual Studio 17 2022 Win64",
       "configurationType": "Debug",
       "cmakeExecutable": "cmake",
-      //"cmakeCommandArgs": "-DBoost_NO_WARN_NEW_VERSIONS=1",
-      //"buildCommandArgs": "-DBoost_NO_WARN_NEW_VERSIONS=1",
       "ctestCommandArgs": "",
       "inheritEnvironments": [ "msvc_x64" ],
       "rsyncCommandArgs": "-t --delete --delete-excluded",

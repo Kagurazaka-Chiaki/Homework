@@ -1,24 +1,14 @@
 /**
  *
-**/
+ **/
 
-#include <bits/stdc++.h>
 
-using namespace std;
+#include "dplib/solution.hpp"
 
-vector<int> countBits(int n) {
-    vector<int> result;
+auto dp::solution::countBits(int n) -> std::vector<int> {
+    std::vector<int> result;
 
-    for (int i = 0; i < n; i++) {
-
-    }
+    for (int i = 0; i < n; i++) {}
 
     return result;
 }
-
-// int main(int argc, char const *argv[]) {
-//     (void) argc; (void) argv;
-//     /* code */
-//     return 0;
-// }
-

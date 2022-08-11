@@ -12,34 +12,59 @@ function MakeNewFile() {
     FileName="Test0$i"
     echo "Create $FileName"
     mkdir "$FileName"
-    return 0;
+    return 0
 }
 
 function Remove() {
     FileName="Test0$i"
     echo "Remove $FileName"
     rm -rf "$FileName"
-    return 0;
+    return 0
 }
 
 function Loop() {
     case ${1} in
-        1) for i in *.*; do echo "$i"; done; ;;
-        2) for i in {4..9..1}; do Remove "$i"; done; ;;
-        3) for ((i=3;i<10;i++)); do MakeNewFile "$i"; done; ;;
-        4) i=0; while ((i < 5)); do echo $i; (( i++ )); done; ;;
-        5) while true; do echo "Loop"; done; ;;
+    1) for i in *.*; do echo "$i"; done ;;
+    2) for i in {4..9..1}; do Remove "$i"; done ;;
+    3) for ((i = 3; i < 10; i++)); do MakeNewFile "$i"; done ;;
+    4)
+        i=0
+        while ((i < 5)); do
+            echo $i
+            ((i++))
+        done
+        ;;
+    5) while true; do echo "Loop"; done ;;
     esac
-    return 0;
+    return 0
 }
 
 function Switch() {
     case ${1} in
-        1) Loop 4; ;;
-        2) echo "2"; ;;
+    1) Loop 4 ;;
+    2) echo "2" ;;
     esac
-    return 0;
+    return 0
 }
+
+# function Switch() {
+#     case ${1} in
+#     setup) mkdir LinuxBuild ;;
+#     build) cd LinuxBuild && cmake .. "$CMAKE_ARGS" ;;
+#     make) make ;;
+#     remove) rm -rf LinuxBuild ;;
+#     remake) Remake ;;
+#     esac
+#     return 0
+# }
+
+# function Remake() {
+#     Switch remove
+#     Switch setup
+#     Switch build
+#     cd ..
+#     Switch make
+# }
 
 function Main() {
 
@@ -48,7 +73,7 @@ function Main() {
     Switch 2
     echo -e "\n退出状态 $?"
 
-    return 0;
+    return 0
 }
 
 # 获取命令行参数

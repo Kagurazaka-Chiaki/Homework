@@ -17,8 +17,8 @@ message(STATUS "-> Enter Source ${PROJECT_NAME_STR}")
 # endforeach(SRC_PATH ${SINGLE_CPP_SRC_LIST})
 
 message(STATUS "-- -> Add Executable main")
-add_executable(main main.cpp)
-target_link_libraries(main PUBLIC DP)
+add_executable(dp_main main.cpp)
+target_link_libraries(dp_main PUBLIC DP)
 
 
 message(STATUS "-> Leave Source ${PROJECT_NAME_STR}")

@@ -34,10 +34,10 @@ MESSAGE(STATUS "Operation system is ${CMAKE_SYSTEM} ${CMAKE_CXX_COMPILER_ID}")
 
 if(MSVC)
     message(STATUS "MSVC ${MSVC_VERSION}")
-    # 设置 MSVC 输入代码编码格式为 utf-8
-    set(CMAKE_C_FLAGS /source-charset:utf-8)
-    set(CMAKE_CXX_FLAGS /source-charset:utf-8)
-    set(CMAKE_CXX_FLAGS "/EHsc")
+    # 支持 C++ 异常处理并设置 MSVC 输入代码编码格式为 utf-8
+    add_compile_options("/EHsc" "/source-charset:utf-8")
+    message(STATUS "$ENV{VCPKG_ROOT}")
+    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}\\scripts\\buildsystems\\vcpkg.cmake")
 
     # OpenGL
     find_package(glad CONFIG REQUIRED)
@@ -105,6 +105,9 @@ message(STATUS "Subdirectory [Templates]")
 
 message(STATUS "Subdirectory [Temp]")
 add_subdirectory(Temp)
+
+message(STATUS "Subdirectory [Math]")
+add_subdirectory(Math)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

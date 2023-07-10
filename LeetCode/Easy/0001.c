@@ -14,7 +14,7 @@ int main(void) {
     int *returnSize;
 
     printf("%d\n", nums[0]);
-    
+
     int *p = twoSum(nums, SIZE, target, returnSize);
     printf("\n----------\n");
     PrintArray(p, 4);
@@ -30,7 +30,7 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize){
     for (int i = 0; i < numsSize; i++) {
         int diff = target - nums[i];
         for (int j = i + 1; j < numsSize; j++) {
-            if ((nums[j] == diff)) {
+            if (nums[j] == diff) {
                 int countplus = count + 1;
                 //printf("[%d %d %d %d %d]-", diff, i, nums[i], nums[j], j);
                 //printf("%d %d", count, countplus);

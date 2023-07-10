@@ -1,17 +1,21 @@
-# CMake要求本版信息即项目名称，创建时自动生成
+
 cmake_minimum_required(VERSION 3.18)
-project(useEigen)
 
-set(CMAKE_CXX_STANDARD 20)
+# Definitions
+set(PROJECT_NAME_STR "临时项目")
 
-# # 寻找Eigen库
-find_package(Eigen3 REQUIRED)
-# # 将Eigen库include进来
-include_directories(${EIGEN3_INCLUDE_DIRS})
+# Project title and define versioning
+project("useEigen" VERSION 0.1.0)
 
-find_package(Catch2 3 REQUIRED)
-# These tests can use the Catch2-provided main
+message(STATUS "-> Enter Project ${PROJECT_NAME_STR}")
+
+# # Eigen
+# find_package(Eigen3 CONFIG REQUIRED)
+# include_directories(${EIGEN3_INCLUDE_DIRS})
+
+add_executable(${PROJECT_NAME} main.cpp)
+
 add_executable(tests test.cpp)
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 
-add_executable(${PROJECT_NAME} TX01.cpp)
+message(STATUS "-> Leave Project ${PROJECT_NAME_STR}")

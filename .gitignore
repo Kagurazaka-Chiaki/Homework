@@ -17,6 +17,13 @@
 !*.py
 !*.sh
 
+
+#  Rust Target #
+#################
+*.lock
+target/
+
+
 #  CMake Output #
 #################
 cmake-build-debug

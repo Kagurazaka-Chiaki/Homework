@@ -14,11 +14,11 @@
  **/
 
 #include <algorithm>
-#include <bits/stdc++.h>
+//#include <bits/stdc++.h>
 #include <memory>
 #include <vector>
 
-#include <Eigen/Dense>
+#include <eigen3/Eigen/Dense>
 
 using namespace std;
 
@@ -109,3 +109,8 @@ using namespace std;
 
 //     return 0;
 // }
+
+auto main() -> int {
+
+	return EXIT_SUCCESS;
+}

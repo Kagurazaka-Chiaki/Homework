@@ -6,7 +6,6 @@
 #include "templib/base.hpp"
 #include "templib/sort.hpp"
 #include "templib/table.hpp"
-#include <bits/stdc++.h>
 
 #include <cstdlib>
 #include <iostream>

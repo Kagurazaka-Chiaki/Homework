@@ -37,7 +37,7 @@ if(MSVC)
     # 设置 MSVC 输入代码编码格式为 utf-8
     set(CMAKE_C_FLAGS /source-charset:utf-8)
     set(CMAKE_CXX_FLAGS /source-charset:utf-8)
-    SET(CMAKE_CXX_FLAGS "/EHsc")
+    set(CMAKE_CXX_FLAGS "/EHsc")
 
     # OpenGL
     find_package(glad CONFIG REQUIRED)
@@ -51,6 +51,10 @@ if(MSVC)
     find_package(glm CONFIG REQUIRED)
     message(STATUS "Find glm     -> ${glm_FOUND}")
     # target_link_libraries(main PRIVATE glm::glm)
+
+    find_package(imgui CONFIG REQUIRED)
+    message(STATUS "Find imgui   -> ${imgui_FOUND}")
+    # target_link_libraries(main PRIVATE imgui::imgui)
 
     find_path(STB_INCLUDE_DIRS "stb_c_lexer.h")
     message(STATUS "Find stb     -> 1")
@@ -97,8 +101,10 @@ message(STATUS "Subdirectory [LeetCode]")
 # add_subdirectory(LeetCode)
 
 message(STATUS "Subdirectory [Templates]")
-add_subdirectory(Templates)
+# add_subdirectory(Templates)
 
+message(STATUS "Subdirectory [Temp]")
+add_subdirectory(Temp)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

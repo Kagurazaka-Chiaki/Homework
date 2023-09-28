@@ -6,6 +6,7 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 
+#include <string>
 
 #include <algorithm>
 #include <format>
@@ -188,31 +189,31 @@ namespace math {
                 return result;
             }
 
-            explicit operator std::vector<std::string>() const {
-                auto result = std::vector<std::string>();
-                std::transform(
-                        this->_v.get(),
-                        this->_v.get() + N,
-                        std::back_inserter(result),
-                        [this](double const &x) {
-                            return std::format("{:.{}f}", x, _precision);
-                        }
-                );
-                return result;
-            }
+            // explicit operator std::vector<std::string>() const {
+            //     auto result = std::vector<std::string>();
+            //     std::transform(
+            //             this->_v.get(),
+            //             this->_v.get() + N,
+            //             std::back_inserter(result),
+            //             [this](double const &x) {
+            //                 return std::format("{:.{}f}", x, _precision);
+            //             }
+            //     );
+            //     return result;
+            // }
 
-            explicit operator std::string() const {
-                auto v = static_cast<std::vector<std::string>>(*this);
-                auto result = std::string();
-                std::for_each(v.begin(), v.end(), [&result](auto const &s) {
-                    result += s + " ";
-                });
-                return "[ " + result + "]";
-            }
+            // explicit operator std::string() const {
+            //     auto v = static_cast<std::vector<std::string>>(*this);
+            //     auto result = std::string();
+            //     std::for_each(v.begin(), v.end(), [&result](auto const &s) {
+            //         result += s + " ";
+            //     });
+            //     return "[ " + result + "]";
+            // }
 
-            friend auto operator<<(std::ostream &output, vec const &v) -> std::ostream & {
-                return output << static_cast<std::string>(v);
-            }
+            // friend auto operator<<(std::ostream &output, vec const &v) -> std::ostream & {
+            //     return output << static_cast<std::string>(v);
+            // }
 
             auto push(double const &val) -> vec<N + 1> {
                 auto result = vec<N + 1>();

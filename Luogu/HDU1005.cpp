@@ -1,11 +1,18 @@
+
+
+// f(1) = 1; f(2) = 1; f(n) = A f(n - 1) + B f(n - 1)
+// A B 1000, n < 1e8
+// 矩阵乘法快速幂
+// U = [A B | 1 0] [f(n - 1) f(n - 2)] = [f(n) f(n - 1)]
+
+
 /**
  *
 **/
 
 
-#include <bits/stdc++.h>
+#include <iostream>
 
-using namespace std;
 
 auto main(int argc, char const *argv[]) -> int {
     (void) argc; (void) argv;

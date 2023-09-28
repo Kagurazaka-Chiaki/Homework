@@ -1,17 +1,18 @@
-#include <bits/stdc++.h>
+//
 
-using namespace std;
+#include <iostream>
+#include <sstream>
 
-auto gunc(stringstream &s, int const &n) -> void {
+auto gunc(std::stringstream &s, int const &n) -> void {
     int sum = 0, temp = 0;
     for (int i = 0; i < n; i++) {
         s >> temp;
         sum += temp;
     }
-    cout << sum << endl;
+    std::cout << sum << std::endl;
 }
 
-auto func(stringstream &s) -> void {
+auto func(std::stringstream &s) -> void {
     int n = 0;
     s >> n;
     gunc(s, n);
@@ -20,9 +21,9 @@ auto func(stringstream &s) -> void {
 int main(int argc, char const *argv[]) {
     (void) argc; (void) argv;
     /* code */
-    string line;
-    while (getline(cin, line)) {
-        stringstream ss;
+    std::string line;
+    while (getline(std::cin, line)) {
+        std::stringstream ss;
         ss << line;
         func(ss);
     }

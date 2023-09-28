@@ -1,14 +1,14 @@
-#include <bits/stdc++.h>
+//
 
-using namespace std;
+#include <iostream>
 
 auto func() -> bool {
     int a = 0, b = 0;
-    cin >> a >> b;
+    std::cin >> a >> b;
     if (a == 0 && b == 0) {
         return false;
     } else {
-        cout << a + b << endl;
+        std::cout << a + b << std::endl;
         return true;
     }
 }

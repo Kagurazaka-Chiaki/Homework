@@ -14,7 +14,11 @@ message(STATUS "Enter ${PROJECT_NAME_STR}")
 # message(STATUS "Subdirectory [Offer2]")
 # add_subdirectory(Offer2)
 
-message(STATUS "Subdirectory [Dynamic Programming]")
-add_subdirectory(DP)
+
+message(STATUS "Subdirectory [链表]")
+add_subdirectory(linked_list)
+
+# message(STATUS "Subdirectory [Dynamic Programming]")
+# add_subdirectory(DP)
 
 message(STATUS "Leave Project ${PROJECT_NAME_STR}")

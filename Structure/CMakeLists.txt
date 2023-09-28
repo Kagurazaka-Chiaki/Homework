@@ -6,7 +6,8 @@ project("Structure" VERSION 0.1.0)
 
 message(STATUS "-> Enter Project ${PROJECT_NAME_STR}")
 
+add_subdirectory(Common)
 
-
+add_subdirectory(LinkedList)
 
 message(STATUS "-> Leave Project ${PROJECT_NAME_STR}")

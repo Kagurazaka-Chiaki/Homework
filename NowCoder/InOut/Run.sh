@@ -3,6 +3,7 @@
 CC=clang
 CXX=clang++
 
+# shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
 function Compile() {
     $CC "${1}".c -o "${1}"
 }
@@ -12,6 +13,7 @@ function NormalRun() {
     ./"${1}"
 }
 
+# shellcheck disable=SC2317  # Don't warn about unreachable commands in this function
 function ValgrindRun() {
     Compile "${1}"
     valgrind -v --leak-check=full --track-origins=yes \

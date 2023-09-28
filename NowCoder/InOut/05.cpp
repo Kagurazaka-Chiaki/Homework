@@ -1,25 +1,24 @@
-#include <bits/stdc++.h>
 
-using namespace std;
+#include <iostream>
 
 
 auto gunc(int const &n) -> void {
     int sum = 0, temp = 0;
     for (int i = 0; i < n; i++) {
-        cin >> temp;
+        std::cin >> temp;
         sum += temp;
     }
-    cout << sum << endl;
+    std::cout << sum << std::endl;
 }
 
 int main(int argc, char const *argv[]) {
     (void) argc; (void) argv;
     /* code */
     int t = 0; // t \in [1, 100]
-    cin >> t;
+    std::cin >> t;
     while (t--) {
         int n = 0; // n \in [1, 100]
-        cin >> n;
+        std::cin >> n;
         gunc(n);
     }
     return 0;

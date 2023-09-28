@@ -1,9 +1,10 @@
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 3.25)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS Off)
 set(CMAKE_CXX_STANDARD_REQUIRED On)
 set(CMAKE_EXPORT_COMPILE_COMMANDS On)
+# set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
 
 SET(CMAKE_BUILE_TYPE DEBUG)
 
@@ -22,7 +23,6 @@ if(WIN32)
     endif(${CMAKE_CXX_COMPILER} MATCHES "clang")
 endif(WIN32)
 
-MESSAGE(STATUS "Using toolchain file: ${CMAKE_TOOLCHAIN_FILE}")
 
 # Definitions
 set(PROJECT_NAME_STR HomeWork)
@@ -38,38 +38,14 @@ if(MSVC)
     add_compile_options("/EHsc" "/source-charset:utf-8")
     message(STATUS "$ENV{VCPKG_ROOT}")
     set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}\\scripts\\buildsystems\\vcpkg.cmake")
-
-    # OpenGL
-    find_package(glad CONFIG REQUIRED)
-    message(STATUS "Find glad    -> ${glad_FOUND}")
-    # target_link_libraries(main PRIVATE glad::glad)
-
-    find_package(glfw3 CONFIG REQUIRED)
-    message(STATUS "Find glfw3   -> ${glfw3_FOUND}")
-    # target_link_libraries(main PRIVATE glfw)
-
-    find_package(glm CONFIG REQUIRED)
-    message(STATUS "Find glm     -> ${glm_FOUND}")
-    # target_link_libraries(main PRIVATE glm::glm)
-
-    find_package(imgui CONFIG REQUIRED)
-    message(STATUS "Find imgui   -> ${imgui_FOUND}")
-    # target_link_libraries(main PRIVATE imgui::imgui)
-
-    find_path(STB_INCLUDE_DIRS "stb_c_lexer.h")
-    message(STATUS "Find stb     -> 1")
-    # find_path(STB_INCLUDE_DIRS "stb_c_lexer.h")
-    # target_include_directories(main PRIVATE ${STB_INCLUDE_DIRS})
-
-    find_package(tinyobjloader CONFIG REQUIRED)
-    message(STATUS "Find tinyobjloader -> ${tinyobjloader_FOUND}")
-    # target_link_libraries(main PRIVATE tinyobjloader::tinyobjloader)
-
 endif(MSVC)
+
 
 if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
     message(STATUS "Clang ${CMAKE_CXX_COMPILER_VERSION}")
 endif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
+
+MESSAGE(STATUS "Using toolchain file: ${CMAKE_TOOLCHAIN_FILE}")
 
 # CTEST_TARGETS_ADDED 1
 set_property(GLOBAL PROPERTY CTEST_TARGETS_ADDED 1)
@@ -92,13 +68,33 @@ message(STATUS "Find Catch2 ${Catch2_VERSION} -> ${Catch2_FOUND}")
 # add_executable(tests test.cpp)
 # target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 
+# Spdlog
+find_package(spdlog CONFIG REQUIRED)
+message(STATUS "Find spdlog ${spdlog_VERSION} -> ${spdlog_FOUND}")
+
+# Custom Functions
+include(CMake/function.cmake)
+
+# include(CMake/package.cmake)
 
 # Enter Project
 message(STATUS "Enter Project ${PROJECT_NAME_STR}")
 # add_library(Homework Homework.cpp)
 
+message(STATUS "Subdirectory [Math]")
+# add_subdirectory(Math)
+
+message(STATUS "Subdirectory [Structure]")
+add_subdirectory(Structure)
+
 message(STATUS "Subdirectory [LeetCode]")
-# add_subdirectory(LeetCode)
+add_subdirectory(LeetCode)
+
+# message(STATUS "Subdirectory [Luogu]")
+# add_subdirectory(Luogu)
+
+# message(STATUS "Subdirectory [Luogu]")
+# add_subdirectory(NowCoder)
 
 message(STATUS "Subdirectory [Templates]")
 # add_subdirectory(Templates)
@@ -106,8 +102,6 @@ message(STATUS "Subdirectory [Templates]")
 message(STATUS "Subdirectory [Temp]")
 add_subdirectory(Temp)
 
-message(STATUS "Subdirectory [Math]")
-add_subdirectory(Math)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

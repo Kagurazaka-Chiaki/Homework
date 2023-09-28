@@ -2,27 +2,26 @@
  *
 **/
 
-
-#include <bits/stdc++.h>
-
-using namespace std;
-
+#include <iostream>
+#include <string>
+#include <vector>
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     int n = 0;
-    cin >> n;
-    vector<string> v;
+    std::cin >> n;
+    std::vector<std::string> v;
     while (n--) {
-        string s;
-        cin >> s;
+        std::string s;
+        std::cin >> s;
         v.push_back(s);
     }
     sort(v.begin(), v.end());
-    for (auto const &i : v) {
-        cout << i << " ";
+    for (auto const &i: v) {
+        std::cout << i << " ";
     }
-    cout << endl;
+    std::cout << std::endl;
     return 0;
 }

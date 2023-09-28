@@ -3,16 +3,15 @@
 **/
 
 
-#include <bits/stdc++.h>
+#include <iostream>
 
-using namespace std;
 
 int main(int argc, char const *argv[]) {
     (void) argc; (void) argv;
     /* code */
     int a = 0, b = 0;
-    while (cin >> a >> b) {
-        cout << a + b << endl;
+    while (std::cin >> a >> b) {
+        std::cout << a + b << std::endl;
     }
     return 0;
 }

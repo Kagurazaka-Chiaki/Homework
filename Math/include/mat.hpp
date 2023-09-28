@@ -4,17 +4,47 @@
 #define MAT_HPP
 
 #define _USE_MATH_DEFINES
-#include <cmath>
-
 #include <algorithm>
 #include <array>
+#include <cmath>
 #include <format>
 #include <memory>
 #include <numeric>
 #include <utility>
 #include <vector>
 
+
 namespace math {
+
+
+    template<int N>
+    class matrix {
+        private:
+            //        1            15
+            //        v             v
+            // pi = 3.1415926535897932384
+            int precision = std::numeric_limits<double>::digits10;
+            // double epsilon_ = std::pow(10, -precision_)
+            double epsilon = std::numeric_limits<double>::epsilon();
+
+
+            // COO
+            std::array<double, N> V = {0.0};
+            std::array<double, N> I = {0.0};
+            std::array<double, N> J;
+
+            auto swap(matrix &other) noexcept -> void {
+                std::swap(this->V, other.V);
+                std::swap(this->I, other.I);
+                std::swap(this->J, other.J);
+            }
+
+        public:
+            matrix();
+
+            ~matrix();
+    };
+
 
     template<int N>
     class vec;
@@ -257,44 +287,44 @@ namespace math {
                 return result;
             }
 
-            explicit operator std::vector<std::vector<std::string>>() const {
-                auto row = std::vector<std::vector<std::string>>();
-                std::transform( //
-                        this->_data.begin(), this->_data.end(), std::back_inserter(row),
-                        [this](auto const &row) { //
-                            auto col = std::vector<std::string>();
-                            std::transform( //
-                                    row.begin(), row.end(), std::back_inserter(col),
-                                    [this](auto const &val) {
-                                        return std::format("{:.{}f}", val, _precision);
-                                    }
-                            );
-                            return col;
-                        }
-                );
-                return row;
-            }
+            // explicit operator std::vector<std::vector<std::string>>() const {
+            //     auto row = std::vector<std::vector<std::string>>();
+            //     std::transform( //
+            //             this->_data.begin(), this->_data.end(), std::back_inserter(row),
+            //             [this](auto const &row) { //
+            //                 auto col = std::vector<std::string>();
+            //                 std::transform( //
+            //                         row.begin(), row.end(), std::back_inserter(col),
+            //                         [this](auto const &val) {
+            //                             return std::format("{:.{}f}", val, _precision);
+            //                         }
+            //                 );
+            //                 return col;
+            //             }
+            //     );
+            //     return row;
+            // }
 
-            explicit operator std::string() const {
-                auto v = std::vector<std::vector<std::string>>(*this);
-                auto result = std::string();
-                std::for_each(v.begin(), v.end(), [&result](auto const &row) {
-                    result += std::format(
-                            "[{} ]\n",                                     //
-                            std::accumulate(                               //
-                                    row.begin(), row.end(), std::string(), //
-                                    [](auto const &lhs, auto const &rhs) {
-                                        return lhs + " " + rhs;
-                                    } //
-                            )
-                    );
-                });
-                return "[ \n" + result + "]\n";
-            }
+            // explicit operator std::string() const {
+            //     auto v = std::vector<std::vector<std::string>>(*this);
+            //     auto result = std::string();
+            //     std::for_each(v.begin(), v.end(), [&result](auto const &row) {
+            //         result += std::format(
+            //                 "[{} ]\n",                                     //
+            //                 std::accumulate(                               //
+            //                         row.begin(), row.end(), std::string(), //
+            //                         [](auto const &lhs, auto const &rhs) {
+            //                             return lhs + " " + rhs;
+            //                         } //
+            //                 )
+            //         );
+            //     });
+            //     return "[ \n" + result + "]\n";
+            // }
 
-            friend auto operator<<(std::ostream &os, mat const &m) -> std::ostream & {
-                return os << std::string(m);
-            }
+            // friend auto operator<<(std::ostream &os, mat const &m) -> std::ostream & {
+            //     return os << std::string(m);
+            // }
 
             auto transpose() const -> mat {
                 auto result = mat();

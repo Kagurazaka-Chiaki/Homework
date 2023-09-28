@@ -3,6 +3,7 @@
 # 普通的 Shell 脚本
 
 # 抛出异常
+# shellcheck disable=SC2317
 function RaiseError() {
     echo -e "Input Error: ${2}"
     exit "${1}"

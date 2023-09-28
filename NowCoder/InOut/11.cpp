@@ -2,24 +2,34 @@
  *
 **/
 
-
-#include <bits/stdc++.h>
+#include <iostream>
+#include <sstream>
 #include <string>
-
-using namespace std;
+#include <tuple>
 
 auto main(int argc, char const *argv[]) -> int {
     (void) argc; (void) argv;
     /* code */
-    std::cout << "Hello, 世界! \xF0\x9F\x98\x89 \n" << std::endl;
+    int t = 0;
+    std::cin >> t;
+    std::cout << t << '\n';
 
+    std::string line;
+    while (t) {
 
-    std::string s1;
-    std::string s2;
+        int n = 0;
+        std::cin >> n;
+        std::cout << "n:" << n << '\n';
 
-    while (cin >> s1 >> s2) {
-        cout << s1 << s2;
+        std::getline(std::cin, line);
+        std::cout << "t:" << t <<  line << '\n';
+
+        std::getline(std::cin, line);
+        std::cout << "t:" << t << line << '\n';
+
+        t = t - 1;
     }
+
 
     return 0;
 }

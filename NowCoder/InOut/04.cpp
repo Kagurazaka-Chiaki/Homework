@@ -1,20 +1,19 @@
-#include <bits/stdc++.h>
+//
 
-using namespace std;
-
+#include <iostream>
 
 auto gunc(int const &n) -> void {
     int sum = 0, temp = 0;
     for (int i = 0; i < n; i++) {
-        cin >> temp;
+        std::cin >> temp;
         sum += temp;
     }
-    cout << sum << endl;
+    std::cout << sum << std::endl;
 }
 
 auto func() -> bool {
     int n = 0; // n \in [1, 100]
-    cin >> n;
+    std::cin >> n;
     if (n == 0) {
         return false;
     } else {

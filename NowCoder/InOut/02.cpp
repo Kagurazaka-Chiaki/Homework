@@ -1,18 +1,19 @@
-#include <bits/stdc++.h>
+//
 
-using namespace std;
+
+#include <iostream>
 
 auto func() -> void {
     int a = 0, b = 0;
-    cin >> a >> b;
-    cout << a + b << endl;
+    std::cin >> a >> b;
+    std::cout << a + b << std::endl;
 }
 
 int main(int argc, char const *argv[]) {
     (void) argc; (void) argv;
     /* code */
     int t = 0; // t \in [1, 100]
-    cin >> t;
+    std::cin >> t;
     while (t <= 100 && t >= 1) {
         func();
         t--;

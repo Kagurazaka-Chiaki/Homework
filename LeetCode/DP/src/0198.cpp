@@ -2,7 +2,6 @@
  *
 **/
 
-
 #include "dplib/solution.hpp"
 
 auto dp::solution::rob(std::vector<int> const &nums) -> int {

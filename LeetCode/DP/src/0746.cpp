@@ -2,8 +2,8 @@
  *
  **/
 
-
 #include "dplib/solution.hpp"
+
 
 auto dp::solution::minCostClimbingStairs(std::vector<int> const &cost) -> int {
     auto len = cost.size();

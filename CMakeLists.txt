@@ -1,5 +1,7 @@
-cmake_minimum_required(VERSION 3.25)
+#
+cmake_minimum_required(VERSION ${CMAKE_VERSION})
 
+set(CMAKE_VERSION 3.25)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS Off)
 set(CMAKE_CXX_STANDARD_REQUIRED On)

@@ -2,10 +2,9 @@
 #ifndef DP_SOLUTION_HPP
 #define DP_SOLUTION_HPP
 
-#include <algorithm>
-#include <iostream>
 #include <string>
 #include <vector>
+#include <array>
 
 namespace dp {
     class solution {
@@ -46,6 +45,7 @@ namespace dp {
             // 1014. 最佳观光组合
 
             // 0121. 买卖股票的最佳时机
+            auto maxProfit(std::vector<int>& prices) -> int;
 
             // 0122. 买卖股票的最佳时机 II
 
@@ -90,10 +90,12 @@ namespace dp {
             // 0516. 最长回文子序列
 
             // 0300. 最长递增子序列
+            auto lengthOfLIS(std::vector<int> &nums) -> int;
 
             // 0376. 摆动序列
 
             // 0392. 判断子序列
+            auto isSubsequence(std::string s, std::string t) -> bool;
 
             // 1143. 最长公共子序列
             auto longestCommonSubsequence(std::string text1, std::string text2) -> int;

@@ -3,14 +3,11 @@
  *
 **/
 
-
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <vector>
 
 class Solution {
 public:
-    int search(vector<int>& nums, int target) {
+    int search(std::vector<int>& nums, int target) {
         int n = nums.size();
         int left = 0;
         int right = n - 1;

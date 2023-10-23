@@ -1,8 +1,11 @@
 
+
 #include "dplib/solution.hpp"
+
+
 #include <catch2/catch_test_macros.hpp>
 
-#include <vector>
+
 
 TEST_CASE("Test 1143") {
     auto S = dp::solution();

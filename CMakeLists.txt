@@ -1,14 +1,14 @@
 #
-cmake_minimum_required(VERSION ${CMAKE_VERSION})
 
 set(CMAKE_VERSION 3.25)
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_BUILE_TYPE DEBUG)
 set(CMAKE_CXX_EXTENSIONS Off)
 set(CMAKE_CXX_STANDARD_REQUIRED On)
 set(CMAKE_EXPORT_COMPILE_COMMANDS On)
 # set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
 
-SET(CMAKE_BUILE_TYPE DEBUG)
+cmake_minimum_required(VERSION ${CMAKE_VERSION})
 
 if(UNIX)
     message(STATUS "Linux/Unix")
@@ -32,7 +32,7 @@ set(PROJECT_NAME_STR HomeWork)
 # Project title and define versioning
 project(${PROJECT_NAME_STR} VERSION 0.1.0)
 
-MESSAGE(STATUS "Operation system is ${CMAKE_SYSTEM} ${CMAKE_CXX_COMPILER_ID}")
+message(STATUS "Operation system is ${CMAKE_SYSTEM} ${CMAKE_CXX_COMPILER_ID}")
 
 if(MSVC)
     message(STATUS "MSVC ${MSVC_VERSION}")
@@ -47,12 +47,12 @@ if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
     message(STATUS "Clang ${CMAKE_CXX_COMPILER_VERSION}")
 endif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
 
-MESSAGE(STATUS "Using toolchain file: ${CMAKE_TOOLCHAIN_FILE}")
+message(STATUS "Using toolchain file: ${CMAKE_TOOLCHAIN_FILE}")
 
 # CTEST_TARGETS_ADDED 1
 set_property(GLOBAL PROPERTY CTEST_TARGETS_ADDED 1)
 
-MESSAGE(STATUS "Enable testing ${CMAKE_SYSTEM}")
+message(STATUS "Enable testing ${CMAKE_SYSTEM}")
 
 enable_testing()
 include(CTest)
@@ -89,8 +89,8 @@ message(STATUS "Subdirectory [Math]")
 message(STATUS "Subdirectory [Structure]")
 add_subdirectory(Structure)
 
-message(STATUS "Subdirectory [LeetCode]")
-add_subdirectory(LeetCode)
+# message(STATUS "Subdirectory [LeetCode]")
+# add_subdirectory(LeetCode)
 
 # message(STATUS "Subdirectory [Luogu]")
 # add_subdirectory(Luogu)
@@ -104,6 +104,8 @@ message(STATUS "Subdirectory [Templates]")
 message(STATUS "Subdirectory [Temp]")
 add_subdirectory(Temp)
 
+message(STATUS "Subdirectory [Notes]")
+add_subdirectory(Notes)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

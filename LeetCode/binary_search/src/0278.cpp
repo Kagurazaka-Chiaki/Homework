@@ -4,8 +4,11 @@
 
 #include "bslib/solution.hpp"
 
+#include <cstdlib>
 
-auto isBadVersion(int n) -> bool;
+auto isBadVersion(int n) -> bool {
+    return std::rand() % 2 == 0 ? true : false;
+}
 
 auto bs::solution::firstBadVersion(int n) -> int {
     int left = 1;

@@ -4,12 +4,34 @@
 
 #include <string>
 #include <vector>
-#include <array>
+#include <algorithm>
 
 namespace dp {
     class solution {
-        public:
+        private:
             solution() = default;
+
+        public:
+
+            // 静态变量 单例模式
+            static solution &singleton() noexcept {
+                static solution instance;
+                return instance;
+            }
+
+            // move constructor
+            solution(solution &&other) noexcept = delete;
+
+            // move assignment
+            auto operator=(solution &&other) noexcept -> solution & = delete;
+
+            // copy constructor
+            solution(solution const &other) noexcept = delete;
+
+            // copy assignment
+            auto operator=(solution const &other) noexcept -> solution & = delete;
+
+            virtual ~solution() noexcept = default;
 
             // 0509. 斐波那契数
             auto fib(int n) -> int;
@@ -45,7 +67,7 @@ namespace dp {
             // 1014. 最佳观光组合
 
             // 0121. 买卖股票的最佳时机
-            auto maxProfit(std::vector<int>& prices) -> int;
+            auto maxProfit(std::vector<int> &prices) -> int;
 
             // 0122. 买卖股票的最佳时机 II
 
@@ -82,6 +104,7 @@ namespace dp {
             // 0063. 不同路径 II
 
             // 0064. 最小路径和
+            auto minPathSum(std::vector<std::vector<int>> const &grid) -> int;
 
             // 0221. 最大正方形
 

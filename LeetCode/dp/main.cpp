@@ -15,7 +15,8 @@ auto main(int argc, char const *argv[]) -> int {
     (void) argv;
     /* code */
 
-    auto S = dp::solution();
+    auto &S = dp::solution::singleton();
+
     std::cout << S.fib(1) << std::endl;
 
     auto test_vec = std::vector<int>({10, 9, 2, 5, 3, 7, 101, 18});

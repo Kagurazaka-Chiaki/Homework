@@ -13,6 +13,10 @@ message(STATUS "-> Enter Project ${PROJECT_NAME_STR}")
 # find_package(Eigen3 CONFIG REQUIRED)
 # include_directories(${EIGEN3_INCLUDE_DIRS})
 
+# Catch2 v3
+find_package(Catch2 CONFIG REQUIRED)
+message(STATUS "Find Catch2 ${Catch2_VERSION} -> ${Catch2_FOUND}")
+
 add_executable(${PROJECT_NAME} main.cpp)
 
 add_executable(tests test.cpp)

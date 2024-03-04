@@ -4,6 +4,8 @@
 
 #include "dplib/solution.hpp"
 
+
+// 打家劫舍
 auto dp::solution::rob(std::vector<int> const &nums) -> int {
     if (nums.empty()) { return 0; }
     if (nums.size() == 1) { return nums[0]; }

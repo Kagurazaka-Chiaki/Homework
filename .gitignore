@@ -70,3 +70,5 @@ out/
 # Linux Build #
 ###############
 linuxbuild/
+
+a.out

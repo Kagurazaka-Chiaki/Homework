@@ -1,31 +1,7 @@
-use std::{collections::HashMap, any::type_name};
 
-use temp::base;
 
-pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
-    if nums.len() == 0 {
-        return vec![];
-    };
+use temp::queue;
 
-    if nums.len() == 1 {
-        if nums[0] + nums[0] == target {
-            return vec![nums[0], nums[0]];
-        }
-    }
-
-    let mut map: HashMap<i32, usize> = HashMap::new();
-
-    for i in 0..nums.len() {
-        if let Some(k) = map.get(&(target - nums[i])) {
-            if *k != i {
-                return vec![*k as i32, i as i32];
-            }
-        }
-        map.insert(nums[i], i);
-    }
-
-    return vec![];
-}
 
 fn main() {
     println!("Hello, world!");
@@ -51,7 +27,59 @@ fn main() {
 
     // type q_list = base::List<1, 2, 3>;
 
-    println!("{}", type_name::<<base::False as base::Not>::Ouput>());
+    // println!("{}", type_name::<<base::False as base::Not>::Ouput>());
 
+
+    let mut list = queue::List::new();
+
+    // Check empty list behaves right
+    assert_eq!(list.pop_front(), None);
+
+    // Populate list
+    list.push_front(1);
+    list.push_front(2);
+    list.push_front(3);
+
+    // Check normal removal
+    assert_eq!(list.pop_front(), Some(3));
+    assert_eq!(list.pop_front(), Some(2));
+
+    // Push some more just to make sure nothing's corrupted
+    list.push_front(4);
+    list.push_front(5);
+
+    // Check normal removal
+    assert_eq!(list.pop_front(), Some(5));
+    assert_eq!(list.pop_front(), Some(4));
+
+    // Check exhaustion
+    assert_eq!(list.pop_front(), Some(1));
+    assert_eq!(list.pop_front(), None);
+
+    // ---- back -----
+
+    // Check empty list behaves right
+    assert_eq!(list.pop_back(), None);
+
+    // Populate list
+    list.push_back(1);
+    list.push_back(2);
+    list.push_back(3);
+
+    // Check normal removal
+    assert_eq!(list.pop_back(), Some(3));
+    assert_eq!(list.pop_back(), Some(2));
+
+    // Push some more just to make sure nothing's corrupted
+    list.push_back(4);
+    list.push_back(5);
+
+    // Check normal removal
+    assert_eq!(list.pop_back(), Some(5));
+    assert_eq!(list.pop_back(), Some(4));
+
+    // Check exhaustion
+    assert_eq!(list.pop_back(), Some(1));
+    assert_eq!(list.pop_back(), None);
 
 }

@@ -10,4 +10,6 @@ add_subdirectory(Common)
 
 add_subdirectory(LinkedList)
 
+add_subdirectory(Tree)
+
 message(STATUS "-> Leave Project ${PROJECT_NAME_STR}")

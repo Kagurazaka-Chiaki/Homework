@@ -1,4 +1,4 @@
-#include <math.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -382,14 +382,15 @@ int main(void) {
         printf("\n");
     }
 
-    int *S = (int *) malloc(3 * sizeof(int));
-    TreeValueNext(Tree->Root, 19, S);
-    printf("\n[%d]\n", S[2]);
+    // int *S = (int *) malloc(3 * sizeof(int));
+    // TreeValueNext(Tree->Root, 19, S);
+    // printf("\n[%d]\n", S[2]);
 
     // Tree->Root = RotateLeft(Tree->Root);
     // DFS(Tree->Root);
     FreeBiTree(Tree->Root);
     free(Tree);
+    // free(S);
 
     // NonRecursiveDFS(Tree);
     return 0;

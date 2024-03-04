@@ -3,7 +3,12 @@
 
 #include <bslib/solution.hpp>
 
-auto guess(int num) -> int;
+#include <cstdlib>
+
+
+auto guess(int num) -> int {
+    return -1 + std::rand() % 3;
+}
 
 int bs::solution::guessNumber(int n) {
     int left = 1;

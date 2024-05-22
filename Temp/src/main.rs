@@ -1,85 +1,216 @@
+use std::{
+    fs,
+    // io::{prelude::*, BufReader},
+    // sync::{mpsc, Arc, Mutex},
+    // thread,
+};
+use tokio::io::{AsyncReadExt, AsyncWriteExt};
+use tokio::net::TcpStream;
 
+// struct Worker {
+//     id: usize,
+//     thread: Option<thread::JoinHandle<()>>,
+// }
 
-use temp::queue;
+// impl Worker {
+//     fn new(id: usize, receiver: Arc<Mutex<mpsc::Receiver<Job>>>) -> Worker {
+//         let thread = thread::spawn(move || loop {
+//             // let job = receiver.lock().unwrap().recv().unwrap();
 
+//             // println!("Worker {id} got a job; executing.");
+//             let message = receiver.lock().unwrap().recv();
+//             match message {
+//                 Ok(job) => {
+//                     println!("Worker {id} got a job; executing.");
 
-fn main() {
-    println!("Hello, world!");
-    /****
-        // let mut a = String::from("value1");
-        // let addr_a = &a as *const String as usize;
-        // let mut b = String::from("value2");
-        // let addr_b = &b as *const String as usize;
-        // print!("{a} {} | {b} {}\n", addr_a, addr_b);
+//                     job();
+//                 }
+//                 Err(_) => {
+//                     println!("Worker {id} disconnected; shutting down.");
+//                     break;
+//                 }
+//             }
+//             // job();
+//         });
 
-        // let t = a;
-        // a = b;
-        // b = t;
-        // print!("{a} {} | {b} {}\n", addr_a, addr_b);
-        // let func = |x: i64| {
-        //     print!("{x}\n");
-        // };
-        // func(42);
-        // (a, b) = (b, a);
-        // print!("{a} {} | {b} {}\n", addr_a, addr_b);
-    ****/
+//         Worker {
+//             id,
+//             thread: Some(thread),
+//         }
+//     }
+// }
 
+// type Job = Box<dyn FnOnce() + Send + 'static>;
 
-    // type q_list = base::List<1, 2, 3>;
+// struct ThreadPool {
+//     workers: Vec<Worker>,
+//     sender: Option<mpsc::Sender<Job>>,
+// }
 
-    // println!("{}", type_name::<<base::False as base::Not>::Ouput>());
+// impl ThreadPool {
+//     pub fn new(capacity: usize) -> ThreadPool {
+//         assert!(capacity > 0);
 
+//         let (sender, receiver) = mpsc::channel();
 
-    let mut list = queue::List::new();
+//         let receiver = Arc::new(Mutex::new(receiver));
 
-    // Check empty list behaves right
-    assert_eq!(list.pop_front(), None);
+//         let mut workers = Vec::with_capacity(capacity);
 
-    // Populate list
-    list.push_front(1);
-    list.push_front(2);
-    list.push_front(3);
+//         for id in 0..capacity {
+//             workers.push(Worker::new(id, Arc::clone(&receiver)));
+//         }
 
-    // Check normal removal
-    assert_eq!(list.pop_front(), Some(3));
-    assert_eq!(list.pop_front(), Some(2));
+//         ThreadPool {
+//             workers,
+//             sender: Some(sender),
+//         }
+//     }
 
-    // Push some more just to make sure nothing's corrupted
-    list.push_front(4);
-    list.push_front(5);
+//     pub fn execute<F>(&self, f: F)
+//     where
+//         F: FnOnce() + Send + 'static,
+//     {
+//         let job = Box::new(f);
 
-    // Check normal removal
-    assert_eq!(list.pop_front(), Some(5));
-    assert_eq!(list.pop_front(), Some(4));
+//         self.sender.as_ref().unwrap().send(job).unwrap();
+//     }
+// }
 
-    // Check exhaustion
-    assert_eq!(list.pop_front(), Some(1));
-    assert_eq!(list.pop_front(), None);
+// impl Drop for ThreadPool {
+//     fn drop(&mut self) {
+//         drop(self.sender.take());
 
-    // ---- back -----
+//         for worker in &mut self.workers {
+//             println!("Shutting down worker {}", worker.id);
 
-    // Check empty list behaves right
-    assert_eq!(list.pop_back(), None);
+//             if let Some(thread) = worker.thread.take() {
+//                 thread.join().unwrap();
+//             }
+//         }
+//     }
+// }
 
-    // Populate list
-    list.push_back(1);
-    list.push_back(2);
-    list.push_back(3);
+// struct Request {
+//     head: String,
+//     host: String,
+//     connection: String,
+//     cache_control: String,
+// }
 
-    // Check normal removal
-    assert_eq!(list.pop_back(), Some(3));
-    assert_eq!(list.pop_back(), Some(2));
+#[tokio::main]
+async fn main() {
+    let listener = tokio::net::TcpListener::bind("127.0.0.1:7878")
+        .await
+        .unwrap();
 
-    // Push some more just to make sure nothing's corrupted
-    list.push_back(4);
-    list.push_back(5);
+    // let pool = ThreadPool::new(4);
 
-    // Check normal removal
-    assert_eq!(list.pop_back(), Some(5));
-    assert_eq!(list.pop_back(), Some(4));
-
-    // Check exhaustion
-    assert_eq!(list.pop_back(), Some(1));
-    assert_eq!(list.pop_back(), None);
-
+    while let Ok((stream, _)) = listener.accept().await {
+        // pool.execute(async move {
+        //     handle_connection(stream).await;
+        // });
+        handle_connection(stream).await;
+    }
 }
+
+async fn handle_connection(mut stream: TcpStream) {
+    // let buf_reader = BufReader::new(&mut stream);
+    // let request_line = buf_reader.lines().next().unwrap().unwrap();
+
+    let mut buffer = [0; 1024];
+    stream.read(&mut buffer).await.unwrap();
+
+    let request = String::from_utf8_lossy(&buffer[..]);
+
+    // println!("Request: [{}]", request);
+
+    let request_head = request.lines().next().unwrap();
+
+    let (status_line, filename) = if request_head == "GET / HTTP/1.1" {
+        ("HTTP/1.1 200 OK", "hello.html")
+    } else {
+        ("HTTP/1.1 404 NOT FOUND", "404.html")
+    };
+
+    let contents = fs::read_to_string(filename).unwrap();
+    let length = contents.len();
+
+    let response = format!("{status_line}\r\nContent-Length: {length}\r\n\r\n{contents}");
+
+    println!("Response: [{}]", response);
+
+    stream.write_all(response.as_bytes()).await.unwrap();
+}
+
+// use std::collections::HashMap;
+// use std::sync::{Arc, Mutex, RwLock};
+// use std::thread;
+
+// #[derive(Debug, Clone, PartialEq)]
+// pub enum NodeType {
+//     Val(f32),
+//     None,
+// }
+
+// #[derive(Debug, Clone)]
+// pub struct Graph {
+//     vertex: Vec<usize>,
+//     edge: Vec<(usize, usize)>,
+//     matrix: Vec<Vec<NodeType>>,
+// }
+
+// impl Graph {
+//     pub fn new(m: i32, n: i32) -> Self {
+//         Self {
+//             vertex: vec![],
+//             edge: vec![],
+//             matrix: vec![vec![NodeType::None; n as usize]; m as usize],
+//         }
+//     }
+// }
+
+// #[derive(Debug)]
+// pub struct Sheet {
+//     graph: Graph,
+//     // data: RwLock<HashMap<String, Data>>,
+//     data: RwLock<HashMap<String, (i32, i32)>>,
+// }
+
+// impl Sheet {
+//     pub fn new(row: i32, col: i32) -> Self {
+//         Self {
+//             graph: Graph::new(row, col),
+//             data: RwLock::new(HashMap::new()),
+//         }
+//     }
+
+//     pub fn set_data() {}
+// }
+
+// fn main() {
+//     let counter = Arc::new(Mutex::new(Sheet::new(0, 0)));
+//     let mut handles = vec![];
+
+//     for _ in 0..10 {
+//         let counter = Arc::clone(&counter);
+//         let handle = thread::spawn(move || {
+//             let mut num = counter.lock().unwrap();
+
+//             let mut w = num.data.write().unwrap();
+//             w.insert(String::from("value"), (1, 1))
+//         });
+//         handles.push(handle);
+//     }
+
+//     for handle in handles {
+//         handle.join().unwrap();
+//     }
+
+//     let r = counter.lock().unwrap();
+//     let rr = r.data.read().unwrap();
+
+//     let ans = rr.get("value").unwrap();
+
+//     println!("Result: {}", ans.0);
+// }

@@ -121,6 +121,7 @@ void FreeQuack(struct Quack *Q) {
 
 int main(int argc, char const *argv[]) {
     struct Quack *Q = InitQuack();
+    // NOLINTNEXTLINE
     QuackEnQueue(Q, InitQuackNode(InitDetail(1, "A")));
     PrintQuack(Q);
     FreeQuack(Q);

@@ -45,7 +45,7 @@ git commit --amend --date="$(date -R)"
 
 <details>
 
-开发分支（dev) 上的代码达到上线的标准后，要合并到 master 分支
+开发分支 (dev) 上的代码达到上线的标准后，要合并到 master 分支
 
 ```
 git checkout dev

@@ -3,33 +3,34 @@
 **/
 
 #include <math.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
+
 
 #define MAX 1000
 
 struct ListNode {
-    int Index;
-    char *String;
-    struct ListNode *Next;
+        int Index;
+        char *String;
+        struct ListNode *Next;
 };
 
 struct ListNodeRep {
-    int Length;
-    struct ListNode *Head;
-    struct ListNode *Tail;
+        int Length;
+        struct ListNode *Head;
+        struct ListNode *Tail;
 };
 
 struct SetNode {
-    struct ListNodeRep *Table;
-    struct SetNode *Next;
+        struct ListNodeRep *Table;
+        struct SetNode *Next;
 };
 
 struct SetNodeRep {
-    struct SetNode *Head;
-    struct SetNode *Tail;
+        struct SetNode *Head;
+        struct SetNode *Tail;
 };
 
 struct SetNodeRep *InitSetNodeRep(void) {
@@ -180,7 +181,10 @@ int main(int argc, char const *argv[]) {
         printf("{%s}\n", argv[i]);
         struct ListNodeRep *list = InitListNodeRep();
         FILE *file = fopen(argv[i], "r+");
-        if (file == NULL) { printf("ERROR\n");  return 0; }
+        if (file == NULL) {
+            printf("ERROR\n");
+            return 0;
+        }
         char *input_word = (char *) malloc(MAX * sizeof(char));
         while (fscanf(file, "%s", input_word) != EOF) {
             char *copy = CopyCharPointer(input_word);

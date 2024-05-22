@@ -1,4 +1,5 @@
 
+#include <cstddef>
 #include <stdio.h>
 #include <stdlib.h>
 // #include <pthread.h>
@@ -6,22 +7,21 @@
 
 #define MAX 1
 
-
 struct Detail {
-    int Value;
+        int Value;
 };
 
 struct Node {
-    // pthread_mutex_t *mutex;
-    struct Detail *Data;
-    struct Node *Prev;
-    struct Node *Next;
+        // pthread_mutex_t *mutex;
+        struct Detail *Data;
+        struct Node *Prev;
+        struct Node *Next;
 };
 
 struct Queue {
-    int Length;
-    struct Node *Head;
-    struct Node *Tail;
+        int Length;
+        struct Node *Head;
+        struct Node *Tail;
 };
 
 void PrintQueueNode(struct Node *Item) {
@@ -44,20 +44,22 @@ struct Detail *InitItem(int Data) {
 }
 
 struct Queue *InitQueue() {
-    struct Queue *New = (struct Queue *)malloc(sizeof(struct Queue));
+    struct Queue *New = (struct Queue *) malloc(sizeof(struct Queue));
     New->Head = New->Tail = NULL;
     New->Length = 0;
     return New;
 }
 
 struct Node *InitQueueNode(int Value) {
-    struct Node *New = (struct Node *)malloc(sizeof(struct Node));
+    struct Node *New = (struct Node *) malloc(sizeof(struct Node));
     New->Prev = New->Next = NULL;
     New->Data = InitItem(Value);
     return New;
 }
 
-struct Queue *ReQueue(struct Queue *Q) { }
+struct Queue *ReQueue(struct Queue *Q) {
+    return NULL;
+}
 
 void JoinQueue(struct Queue *Q, struct Node *Item) {
     if (Q->Head == NULL && Q->Tail == NULL) {
@@ -173,10 +175,9 @@ void FreeQueue(struct Queue *Q) {
     }
 }
 
-
 int main(int argc, char const *argv[]) {
     struct Queue *Q = InitQueue();
-    int Array[MAX] = { 10 };
+    int Array[MAX] = {10};
     for (int i = 0; i < MAX; i++) {
         struct Node *N = InitQueueNode(Array[i]);
         // JoinQueue(Q, N);

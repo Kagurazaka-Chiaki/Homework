@@ -1,7 +1,7 @@
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -24,35 +24,31 @@ int min(int a, int b) {
 }
 
 struct Node {
-    int data;
-    struct Node *Children[MAXIMUM_CHILDREN];
+        int data;
+        struct Node *Children[MAXIMUM_CHILDREN];
 };
-
 
 struct BiTNode {
-    int Data;
-    int Height;
-    struct BiTNode *Left;
-    struct BiTNode *Right;
+        int Data;
+        int Height;
+        struct BiTNode *Left;
+        struct BiTNode *Right;
 };
-
 
 struct BiTree {
-    struct BiTNode *Root;
-    // int Height;
+        struct BiTNode *Root;
+        // int Height;
 };
-
 
 struct LinkedStack {
-    int Total;
-    struct LinkedStackNode *Head;
+        int Total;
+        struct LinkedStackNode *Head;
 };
 
-
 struct LinkedStackNode {
-    int PopTimes;
-    struct BiTNode *TreeNode;
-    struct LinkedStackNode *Next;
+        int PopTimes;
+        struct BiTNode *TreeNode;
+        struct LinkedStackNode *Next;
 };
 
 
@@ -65,7 +61,6 @@ void PrintTreeNode(struct BiTNode *TreeNode) {
     printf("\n");
 }
 
-
 struct BiTNode *InitBiTNode(int Value) {
     struct BiTNode *New = (struct BiTNode *) malloc(sizeof(struct BiTNode));
     New->Data = Value;
@@ -75,7 +70,6 @@ struct BiTNode *InitBiTNode(int Value) {
     return New;
 }
 
-
 struct BiTree *InitBiTree() {
     struct BiTree *New = (struct BiTree *) malloc(sizeof(struct BiTree));
     New->Root = NULL;
@@ -83,7 +77,6 @@ struct BiTree *InitBiTree() {
     // New->Height = 0;
     return New;
 }
-
 
 /**
  * Dot 语言打印树结构
@@ -102,7 +95,6 @@ void DotPrint(struct BiTNode *TreeNode) {
     printf("}\n");
 }
 
-
 void DFS(struct BiTNode *Root) {
     if (Root == NULL) { return; }
     // PrintTreeNode(Root);
@@ -112,7 +104,6 @@ void DFS(struct BiTNode *Root) {
     DFS(Root->Right);
     // PrintTreeNode(Root);
 }
-
 
 int Height(struct BiTNode *Root) {
     if (Root == NULL) { return 0; }
@@ -124,11 +115,9 @@ int Height(struct BiTNode *Root) {
     return max(Height(Root->Left), Height(Root->Right)) + 1;
 }
 
-
 int GetHeight(struct BiTNode *TreeNode) {
     return (TreeNode == NULL) ? -1 : TreeNode->Height;
 }
-
 
 int PrintHeightDiff(struct BiTNode *Root) {
     if (Root == NULL) { return 0; }
@@ -142,7 +131,6 @@ int PrintHeightDiff(struct BiTNode *Root) {
     return 1 + ((Left > Right) ? Left : Right);
 }
 
-
 /**
  * abs (Left - Right) <= 1
 **/
@@ -155,12 +143,10 @@ int IsHeightBalanced(struct BiTNode *Root) {
     return 1 + ((Left > Right) ? Left : Right);
 }
 
-
 int BiTreeWidth(struct BiTNode *Root) {
     if (Root == NULL) { return 0; }
     return 2 + BiTreeWidth(Root->Left) + BiTreeWidth(Root->Right);
 }
-
 
 struct BiTNode *CreateBiTreeManually(void) {
     struct BiTNode *NewTree = InitBiTNode(0);
@@ -172,7 +158,6 @@ struct BiTNode *CreateBiTreeManually(void) {
     pointer->Right = InitBiTNode(4);
     return NewTree;
 }
-
 
 struct BiTNode *RotateLeft(struct BiTNode *Root) {
     if (Root == NULL) { return NULL; }
@@ -187,7 +172,6 @@ struct BiTNode *RotateLeft(struct BiTNode *Root) {
     return Root;
 }
 
-
 struct BiTNode *RotateRight(struct BiTNode *Root) {
     if (Root == NULL) { return NULL; }
     if (Root->Left == NULL) { return Root; }
@@ -201,7 +185,6 @@ struct BiTNode *RotateRight(struct BiTNode *Root) {
     return Root;
 }
 
-
 struct BiTNode *NormalInsertBiTNode(struct BiTNode *Root, int Value) {
     if (Root == NULL) { return InitBiTNode(Value); }
     if (Root->Data > Value) {
@@ -211,7 +194,6 @@ struct BiTNode *NormalInsertBiTNode(struct BiTNode *Root, int Value) {
     }
     return Root;
 }
-
 
 struct BiTNode *AVLInsertBiTNode(struct BiTNode *Root, int Value) {
     if (Root == NULL) { return InitBiTNode(Value); }
@@ -246,7 +228,6 @@ struct BiTNode *AVLInsertBiTNode(struct BiTNode *Root, int Value) {
     return Root;
 }
 
-
 struct BiTNode *InsertBiTNode(struct BiTNode *Root, int Value) {
     // 普通插入
     // return NormalInsertBiTNode(Root, Value);
@@ -255,14 +236,12 @@ struct BiTNode *InsertBiTNode(struct BiTNode *Root, int Value) {
     return AVLInsertBiTNode(Root, Value);
 }
 
-
 struct LinkedStack *InitLinkStack(void) {
     struct LinkedStack *New = (struct LinkedStack *) malloc(sizeof(struct LinkedStack));
     New->Head = NULL;
     New->Total = 0;
     return New;
 }
-
 
 struct LinkedStackNode *InitLinkStackNode(struct BiTNode *TreeNode) {
     struct LinkedStackNode *New = (struct LinkedStackNode *) malloc(sizeof(struct LinkedStackNode));
@@ -272,7 +251,6 @@ struct LinkedStackNode *InitLinkStackNode(struct BiTNode *TreeNode) {
     return New;
 }
 
-
 struct LinkedStackNode *StackPop(struct LinkedStack *Stack) {
     if (Stack->Head == NULL) { return NULL; }
     struct LinkedStackNode *PopNode = Stack->Head;
@@ -281,7 +259,6 @@ struct LinkedStackNode *StackPop(struct LinkedStack *Stack) {
     Stack->Total--;
     return PopNode;
 }
-
 
 int StackPush(struct LinkedStack *Stack, struct LinkedStackNode *NewStackNode) {
     if (NewStackNode == NULL) { return 0; }
@@ -295,11 +272,9 @@ int StackPush(struct LinkedStack *Stack, struct LinkedStackNode *NewStackNode) {
     return 0;
 }
 
-
 void ApplyTreeNode(struct BiTNode *TreeNode) {
     PrintTreeNode(TreeNode);
 }
-
 
 void NonRecursiveDFS(struct BiTree *T) {
     struct LinkedStack *stack = InitLinkStack();
@@ -322,7 +297,6 @@ void NonRecursiveDFS(struct BiTree *T) {
     }
     free(stack);
 }
-
 
 void FreeBiTree(struct BiTNode *Root) {
     if (Root == NULL) { return; }
@@ -375,7 +349,7 @@ int main(void) {
     // DFS(Root);
 
     struct BiTree *Tree = InitBiTree();
-    int Array[8] = { 25, 20, 30, 18, 22, 32, 35, 24 };
+    int Array[8] = {25, 20, 30, 18, 22, 32, 35, 24};
     for (int i = 0; i < 8; i++) {
         Tree->Root = InsertBiTNode(Tree->Root, Array[i]);
         DFS(Tree->Root);

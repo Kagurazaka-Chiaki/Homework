@@ -1,25 +1,25 @@
 #include <math.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
 
 struct MatrixGraph {
-    int EdgeNum;
-    int VertexNum;
-    int **Matrix;
+        int EdgeNum;
+        int VertexNum;
+        int **Matrix;
 };
 
 struct Quack {
-    int Length;
-    struct QuackNode *Head;
-    struct QuackNode *Tail;
+        int Length;
+        struct QuackNode *Head;
+        struct QuackNode *Tail;
 };
 
 struct QuackNode {
-    int Data;
-    struct QuackNode *Next;
-    struct QuackNode *Prev;
+        int Data;
+        struct QuackNode *Next;
+        struct QuackNode *Prev;
 };
 
 struct MatrixGraph *InitMatrixGraph(int VertexAmount, int EdgeAmount) {
@@ -82,7 +82,6 @@ void PrintMatrixGraph(struct MatrixGraph *Graph) {
 }
 
 void NormalPrint(struct MatrixGraph *Graph) {
-
 }
 
 void FreeMatrixGraph(struct MatrixGraph *Graph) {
@@ -104,7 +103,6 @@ void Sample1(struct MatrixGraph *Graph) {
 }
 
 void Sample2(struct MatrixGraph *Graph) {
-
 }
 
 void Sample4(struct MatrixGraph *Graph) {
@@ -229,7 +227,10 @@ void MatrixGraphDFS(struct MatrixGraph *Graph) {
     printf("深度优先遍历 (DFS) :\n");
     int length = Graph->VertexNum;
     bool *visited = (bool *) malloc(length * sizeof(bool));
-    for (int i = 0; i < length; i++) { visited[i] = false; printf("[%d]", visited[i]); }
+    for (int i = 0; i < length; i++) {
+        visited[i] = false;
+        printf("[%d]", visited[i]);
+    }
     printf("\n\n");
     struct Quack *stack = InitQuack();
     QuackPush(stack, InitQuackNode(Graph->Matrix[0][0]));
@@ -256,7 +257,10 @@ void MatrixGraphBFS(struct MatrixGraph *Graph) {
     printf("广度优先遍历 (BFS) :\n");
     int length = Graph->VertexNum;
     bool *visited = (bool *) malloc(length * sizeof(bool));
-    for (int i = 0; i < length; i++) { visited[i] = false; printf("[%d]", visited[i]); }
+    for (int i = 0; i < length; i++) {
+        visited[i] = false;
+        printf("[%d]", visited[i]);
+    }
     printf("\n\n");
     struct Quack *queue = InitQuack();
     QuackEnQueue(queue, InitQuackNode(Graph->Matrix[0][0]));
@@ -311,7 +315,8 @@ char *ShortestPath(struct MatrixGraph *Graph, int StartVertex, int EndVertex) {
 
         for (int k = 0; k < vers; k++) {
             if (known[k] == 0 && distance[k] < min) {
-                min = distance[k]; index = k; // 最小结点序号
+                min = distance[k];
+                index = k; // 最小结点序号
             }
         }
 
@@ -342,9 +347,12 @@ char *ShortestPath(struct MatrixGraph *Graph, int StartVertex, int EndVertex) {
         Path[++pos] = ((char) prev_end) + '0';
         Path = (char *) realloc(Path, (pos + 2) * sizeof(char));
         prev_end = previous[prev_end];
-        if (prev_end == -1) { Path[++pos] = '\0'; break; }
+        if (prev_end == -1) {
+            Path[++pos] = '\0';
+            break;
+        }
         //     Path[++pos] = ((char) StartVertex) + '0';
-        //     Path[++pos] = '\0'; break; 
+        //     Path[++pos] = '\0'; break;
         // }
     }
 
@@ -383,6 +391,7 @@ struct MatrixGraph *TransitiveClosure(struct MatrixGraph *Graph) {
         }
     }
     PrintMatrixGraph(reachable);
+    return reachable;
 }
 
 int main(int argc, char const *argv[]) {
@@ -399,9 +408,13 @@ int main(int argc, char const *argv[]) {
     // printf("%s\n", ShortestPath(Graph, 0, 4));
     // printf("%s\n", ShortestPath(Graph, 0, 5));
     char *Path = ShortestPath(Graph, 0, 9);
-    printf("%ld, %s\n", strlen(Path), Path);
+    printf("%zu, %s\n", strlen(Path), Path);
     for (int i = strlen(Path) - 1; i > -1; i--) {
-        if (i == 0) { printf("%c\n", Path[i]); } else { printf("%c -> ", Path[i]); }
+        if (i == 0) {
+            printf("%c\n", Path[i]);
+        } else {
+            printf("%c -> ", Path[i]);
+        }
     }
     printf("%d", (Path[0] == '\0'));
     free(Path);

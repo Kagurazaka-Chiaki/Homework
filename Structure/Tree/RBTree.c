@@ -3,15 +3,18 @@
 
 #include <cstdio>
 
-struct RedBlackTree {
+struct RBTree {
         int Color;
         struct RedBlackNode *Left;
         struct RedBlackNode *Right;
 };
 
-struct RedBlackNode {
+struct RBTreeNode {
         int Value;
 };
+
+
+
 
 int main(int argc, char const *argv[]) {
 

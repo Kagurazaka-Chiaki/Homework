@@ -4,9 +4,9 @@
 #define MAX 2
 
 struct Stack {
-    int *Data;
-    int Pos;
-    int Size;
+        int *Data;
+        int Pos;
+        int Size;
 };
 
 struct Stack *InitStack(void) {
@@ -38,7 +38,7 @@ void PushStack(struct Stack *S, int value) {
 int PopStack(struct Stack *S) {
     int Result = S->Data[(S->Pos)--];
     realloc(S->Data, (--(S->Size)) * sizeof(int));
-    printf("|size %d|", sizeof(S->Data));
+    printf("|size %llu|", sizeof(S->Data));
     return Result;
 }
 
@@ -50,8 +50,8 @@ void FreeStack(struct Stack *S) {
 int main(int argc, char const *argv[]) {
 
     struct Stack *S = InitStack();
-    int Array[10] = { 1, 2, 3, 4, 5, 6, 7, 8 ,9 , 10 };
-    printf("|%d %d|\n", Array[9], Array[10]);
+    int Array[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    printf("|%d %d|\n", Array[9], *(Array + 10));
     for (int i = 0; i < 10; i++) {
         PushStack(S, Array[i]);
         // if (S->Pos + 1 > S->Size - 1) { ReStack(S); }

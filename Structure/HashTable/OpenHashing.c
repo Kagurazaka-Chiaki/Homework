@@ -1,27 +1,27 @@
+#include <locale.h>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <wchar.h>
-#include <locale.h>
 
 #define Hash_Table_Length 7
 
 struct ListNode {
-    int Data;
-    char *String;
-    struct ListNode *Next;
+        int Data;
+        char *String;
+        struct ListNode *Next;
 };
 
 struct ListNodeRep {
-    struct ListNode *Head;
-    struct ListNode *Tail;
+        struct ListNode *Head;
+        struct ListNode *Tail;
 };
 
 struct HashTable {
-    int TableLength;
-    int TotalElements;
-    struct ListNodeRep **Array;
+        int TableLength;
+        int TotalElements;
+        struct ListNodeRep **Array;
 };
 
 struct ListNode *InitListNode(int Value, char *Word) {
@@ -157,8 +157,11 @@ void InsertListNode(struct HashTable *Hash, char *Keywords) {
 }
 
 void BuildHashTableManually(struct HashTable *Hash) {
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     InsertListNode(Hash, "Hello, Hashng");
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     InsertListNode(Hash, "Hello, Hashing");
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     InsertListNode(Hash, "Hello, Hashig");
 }
 
@@ -175,7 +178,7 @@ int main(int argc, char const *argv[]) {
     struct HashTable *Hash = InitHashTable(Hash_Table_Length);
     PrintHashTable(Hash);
     printf("\n----------\n");
-    printf("{%p %ld}", Hash->Array[4], (long) Hash->Array[4]);
+    printf("{%p %llu}", Hash->Array[4], (unsigned long long) Hash->Array[4]);
     printf("\n----------\n");
     // wchar_t a = L'中';
     // putwchar(a);
@@ -185,9 +188,11 @@ int main(int argc, char const *argv[]) {
     printf("\n----------\n");
     printf("{%p %s}", Hash->Array[1], Hash->Array[1]->Head->String);
     printf("\n----------\n");
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     printf("Find {%d}\n", FindListNode(Hash, "Hello, Hashing"));
     printf("\n----------\n");
     printf("Delete Hello, Hashing");
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     DeleteHashNode(Hash, "Hello, Hashing");
     printf("\n----------\n");
     PrintHashTable(Hash);

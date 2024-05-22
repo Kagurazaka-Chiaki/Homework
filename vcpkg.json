@@ -1,0 +1,8 @@
+{
+    "dependencies": [
+        "eigen3",
+        "catch2",
+        "spdlog",
+        "icu"
+    ]
+}

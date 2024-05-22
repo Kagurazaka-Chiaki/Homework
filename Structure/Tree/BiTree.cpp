@@ -22,34 +22,32 @@ enum class Instruction {
 };
 
 struct BiTreeNode {
-    int val;
+        int val;
 
-    std::unique_ptr<BiTreeNode> left;
+        std::unique_ptr<BiTreeNode> left;
 
-    std::unique_ptr<BiTreeNode> right;
+        std::unique_ptr<BiTreeNode> right;
 
-    BiTreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+        BiTreeNode(int x)
+            : val(x), left(nullptr), right(nullptr) {}
 };
-
 
 class BiTree {
     private:
-
-
     public:
-
         BiTreeNode *curr;
         std::unique_ptr<BiTreeNode> root;
 
+        BiTree()
+            : root(nullptr), curr(nullptr) {}
 
-        BiTree() : root(nullptr), curr(nullptr) {}
-
-        BiTree(int val) : root(std::make_unique<BiTreeNode>(val)) {
+        BiTree(int val)
+            : root(std::make_unique<BiTreeNode>(val)) {
             curr = root.get();
         }
 
         BiTree(std::initializer_list<int> list) {
-            for (auto &val : list) {
+            for (auto &val: list) {
                 insert(val);
             }
             curr = root.get();
@@ -94,7 +92,6 @@ class BiTree {
             return {left.first + right.first + node->val, left.second + right.second + 1};
         }
 
-
         auto dfs(BiTreeNode *node) -> void {
             if (node == nullptr) {
                 return;
@@ -118,7 +115,6 @@ class BiTree {
             }
             printf("}\n");
         }
-
 };
 
 auto print_tree_to_markdown(BiTree &tree) -> void {
@@ -147,21 +143,21 @@ auto main(int argc, char const *argv[]) -> int {
 
     // [Set(75), Left, Set(33), Reset, Right, Set(67), Left, Set(25)]
     std::vector<Instruction> instructions = {
-        Instruction::SET,
-        Instruction::LEFT,
-        Instruction::SET,
-        Instruction::RESET,
-        Instruction::RIGHT,
-        Instruction::SET,
-        Instruction::LEFT,
-        Instruction::SET
+            Instruction::SET,
+            Instruction::LEFT,
+            Instruction::SET,
+            Instruction::RESET,
+            Instruction::RIGHT,
+            Instruction::SET,
+            Instruction::LEFT,
+            Instruction::SET
     };
     std::vector<int> values = {75, 33, 67, 25};
     int p = -1;
 
     BiTree tree = {0};
 
-    for (auto &instruction : instructions) {
+    for (auto &instruction: instructions) {
         print_tree_to_markdown(tree);
         printf("-------------\n");
         switch (instruction) {

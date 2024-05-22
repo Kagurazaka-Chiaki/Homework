@@ -1,9 +1,10 @@
 
 #include <math.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
+
 
 // #define OPEN_MAX 10
 
@@ -65,14 +66,13 @@
 typedef int table;
 
 typedef struct Space {
-    table **t;
+        table **t;
 } space;
 
-
 space *table_create(void) {
-    space *s = malloc(sizeof(space));
+    space *s = (space *) malloc(sizeof(space));
     if (s->t == NULL) {
-        s->t = malloc(LEVEL_1 * sizeof(table *));
+        s->t = (table **) malloc(LEVEL_1 * sizeof(table *));
     }
     for (int i = 0; i < LEVEL_1; i++) {
         s->t[i] = NULL;
@@ -82,7 +82,7 @@ space *table_create(void) {
 
 int table_insert(space *s, int i, int j, int val) {
     if (s->t[i] == NULL) {
-        s->t[i] = malloc(LEVEL_2 * sizeof(table));
+        s->t[i] = (table *) malloc(LEVEL_2 * sizeof(table));
         for (int k = 0; k < LEVEL_2; k++) {
             s->t[i][k] = 0;
         }
@@ -98,21 +98,21 @@ int table_lookup(space *s, int i, int j) {
     return 0;
 }
 
-int table_copy(table **old, table **new) {
+int table_copy(table **old_table, table **new_table) {
     for (int i = 0; i < LEVEL_1; i++) {
         // printf("[i = %d]", i);
-        if (old[i] == NULL) {
-            new[i] = NULL;
+        if (old_table[i] == NULL) {
+            new_table[i] = NULL;
             continue;
         }
-        new[i] = malloc(LEVEL_2 * sizeof(table));
+        new_table[i] = (table *) malloc(LEVEL_2 * sizeof(table));
         for (int j = 0; j < LEVEL_2; j++) {
             // printf("[j = %d]", j);
-            if (old[i][j] == 0) {
-                new[i][j] = 0;
+            if (old_table[i][j] == 0) {
+                new_table[i][j] = 0;
                 continue;
             }
-            new[i][j] = old[i][j];
+            new_table[i][j] = old_table[i][j];
         }
     }
     return 0;
@@ -137,7 +137,10 @@ int table_destory(space *s) {
 }
 
 int table_print(space *s) {
-    if (s == NULL) { printf("null\n"); return 0; }
+    if (s == NULL) {
+        printf("null\n");
+        return 0;
+    }
     for (int i = 0; i < LEVEL_1; i++) {
         if (s->t[i] == NULL) {
             printf("%p:->\n", s->t[i]);
@@ -145,7 +148,7 @@ int table_print(space *s) {
         }
         printf("%p[%d]:->", s->t[i], i);
         for (int j = 0; j < LEVEL_2; j++) {
-            printf("[%p[%d] -> %d]", s->t[i][j], j, s->t[i][j]);
+            printf("[%d[%d] -> %d]", s->t[i][j], j, s->t[i][j]);
         }
         printf("\n");
     }

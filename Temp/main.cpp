@@ -2,17 +2,21 @@
  *
 **/
 
-#include <iostream>
+#include <unicode/ucnv.h>
+#include <unicode/unistr.h>
+
+#include <cstring>
 
 // #include <bits/stdc++.h>
 
 // #include <Eigen/Dense>
 
 class Base {
-    int value;
+        int value;
 
     public:
-        Base(int v): value(v) {}
+        Base(int v)
+            : value(v) {}
 
         friend int Fun1(Base &);
         friend int Fun2(const Base &);
@@ -20,18 +24,18 @@ class Base {
         friend int Fun4(const Base);
 };
 
-
 int Fun1(Base &);
 int Fun2(const Base &);
 int Fun3(Base);
 int Fun4(const Base);
 
+
+
 auto main(int argc, char const *argv[]) -> int {
+
     (void) argc;
     (void) argv;
     // system("chcp 65001");
-    std::cout << "你好, 世界。 \xF0\x9F\x98\x89 \n"
-              << std::endl;
 
     // Eigen::MatrixXd mat1(3, 3);
 
@@ -57,14 +61,14 @@ auto main(int argc, char const *argv[]) -> int {
     // 中序 debac
     // 前序
 
-    int a = 10, b = 20;
-    int &c = b;
-    b = a;
-    int *d = &b;
-    *d = 30;
-    int f = c + *d + a;
+    // int a = 10, b = 20;
+    // int &c = b;
+    // b = a;
+    // int *d = &b;
+    // *d = 30;
+    // int f = c + *d + a;
 
-    std::cout << f;
+    // std::cout << f;
 
     return 0;
 }

@@ -4,10 +4,10 @@
 #define MAX 1
 
 struct Queue {
-    int *Data;
-    int Head;
-    int Tail;
-    int Size;
+        int *Data;
+        int Head;
+        int Tail;
+        int Size;
 };
 
 struct Queue *InitQueue(void) {
@@ -50,8 +50,8 @@ void FreeQueue(struct Queue *Q) {
 int main(int argc, char const *argv[]) {
 
     struct Queue *Q = InitQueue();
-    int Array[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    printf("|%d %d|\n", Array[9], Array[10]);
+    int Array[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    printf("|%d %d|\n", Array[9], *(Array + 10));
     for (int i = 0; i < 10; i++) {
         JoinQueue(Q, Array[i]);
     }

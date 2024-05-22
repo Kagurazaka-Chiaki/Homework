@@ -1,42 +1,42 @@
+#include <cstdlib>
 #include <math.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdbool.h>
-#include <cstdlib>
 
 struct ListGraph {
-    int EdgeNum;
-    int VertexNum;
-    struct Vertex *HeadVertex;
-    struct Vertex *TailVertex;
+        int EdgeNum;
+        int VertexNum;
+        struct Vertex *HeadVertex;
+        struct Vertex *TailVertex;
 };
 
 struct Vertex {
-    int VertexIndex;
-    char *VertexInfo;
-    struct Edge *HeadEdge;
-    struct Edge *TailEdge;
-    struct Vertex *NextVertex;
-    struct Vertex *PrevVertex;
+        int VertexIndex;
+        char *VertexInfo;
+        struct Edge *HeadEdge;
+        struct Edge *TailEdge;
+        struct Vertex *NextVertex;
+        struct Vertex *PrevVertex;
 };
 
 struct Edge {
-    int Weight;
-    struct Vertex *VertexNode;
-    struct Edge *NextEdge;
+        int Weight;
+        struct Vertex *VertexNode;
+        struct Edge *NextEdge;
 };
 
 struct Quack {
-    int Length;
-    struct QuackNode *Head;
-    struct QuackNode *Tail;
+        int Length;
+        struct QuackNode *Head;
+        struct QuackNode *Tail;
 };
 
 struct QuackNode {
-    struct Vertex *VertexNode;
-    struct QuackNode *Next;
-    struct QuackNode *Prev;
+        struct Vertex *VertexNode;
+        struct QuackNode *Next;
+        struct QuackNode *Prev;
 };
 
 struct ListGraph *InitListGraph(int VertexAmount, int EdgeAmount) {
@@ -171,18 +171,25 @@ void FreeListGraph(struct ListGraph *Graph) {
 }
 
 void Sample1(struct ListGraph *Graph) {
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_0 = InitVertex("A");
     AppendVertex(Graph, node_0);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_1 = InitVertex("B");
     AppendVertex(Graph, node_1);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_2 = InitVertex("C");
     AppendVertex(Graph, node_2);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_3 = InitVertex("D");
     AppendVertex(Graph, node_3);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_4 = InitVertex("E");
     AppendVertex(Graph, node_4);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_5 = InitVertex("F");
     AppendVertex(Graph, node_5);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_6 = InitVertex("G");
     AppendVertex(Graph, node_6);
 
@@ -201,20 +208,28 @@ void Sample1(struct ListGraph *Graph) {
 }
 
 void Sample2(struct ListGraph *Graph) {
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_0 = InitVertex("V1");
     AppendVertex(Graph, node_0);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_1 = InitVertex("V2");
     AppendVertex(Graph, node_1);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_2 = InitVertex("V3");
     AppendVertex(Graph, node_2);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_3 = InitVertex("V4");
     AppendVertex(Graph, node_3);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_4 = InitVertex("V5");
     AppendVertex(Graph, node_4);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_5 = InitVertex("V6");
     AppendVertex(Graph, node_5);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_6 = InitVertex("V7");
     AppendVertex(Graph, node_6);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_7 = InitVertex("V8");
     AppendVertex(Graph, node_7);
 
@@ -229,14 +244,19 @@ void Sample2(struct ListGraph *Graph) {
 }
 
 void Sample3(struct ListGraph *Graph) {
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_0 = InitVertex("A");
     AppendVertex(Graph, node_0);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_1 = InitVertex("B");
     AppendVertex(Graph, node_1);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_2 = InitVertex("C");
     AppendVertex(Graph, node_2);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_3 = InitVertex("D");
     AppendVertex(Graph, node_3);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_4 = InitVertex("E");
     AppendVertex(Graph, node_4);
     UndirectedEdge(node_0, node_1, 0);
@@ -252,20 +272,28 @@ void Sample3(struct ListGraph *Graph) {
 }
 
 void Sample4(struct ListGraph *Graph) {
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_0 = InitVertex("V0");
     AppendVertex(Graph, node_0);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_1 = InitVertex("V1");
     AppendVertex(Graph, node_1);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_2 = InitVertex("V2");
     AppendVertex(Graph, node_2);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_3 = InitVertex("V3");
     AppendVertex(Graph, node_3);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_4 = InitVertex("V4");
     AppendVertex(Graph, node_4);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_5 = InitVertex("V5");
     AppendVertex(Graph, node_5);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_6 = InitVertex("V6");
     AppendVertex(Graph, node_6);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_7 = InitVertex("V7");
     AppendVertex(Graph, node_7);
 
@@ -284,20 +312,28 @@ void Sample4(struct ListGraph *Graph) {
 }
 
 void SampleFinal(struct ListGraph *Graph) {
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_0 = InitVertex("A");
     AppendVertex(Graph, node_0);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_1 = InitVertex("B");
     AppendVertex(Graph, node_1);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_2 = InitVertex("C");
     AppendVertex(Graph, node_2);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_3 = InitVertex("D");
     AppendVertex(Graph, node_3);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_4 = InitVertex("E");
     AppendVertex(Graph, node_4);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_5 = InitVertex("F");
     AppendVertex(Graph, node_5);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_6 = InitVertex("G");
     AppendVertex(Graph, node_6);
+    // NOLINTNEXTLINE ISO C++11 does not allow conversion from string literal to 'char *'clang(-Wwritable-strings)
     struct Vertex *node_7 = InitVertex("H");
     AppendVertex(Graph, node_7);
 
@@ -411,7 +447,10 @@ void ListGraphDFS(struct ListGraph *Graph) {
     printf("深度优先遍历\n");
     int length = Graph->VertexNum;
     bool *visited = (bool *) malloc(length * sizeof(bool));
-    for (int i = 0; i < length; i++) { visited[i] = false; printf("[%d]", visited[i]); }
+    for (int i = 0; i < length; i++) {
+        visited[i] = false;
+        printf("[%d]", visited[i]);
+    }
     printf("\n\n");
     struct Quack *stack = InitQuack();
     QuackPush(stack, InitQuackNode(Graph->HeadVertex->NextVertex->NextVertex->NextVertex));
@@ -443,7 +482,10 @@ void ListGraphBFS(struct ListGraph *Graph) {
     printf("广度优先遍历\n");
     int length = Graph->VertexNum;
     bool *visited = (bool *) malloc(length * sizeof(bool));
-    for (int i = 0; i < length; i++) { visited[i] = false; printf("[%d]", visited[i]); }
+    for (int i = 0; i < length; i++) {
+        visited[i] = false;
+        printf("[%d]", visited[i]);
+    }
     printf("\n\n");
     struct Quack *queue = InitQuack();
     QuackEnQueue(queue, InitQuackNode(Graph->HeadVertex));

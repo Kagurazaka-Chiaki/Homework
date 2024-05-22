@@ -1,11 +1,14 @@
 #
 
-set(CMAKE_VERSION 3.25)
+set(CMAKE_VERSION 3.28)
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED On)
+
 set(CMAKE_BUILE_TYPE DEBUG)
 set(CMAKE_CXX_EXTENSIONS Off)
-set(CMAKE_CXX_STANDARD_REQUIRED On)
 set(CMAKE_EXPORT_COMPILE_COMMANDS On)
+
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 # set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
 
 cmake_minimum_required(VERSION ${CMAKE_VERSION})
@@ -74,6 +77,10 @@ message(STATUS "Find Catch2 ${Catch2_VERSION} -> ${Catch2_FOUND}")
 find_package(spdlog CONFIG REQUIRED)
 message(STATUS "Find spdlog ${spdlog_VERSION} -> ${spdlog_FOUND}")
 
+# ICU
+find_package(ICU COMPONENTS uc i18n REQUIRED)
+message(STATUS "Find ICU ${ICU_VERSION} -> ${ICU_FOUND}")
+
 # Custom Functions
 include(CMake/function.cmake)
 
@@ -99,7 +106,10 @@ add_subdirectory(Structure)
 # add_subdirectory(NowCoder)
 
 message(STATUS "Subdirectory [Templates]")
-# add_subdirectory(Templates)
+add_subdirectory(Templates)
+
+message(STATUS "Subdirectory [Common]")
+add_subdirectory(Common)
 
 message(STATUS "Subdirectory [Temp]")
 add_subdirectory(Temp)

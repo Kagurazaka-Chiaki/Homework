@@ -8,3 +8,10 @@
         20 -> { 15 }
     }
 ```
+
+
+
+
+$$
+x_1 = \dfrac{边长/2}{\tan\left(\arctan\left(\dfrac{y_0}{x_0}\right) + \alpha\right)}
+$$

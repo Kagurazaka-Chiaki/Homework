@@ -20,13 +20,13 @@ if(UNIX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lstdc++ -Wunused-command-line-argument")
 endif(UNIX)
 
-if(WIN32)
-    message(STATUS "Windows ${CMAKE_CXX_COMPILER}")
-    if(${CMAKE_CXX_COMPILER} MATCHES "clang")
-        message(STATUS "重置工具链")
-        set(CMAKE_TOOLCHAIN_FILE "")
-    endif(${CMAKE_CXX_COMPILER} MATCHES "clang")
-endif(WIN32)
+# if(WIN32)
+#     message(STATUS "Windows ${CMAKE_CXX_COMPILER}")
+#     if(${CMAKE_CXX_COMPILER} MATCHES "clang")
+#         message(STATUS "重置工具链")
+#         set(CMAKE_TOOLCHAIN_FILE "")
+#     endif(${CMAKE_CXX_COMPILER} MATCHES "clang")
+# endif(WIN32)
 
 
 # Definitions
@@ -46,11 +46,11 @@ if(MSVC)
 endif(MSVC)
 
 
-if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
-    message(STATUS "Clang ${CMAKE_CXX_COMPILER_VERSION}")
-endif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
+# if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
+#     message(STATUS "Clang ${CMAKE_CXX_COMPILER_VERSION}")
+# endif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
 
-message(STATUS "Using toolchain file: ${CMAKE_TOOLCHAIN_FILE}")
+# message(STATUS "Using toolchain file: ${CMAKE_TOOLCHAIN_FILE}")
 
 # CTEST_TARGETS_ADDED 1
 set_property(GLOBAL PROPERTY CTEST_TARGETS_ADDED 1)

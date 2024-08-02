@@ -42,7 +42,7 @@ if(MSVC)
     # 支持 C++ 异常处理并设置 MSVC 输入代码编码格式为 utf-8
     add_compile_options("/EHsc" "/source-charset:utf-8")
     message(STATUS "$ENV{VCPKG_ROOT}")
-    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}\\scripts\\buildsystems\\vcpkg.cmake")
+    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
 endif(MSVC)
 
 
@@ -50,7 +50,7 @@ endif(MSVC)
 #     message(STATUS "Clang ${CMAKE_CXX_COMPILER_VERSION}")
 # endif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
 
-# message(STATUS "Using toolchain file: ${CMAKE_TOOLCHAIN_FILE}")
+message(STATUS "Using toolchain file: ${CMAKE_TOOLCHAIN_FILE}")
 
 # CTEST_TARGETS_ADDED 1
 set_property(GLOBAL PROPERTY CTEST_TARGETS_ADDED 1)

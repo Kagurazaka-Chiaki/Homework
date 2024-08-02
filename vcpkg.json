@@ -4,5 +4,7 @@
         "catch2",
         "spdlog",
         "icu"
-    ]
+    ],
+    "version": "0.0.1",
+    "name": "homework"
 }

@@ -1,31 +1,21 @@
 {
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
-    "files.associations": {
-        "*.pro": "prolog",
-        "iostream": "cpp",
-        "string": "cpp",
-        "iosfwd": "cpp",
-        "vector": "cpp",
-        "xstring": "cpp",
-        "algorithm": "cpp",
-        "xutility": "cpp"
-    },
-    "cmake.configureArgs": [
-        "-DBoost_NO_WARN_NEW_VERSIONS=1",
-        "-DVCPKG_APPLOCAL_DEPS=ON",
-        "-DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON",
-        "-DVCPKG_MANIFEST_MODE=ON",
-        "-DVCPKG_TARGET_TRIPLET=x64-windows",
-        "-DCMAKE_MAKE_PROGRAM=D:/JetBrains/Toolbox/CLion/bin/ninja/win/x64/ninja.exe"
-    ],
-    "vcpkg.general.enable": true,
-    "vcpkg.target.hostTriplet": "x64-windows",
-    "vcpkg.target.defaultTriplet": "x64-windows",
-    "vcpkg.target.useStaticLib": false,
-    "cmake.configureSettings": {
-        "CMAKE_TOOLCHAIN_FILE": "D:/vcpkg/scripts/buildsystems/vcpkg.cmake"
-    },
-    "vcpkg.target.installDependencies": true,
-    "vcpkg.target.preferSystemLibs": false,
-    "vcpkg.target.useManifest": true,
+  "cmake.cmakePath": "D:/JetBrains/Toolbox/CLion/bin/cmake/win/x64/bin/cmake.exe",
+  "cmake.configureArgs": [
+    "-DBoost_NO_WARN_NEW_VERSIONS=1",
+    "-DVCPKG_APPLOCAL_DEPS=ON",
+    "-DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON",
+    "-DCMAKE_MAKE_PROGRAM=D:/JetBrains/Toolbox/CLion/bin/ninja/win/x64/ninja.exe",
+    "-DVCPKG_TARGET_TRIPLET=x64-windows",
+    "-DVCPKG_MANIFEST_MODE=ON"
+  ],
+  "vcpkg.general.enable": true,
+  "vcpkg.target.hostTriplet": "x64-windows",
+  "vcpkg.target.defaultTriplet": "x64-windows",
+  "vcpkg.target.useStaticLib": false,
+  "cmake.configureSettings": {
+    "CMAKE_TOOLCHAIN_FILE": "D:/vcpkg/scripts/buildsystems/vcpkg.cmake"
+  },
+  "vcpkg.target.installDependencies": true,
+  "vcpkg.target.preferSystemLibs": false,
+  "vcpkg.target.useManifest": false
 }

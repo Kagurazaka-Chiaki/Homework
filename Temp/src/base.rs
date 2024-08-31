@@ -1,4 +1,3 @@
-
 pub struct Nil;
 
 pub struct True;
@@ -63,7 +62,7 @@ impl And for (False, False) {
     type Ouput = False;
 }
 
-
+#[allow(dead_code)]
 trait Xor {
     type Ouput: Bool;
 }
@@ -74,7 +73,7 @@ pub trait Container {
     type Output;
 }
 
-impl <T> Container for List<T> {
+impl<T> Container for List<T> {
     type Output = Vec<i32>;
 }
 

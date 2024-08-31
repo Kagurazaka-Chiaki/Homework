@@ -22,10 +22,13 @@ endif(UNIX)
 
 # if(WIN32)
 #     message(STATUS "Windows ${CMAKE_CXX_COMPILER}")
-#     if(${CMAKE_CXX_COMPILER} MATCHES "clang")
-#         message(STATUS "重置工具链")
-#         set(CMAKE_TOOLCHAIN_FILE "")
-#     endif(${CMAKE_CXX_COMPILER} MATCHES "clang")
+#     set(CMAKE_C_COMPILER "$ENV{CLANG_CL_EXE}")
+#     set(CMAKE_CXX_COMPILER "$ENV{CLANG_CL_EXE}")
+#     message(STATUS "Windows ${CMAKE_CXX_COMPILER}")
+#     # if(${CMAKE_CXX_COMPILER} MATCHES "clang")
+#     #     message(STATUS "重置工具链")
+#     #     set(CMAKE_TOOLCHAIN_FILE "")
+#     # endif(${CMAKE_CXX_COMPILER} MATCHES "clang")
 # endif(WIN32)
 
 

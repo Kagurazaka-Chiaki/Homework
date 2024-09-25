@@ -27,3 +27,5 @@ add_executable(tests test.cpp)
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 
 message(STATUS "-> Leave Project ${PROJECT_NAME_STR}")
+
+add_executable(obs Observer.cpp)

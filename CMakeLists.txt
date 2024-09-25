@@ -84,6 +84,10 @@ message(STATUS "Find spdlog ${spdlog_VERSION} -> ${spdlog_FOUND}")
 find_package(ICU COMPONENTS uc i18n REQUIRED)
 message(STATUS "Find ICU ${ICU_VERSION} -> ${ICU_FOUND}")
 
+# Proxy
+find_package(proxy CONFIG REQUIRED)
+message(STATUS "Found Proxy: ${proxy_DIR}")
+
 # Custom Functions
 include(CMake/function.cmake)
 
@@ -94,7 +98,7 @@ message(STATUS "Enter Project ${PROJECT_NAME_STR}")
 # add_library(Homework Homework.cpp)
 
 message(STATUS "Subdirectory [Math]")
-# add_subdirectory(Math)
+add_subdirectory(Math)
 
 message(STATUS "Subdirectory [Structure]")
 add_subdirectory(Structure)
@@ -108,8 +112,8 @@ add_subdirectory(Structure)
 # message(STATUS "Subdirectory [Luogu]")
 # add_subdirectory(NowCoder)
 
-message(STATUS "Subdirectory [Templates]")
-add_subdirectory(Templates)
+# message(STATUS "Subdirectory [Templates]")
+# add_subdirectory(Templates)
 
 message(STATUS "Subdirectory [Common]")
 add_subdirectory(Common)
@@ -119,6 +123,9 @@ add_subdirectory(Temp)
 
 message(STATUS "Subdirectory [Notes]")
 add_subdirectory(Notes)
+
+message(STATUS "Subdirectory [Playground]")
+add_subdirectory(Playground)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

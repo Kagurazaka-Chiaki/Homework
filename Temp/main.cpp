@@ -6,9 +6,10 @@
 #include <unicode/unistr.h>
 
 #include <cstring>
-#include <iomanip>
+// #include <iomanip>
 #include <iostream>
-#include <vector>
+
+// #include <vector>
 
 // #include <bits/stdc++.h>
 
@@ -51,15 +52,15 @@ class APA {
         }
 
         // copy
-        APA(const APA &other) = delete;
+        APA(const APA &other)            = delete;
         APA &operator=(const APA &other) = delete;
 
 
         // move
-        APA(APA &&other) = delete;
+        APA(APA &&other)            = delete;
         APA &operator=(APA &&other) = delete;
 
-        ~APA() = default;
+        ~APA()                      = default;
 
         friend std::ostream &operator<<(std::ostream &os, const APA &apa) {
             os << "len: " << apa.len << " data: " << apa.data.get();
@@ -71,8 +72,7 @@ class APA {
             std::memset(data.get(), '0', len);
         }
 
-
-        auto read(const char *str) -> void {
+        auto read(char const *str) -> void {
             std::memset(data.get(), '\0', len + 1);
             std::memcpy(data.get(), str, std::strlen(str));
         }
@@ -88,23 +88,20 @@ class APA {
         }
 };
 
-
-
 auto ModifyCal_Div(double a, double b) -> void {
     auto int_a = static_cast<int>(a);
-    auto len = (int_a % 10) + 1;
+    auto len   = (int_a % 10) + 1;
     auto str_a = std::make_unique<char[]>(len + 1);
-    
-
-
 }
 
+#include <filesystem>
 
 auto main(int argc, char const *argv[]) -> int {
 
     (void) argc;
     (void) argv;
 
+    auto path = std::filesystem::current_path();
 
     // APA apa(10); // 0000 0000
 
@@ -195,20 +192,17 @@ auto main(int argc, char const *argv[]) -> int {
     double b = (-12423.600377 - -12600.000000) / 3150.000000;
 
 
-    auto d = log10(-9525.600289 + 12600.000000) - log10(3150.000000);
+    auto d   = log10(-9525.600289 + 12600.000000) - log10(3150.000000);
 
-    auto e = pow(10, d);
+    auto e   = pow(10, d);
 
-    std::cout  << a << " " << b << " " << std::endl;
-
-
+    std::cout << a << " " << b << " " << std::endl;
 
 
     a = -9525.600289;
     b = ((-9525.600289 / 3150.0) - (-12600.0 / 3150.0)) * pow(10, static_cast<int>(a) % 10);
-    
-    std::cout << b << std::endl;
 
+    std::cout << b << std::endl;
 
 
     return 0;

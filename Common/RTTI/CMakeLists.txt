@@ -10,25 +10,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
-
 set(CMAKE_BUILD_TYPE DEBUG)
 
 # CTEST_TARGETS_ADDED 1
 set_property(GLOBAL PROPERTY CTEST_TARGETS_ADDED 1)
 
-
-add_executable(app_minicoro
+add_executable(app_rtti
     main.cpp
-    minicoro.hpp
 )
-target_link_libraries(app_minicoro PRIVATE spdlog::spdlog_header_only)
-target_link_libraries(app_minicoro PRIVATE msft_proxy)
-
-
-add_executable(test_minicoro
-    test_minicoro.cpp
-    minicoro.hpp
-)
-add_test("test_minicoro" test_minicoro)
-target_link_libraries(test_minicoro PRIVATE Catch2::Catch2WithMain)
 

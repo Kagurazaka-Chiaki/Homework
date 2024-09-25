@@ -29,13 +29,13 @@ code:     杂项
 
 更改上一个 commit 内容
 
-```git
+```bash
 git commit --amend
 ```
 
 更改 commit 时间为当前时间
 
-```git
+```bash
 git commit --amend --date="$(date -R)"
 ```
 
@@ -47,7 +47,7 @@ git commit --amend --date="$(date -R)"
 
 开发分支 (dev) 上的代码达到上线的标准后，要合并到 master 分支
 
-```
+```bash
 git checkout dev
 git pull
 git checkout master
@@ -57,7 +57,7 @@ git push -u origin master
 
 当 master 代码改动了，需要更新开发分支 (dev) 上的代码
 
-```
+```bash
 git checkout master
 git pull
 git checkout dev
@@ -85,35 +85,67 @@ git push -u origin dev
 临时保存修改，并命名
 
 
-```
+```bash
 git stash save "fix: ..."
 ```
 
 
 保存开发到一半的代码
 
-```
+```bash
 # ... hack hack hack ...
-git stash                    // 保存开发到一半的代码
+git stash                    # 保存开发到一半的代码
 # ... edit emergency fix ...
 git commit -a -m "fix: ..."
-git stash pop                // 将代码追加到最新的提交之后, 并删除该缓存
+git stash pop                # 将代码追加到最新的提交之后, 并删除该缓存
 # ... continue hacking ...
 ```
 
 查看现有 stash
 
-```
+```bash
 git stash list
 ```
 
 应用指定缓存
 
-```
+```bash
 git stash apply @{%d}
 ```
 
 </details>
 
 
-<!-- TODO -->
+###  git submodule
+
+<details>
+
+添加子模块
+
+```bash
+git submodule add [url] "folder/name"
+```
+
+新仓库包含子模块
+
+```bash
+git submodule init
+git submodule update --recursive
+```
+
+修改子模块
+
+```bash
+git submodule add [new_url] "project/folder" -- 报错
+```
+
+```bash
+# 查询暂存
+git ls-files --stage "project/folder"
+# 移除暂存
+git rm --cached projectfolder
+# git submodule add [new_url] "project/folder"
+```
+
+
+</details>

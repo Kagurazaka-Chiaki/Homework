@@ -7,9 +7,6 @@
 #include <catch2/catch_approx.hpp>
 #include <catch2/catch_test_macros.hpp>
 
-#include <iostream>
-#include <string>
-
 TEST_CASE("vec") {
     SECTION("Basic") {
         auto test_vec = math::vec<3>();
@@ -139,6 +136,15 @@ TEST_CASE("vec") {
         auto test_vec_5 = test_vec_4.pop();
         CHECK(test_vec_5 == math::vec<1>({1}));
         auto test_vec_6 = test_vec_5.pop();
+    }
+
+    SECTION("Distance") {
+        auto const &a = math::vec<3>({1, 2, 3});
+        auto const &b = math::vec<3>({4, 5, 6});
+        CHECK(math::distance(a, b) == Catch::Approx(5.196152422706632));
+
+        auto const &c = math::vec<3>({6, 5, 4});
+        CHECK(math::distance(a, c) == Catch::Approx(5.91607978309961613));
     }
 
 }

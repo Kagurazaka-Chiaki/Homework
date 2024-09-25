@@ -1,9 +1,10 @@
-# Generated from CLion C/C++ Code Style settings
+# 基于 LLVM 风格的 C++ 代码格式化配置文件 个人修改版
 
 Language: Cpp
 
-# 标准: Cpp03, Cpp11, Auto
 Standard: Auto
+# 解析和格式化与此标准兼容的 C++
+Standard: Latest # C++20
 
 # LLVM
 # Google
@@ -14,8 +15,6 @@ Standard: Auto
 # GNU
 BasedOnStyle: LLVM
 
-AccessModifierOffset: -4
-
 # 缩进
 UseTab:                  Never
 UseCRLF:                 false
@@ -24,8 +23,13 @@ IndentWidth:             4
 ColumnLimit:             0
 IndentCaseLabels:        true
 IndentPPDirectives:      BeforeHash
-IndentAccessModifiers:   true
+
+# 指定访问修饰符应具有自己的缩进级别
+IndentAccessModifiers:   false
+AccessModifierOffset:    -2
+
 ContinuationIndentWidth: 8
+
 
 # 在大括号前换行:
 # Attach     - 始终将大括号附加到周围的上下文
@@ -125,8 +129,30 @@ IncludeCategories:
     Priority:        1
     SortPriority:    0
 
+# 如果参数不能放在一行上，则总是在左括号后换行。右括号将放在新行上
 AlignAfterOpenBracket:                      BlockIndent
-AlignConsecutiveAssignments:                None
+
+# 结构数组使用初始化时，将字段对齐为列
+AlignArrayOfStructures:                     Left
+
+# 对齐连续赋值
+AlignConsecutiveAssignments:
+  Enabled: false
+  AcrossEmptyLines: true
+  AcrossComments: false
+
+# 对齐连续位域
+AlignConsecutiveBitFields:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: false
+
+# 对齐连续宏定义
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: true
+  AcrossComments: false
+
 AlignOperands:                              AlignAfterOperator
 AllowAllArgumentsOnNextLine:                false
 AllowAllConstructorInitializersOnNextLine:  false
@@ -160,8 +186,15 @@ FixNamespaceComments: true
 # 构造函数初始值设定项样式
 PackConstructorInitializers: NextLine
 
+# 限定符右对齐
+QualifierAlignment : Right
+
 # 限定符顺序
 # QualifierOrder: ['inline', 'static', 'type', 'const', 'volatile' ]
 
+# 指定使用空行分隔定义块，包括类、结构、枚举和函数。
 SeparateDefinitionBlocks:  Always
 
+# 除非输入有更多以 \r\n 结尾的行，否则请使用 \n
+# LineEnding : DeriveLF
+LineEnding : LF

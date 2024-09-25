@@ -3,7 +3,8 @@
         "eigen3",
         "catch2",
         "spdlog",
-        "icu"
+        "icu",
+        "proxy"
     ],
     "version": "0.0.1",
     "name": "homework"

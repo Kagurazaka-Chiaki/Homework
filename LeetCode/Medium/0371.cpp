@@ -12,14 +12,14 @@ class Solution {
         if (b == 0) { return a; }
         unsigned int carry = 0;
         while (b != 0) {
-            carry = (a & b);   // 仅 0b1 + 0b1 产生进位 
-            a = a ^ b;         // 相加但不计进位
+            carry = (a & b); // 仅 0b1 + 0b1 产生进位
+            a = a ^ b;       // 相加但不计进位
             b = carry << 1;
         }
         return a;
     }
 
-public:
+  public:
     int getSum(int a, int b) {
         return add(a, b);
     }

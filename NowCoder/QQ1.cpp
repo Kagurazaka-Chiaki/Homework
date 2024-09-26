@@ -1,11 +1,11 @@
 #include <iostream>
-#include <vector>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class GrayCode {
-public:
+  public:
     vector<string> getGray(int n) {
         // write code here
         vector<string> gray;

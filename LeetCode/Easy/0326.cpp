@@ -17,7 +17,7 @@ class Solution {
         return ~x == -1;
     }
 
-public:
+  public:
     bool isPowerOfThree(int n) {
         if (n <= 0) { return false; }
         if (n == 387420489 || n == 1162261467) { return true; }

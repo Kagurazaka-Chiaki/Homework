@@ -3,8 +3,6 @@
 
 #include "bslib/solution.hpp"
 
-
-
 //
 auto bs::solution::searchInsert(std::vector<int> &nums, int target) -> int {
     int n = nums.size();

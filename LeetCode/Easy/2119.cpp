@@ -21,8 +21,8 @@ class Solution {
         }
         double result = 1.0f;
         while (p != 0) {
-            if (p & 1) { 
-                result *= x; 
+            if (p & 1) {
+                result *= x;
             }
             x *= x;
             p >>= 1;
@@ -43,7 +43,7 @@ class Solution {
     int reverse(int num) {
         int compare = num;
         int num_size = digit(compare);
-        int *stk = (int *)malloc(num_size * sizeof(int));
+        int *stk = (int *) malloc(num_size * sizeof(int));
         for (int i = 1; i < num_size + 1; i++) {
             int pow_10 = (int) pow(10, (num_size - i));
             int k = compare / pow_10;
@@ -59,7 +59,7 @@ class Solution {
         return reversed;
     }
 
-public:
+  public:
     bool isSameAfterReversals(int num) {
         // if (num <  0) { return false; } // 0 <= nums <= 10e6
         // if (num < 10) { return  true; }

@@ -11,8 +11,8 @@
 using namespace std;
 
 class Solution {
-public:
-    int diagonalSum(vector<vector<int>>& mat) {
+  public:
+    int diagonalSum(vector<vector<int>> &mat) {
         int result = 0;
         int n = mat.size();
         for (int i = 0; i < n; i++) {
@@ -27,7 +27,8 @@ public:
 };
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }

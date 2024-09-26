@@ -1,8 +1,7 @@
 //
 
-#include <iostream>
-
 #include <deque>
+#include <iostream>
 
 // #include "stack"
 
@@ -61,14 +60,12 @@
 
 class CQueue {
 
-private:
-
+  private:
     std::stack<int> stack1;
     std::stack<int> stack2;
 
-public:
+  public:
     CQueue() {
-
     }
 
     void appendTail(int value) {
@@ -93,7 +90,6 @@ public:
 
         return head;
     }
-
 };
 
 int main(int argc, char const *argv[]) {

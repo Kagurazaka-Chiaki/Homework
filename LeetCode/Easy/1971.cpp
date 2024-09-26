@@ -2,7 +2,7 @@ class Solution {
     int hash[200005];
     vector<int> eg[200005];
 
-public:
+  public:
     bool dfs(int s, int e) {
         if (s == e) { return true; }
         if (hash[s]) { return false; }
@@ -15,7 +15,7 @@ public:
         return false;
     }
 
-    bool validPath(int n, vector<vector<int>>& edges, int source, int destination) {
+    bool validPath(int n, vector<vector<int>> &edges, int source, int destination) {
 
         for (int i = 0; i < n; ++i) {
             eg[i].clear();

@@ -1,7 +1,6 @@
 
 #include <iostream>
 
-
 auto gunc(int const &n) -> void {
     int sum = 0, temp = 0;
     for (int i = 0; i < n; i++) {
@@ -12,7 +11,8 @@ auto gunc(int const &n) -> void {
 }
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     int t = 0; // t \in [1, 100]
     std::cin >> t;

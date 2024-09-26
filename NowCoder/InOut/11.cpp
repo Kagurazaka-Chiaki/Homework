@@ -8,7 +8,8 @@
 #include <tuple>
 
 auto main(int argc, char const *argv[]) -> int {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     int t = 0;
     std::cin >> t;
@@ -22,7 +23,7 @@ auto main(int argc, char const *argv[]) -> int {
         std::cout << "n:" << n << '\n';
 
         std::getline(std::cin, line);
-        std::cout << "t:" << t <<  line << '\n';
+        std::cout << "t:" << t << line << '\n';
 
         std::getline(std::cin, line);
         std::cout << "t:" << t << line << '\n';

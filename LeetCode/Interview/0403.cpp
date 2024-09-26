@@ -17,10 +17,10 @@
  */
 
 class Solution {
-    vector<ListNode*> ret;
-    vector<ListNode*> pre;
-public:
+    vector<ListNode *> ret;
+    vector<ListNode *> pre;
 
+  public:
     int get_depth(TreeNode *root) {
         if (root == nullptr) {
             return 0;
@@ -29,7 +29,7 @@ public:
     }
 
     void dfs(TreeNode *root, int depth) {
-        if (root == nullptr) { return ; }
+        if (root == nullptr) { return; }
         if (pre[depth] == nullptr) {
             ret[depth] = new ListNode(root->val);
             pre[depth] = ret[depth];
@@ -41,7 +41,7 @@ public:
         dfs(root->right, depth + 1);
     }
 
-    vector<ListNode*> listOfDepth(TreeNode* tree) {
+    vector<ListNode *> listOfDepth(TreeNode *tree) {
         int dep = get_depth(tree);
         ret.clear();
         pre.clear();

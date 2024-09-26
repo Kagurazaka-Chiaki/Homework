@@ -19,29 +19,29 @@ int main() {
         for (int i = 1; i < str.size(); i++) {
             current = str[i];
             switch (state) {
-            case 0:
-                if (current == last) {
-                    state = 1;
-                } else {
-                    state = 0;
-                }
-                break;
-            case 1:
-                if (current == last) {
-                    continue;
-                } else {
-                    state = 2;
-                }
-                break;
-            case 2:
-                if (current == last) {
-                    continue;
-                } else {
-                    state = 0;
-                }
-                break;
-            default:
-                break;
+                case 0:
+                    if (current == last) {
+                        state = 1;
+                    } else {
+                        state = 0;
+                    }
+                    break;
+                case 1:
+                    if (current == last) {
+                        continue;
+                    } else {
+                        state = 2;
+                    }
+                    break;
+                case 2:
+                    if (current == last) {
+                        continue;
+                    } else {
+                        state = 0;
+                    }
+                    break;
+                default:
+                    break;
             }
             ans = ans + current;
             last = current;

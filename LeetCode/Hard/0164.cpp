@@ -14,31 +14,30 @@
 using namespace std;
 
 class Solution {
-public:
-    int maximumGap(vector<int>& nums) {
+  public:
+    int maximumGap(vector<int> &nums) {
         sort(nums.begin(), nums.end());
         int max_gap = 0;
-        for(int i = 1; i < nums.size(); ++i) {
-            if(nums[i] - nums[i-1] > max_gap) {
-                max_gap = nums[i] - nums[i-1];
+        for (int i = 1; i < nums.size(); ++i) {
+            if (nums[i] - nums[i - 1] > max_gap) {
+                max_gap = nums[i] - nums[i - 1];
             }
         }
         return max_gap;
     }
 };
 
-
 // C
-int cmp(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
+int cmp(void const *a, void const *b) {
+    return *(int *) a - *(int *) b;
 }
 
-int maximumGap(int* nums, int numsSize){
+int maximumGap(int *nums, int numsSize) {
     int max = 0;
     qsort(nums, numsSize, sizeof(int), cmp);
-    for(int i = 1; i < numsSize; ++i) {
-        if(nums[i] - nums[i-1] > max) {
-            max = nums[i] - nums[i-1];
+    for (int i = 1; i < numsSize; ++i) {
+        if (nums[i] - nums[i - 1] > max) {
+            max = nums[i] - nums[i - 1];
         }
     }
     return max;

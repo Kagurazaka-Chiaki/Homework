@@ -10,10 +10,10 @@
 using namespace std;
 
 class Solution {
-public:
-    int findClosestNumber(vector<int>& nums) {
+  public:
+    int findClosestNumber(vector<int> &nums) {
         int a = INT_MAX, b = INT_MAX;
-        for (int i : nums) {
+        for (int i: nums) {
             if (i < 0) {
                 a = -min(abs(a), abs(i));
             } else {
@@ -25,7 +25,8 @@ public:
 };
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }

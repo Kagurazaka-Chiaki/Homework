@@ -11,7 +11,7 @@
 using namespace std;
 
 class Solution {
-public:
+  public:
     int integerReplacement(int n) {
         if (n == 1) {
             return 0;
@@ -24,7 +24,8 @@ public:
 };
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }

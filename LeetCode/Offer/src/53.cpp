@@ -6,17 +6,16 @@
 
 #include <iostream>
 #include <stack>
-#include <vector>
 #include <string>
-
+#include <vector>
 
 class Solution {
-public:
+  public:
     int missingNumber(std::vector<int> &nums) {
         int biggest = nums.size() + 1;
         int assume_sum = biggest * (biggest - 1) / 2;
         int given_sum = 0;
-        for (int i : nums) {
+        for (int i: nums) {
             given_sum = given_sum + i;
         }
         int result = assume_sum - given_sum;
@@ -27,11 +26,9 @@ public:
     }
 };
 
-
 int main(int argc, char const *argv[]) {
     /* code */
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     return 0;
 }
-
-

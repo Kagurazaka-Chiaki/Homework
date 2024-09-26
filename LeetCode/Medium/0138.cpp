@@ -15,8 +15,8 @@ public:
 */
 
 class Solution {
-public:
-    Node* copyRandomList(Node* head) {
+  public:
+    Node *copyRandomList(Node *head) {
         if (head == nullptr) { return nullptr; }
         Node *ret_head = new Node(head->val);
         Node *head2 = ret_head;
@@ -36,7 +36,7 @@ public:
                 go = go->next;
                 ++cnt;
             }
-            
+
             go = head2;
             while (cnt) {
                 go = go->next;
@@ -48,6 +48,6 @@ public:
             ret_head = ret_head->next;
         }
 
-        return head2; 
+        return head2;
     }
 };

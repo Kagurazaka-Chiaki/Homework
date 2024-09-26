@@ -5,7 +5,6 @@
 
 #include <cstdlib>
 
-
 auto guess(int num) -> int {
     return -1 + std::rand() % 3;
 }

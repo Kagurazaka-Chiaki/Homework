@@ -5,14 +5,14 @@
  * 
 **/
 
-#include <vector>
 #include <cstdlib>
+#include <vector>
 
 using namespace std;
 
 class Solution {
-public:
-    vector<int> shuffle(vector<int>& nums, int n) {
+  public:
+    vector<int> shuffle(vector<int> &nums, int n) {
         vector<int> result;
         int i = 0, j = n;
         for (i = 0; i < n; i++) {
@@ -27,8 +27,8 @@ public:
 /**
  * Note: The returned array must be malloced, assume caller calls free().
 **/
-int* shuffle(int* nums, int numsSize, int n, int* returnSize){
-    int *result = (int *)malloc(numsSize * sizeof(int));
+int *shuffle(int *nums, int numsSize, int n, int *returnSize) {
+    int *result = (int *) malloc(numsSize * sizeof(int));
     for (int i = 0; i < numsSize; i++) {
         if (i & 1) {
             result[i] = nums[n + (i / 2)];

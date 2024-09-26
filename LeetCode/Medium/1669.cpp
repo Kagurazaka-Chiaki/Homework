@@ -10,7 +10,7 @@
  */
 class Solution {
 
-    ListNode* target_node_prev(ListNode* list, int a) {
+    ListNode *target_node_prev(ListNode *list, int a) {
         if (list == nullptr) { return nullptr; }
         ListNode *pointer = list;
         for (int i = 0; i < a - 1; i++) {
@@ -19,8 +19,7 @@ class Solution {
         return pointer;
     }
 
-
-    ListNode* target_list_last(ListNode* list) {
+    ListNode *target_list_last(ListNode *list) {
         if (list == nullptr) { return nullptr; }
         ListNode *pointer = list;
         while (pointer != nullptr) {
@@ -29,12 +28,12 @@ class Solution {
         return pointer;
     }
 
-public:
-    ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
+  public:
+    ListNode *mergeInBetween(ListNode *list1, int a, int b, ListNode *list2) {
         // ListNode *a_prev = target_node_prev(list1, a);
         // ListNode *b_prev = target_node_prev(list1, b);
         // ListNode *last_l2 = target_list_last(list2);
-        
+
         ListNode *ret = list1;
         ListNode *alist1 = list1;
         ListNode *blist1 = list1;

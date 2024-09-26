@@ -4,7 +4,6 @@
 #define VEC_HPP
 
 #include "core.hpp"
-#define _USE_MATH_DEFINES
 
 #include <algorithm>
 #include <functional>

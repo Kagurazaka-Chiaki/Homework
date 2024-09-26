@@ -1,15 +1,15 @@
 
-#include <catch2/catch_test_macros.hpp>
-
 #include "dplib/solution.hpp"
-
+#include <catch2/catch_test_macros.hpp>
 
 TEST_CASE("Test 0746") {
     auto &S = dp::solution::singleton();
 
     SECTION("test 1") {
         auto const test_vec = std::vector<int>{
-                10, 15, 20,
+                10,
+                15,
+                20,
         };
 
         CHECK(S.minCostClimbingStairs(test_vec) == 15);
@@ -23,5 +23,4 @@ TEST_CASE("Test 0746") {
 
         CHECK(S.minCostClimbingStairs(test_vec) == 6);
     }
-
 }

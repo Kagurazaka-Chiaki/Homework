@@ -6,8 +6,8 @@
 #include <vector>
 
 class Solution {
-public:
-    int search(std::vector<int>& nums, int target) {
+  public:
+    int search(std::vector<int> &nums, int target) {
         int n = nums.size();
         int left = 0;
         int right = n - 1;
@@ -24,8 +24,8 @@ public:
 };
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }
-

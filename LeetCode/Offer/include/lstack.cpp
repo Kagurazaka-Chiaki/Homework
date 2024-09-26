@@ -1,17 +1,19 @@
 
 #include <deque>
 
-template<class T, class Sequence = std::deque<T> >
+template<class T, class Sequence = std::deque<T>>
 class Stack {
     typedef typename Sequence::value_type value_type;
     typedef typename Sequence::size_type size_type;
     typedef typename Sequence::reference reference;
     typedef typename Sequence::const_reference const_reference;
-private:
+
+  private:
     /* data */
-protected:
+  protected:
     Sequence c;
-public:
+
+  public:
     // stack(/* args */);
     // ~stack();
 
@@ -31,7 +33,7 @@ public:
         return c.back();
     }
 
-    void push(const value_type &x) {
+    void push(value_type const &x) {
         c.push_back(x);
     }
 

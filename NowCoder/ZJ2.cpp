@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <iostream>
+#include <stdio.h>
 
 using namespace std;
 
@@ -28,7 +28,8 @@ string isDrawGame(long long n, long long k, long long d1, long long d2) {
 }
 
 int main() {
-    int t; cin >> t;
+    int t;
+    cin >> t;
     while (t--) {
         long long n, k, d1, d2;
         cin >> n >> k >> d1 >> d2;

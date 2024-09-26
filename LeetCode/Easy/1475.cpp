@@ -10,8 +10,8 @@
 using namespace std;
 
 class Solution {
-public:
-    vector<int> finalPrices(vector<int>& prices) {
+  public:
+    vector<int> finalPrices(vector<int> &prices) {
         int length = prices.size();
         vector<int> result(length, 0);
         for (int i = 0; i < length; i++) {
@@ -34,7 +34,8 @@ public:
 };
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }

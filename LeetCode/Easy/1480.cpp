@@ -5,14 +5,14 @@
  * 
 **/
 
-#include <vector>
 #include <cstdlib>
+#include <vector>
 
 using namespace std;
 
 class Solution {
-public:
-    vector<int> runningSum(vector<int>& nums) {
+  public:
+    vector<int> runningSum(vector<int> &nums) {
         vector<int> result;
         result.push_back(nums[0]);
         for (int i = 1; i < nums.size(); i++) {
@@ -26,8 +26,8 @@ public:
 /**
  * Note: The returned array must be malloced, assume caller calls free().
 **/
-int* runningSum(int* nums, int numsSize, int* returnSize){
-    int *result = (int *)malloc(numsSize * sizeof(int));
+int *runningSum(int *nums, int numsSize, int *returnSize) {
+    int *result = (int *) malloc(numsSize * sizeof(int));
     result[0] = nums[0];
     for (int i = 1; i < numsSize; i++) {
         result[i] = nums[i];

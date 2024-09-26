@@ -1,12 +1,13 @@
 #include <iostream>
-
-#include <vector>
 #include <stack>
+#include <vector>
 
 struct ListNode {
     int val;
     ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
+
+    ListNode(int x)
+        : val(x), next(NULL) {}
 };
 
 std::vector<int> reversePrint(ListNode *head) {

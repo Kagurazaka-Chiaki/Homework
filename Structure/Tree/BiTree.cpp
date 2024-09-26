@@ -22,99 +22,99 @@ enum class Instruction {
 };
 
 struct BiTreeNode {
-        int val;
+    int val;
 
-        std::unique_ptr<BiTreeNode> left;
+    std::unique_ptr<BiTreeNode> left;
 
-        std::unique_ptr<BiTreeNode> right;
+    std::unique_ptr<BiTreeNode> right;
 
-        BiTreeNode(int x)
-            : val(x), left(nullptr), right(nullptr) {}
+    BiTreeNode(int x)
+        : val(x), left(nullptr), right(nullptr) {}
 };
 
 class BiTree {
-    private:
-    public:
-        BiTreeNode *curr;
-        std::unique_ptr<BiTreeNode> root;
+  private:
+  public:
+    BiTreeNode *curr;
+    std::unique_ptr<BiTreeNode> root;
 
-        BiTree()
-            : root(nullptr), curr(nullptr) {}
+    BiTree()
+        : root(nullptr), curr(nullptr) {}
 
-        BiTree(int val)
-            : root(std::make_unique<BiTreeNode>(val)) {
-            curr = root.get();
+    BiTree(int val)
+        : root(std::make_unique<BiTreeNode>(val)) {
+        curr = root.get();
+    }
+
+    BiTree(std::initializer_list<int> list) {
+        for (auto &val: list) {
+            insert(val);
+        }
+        curr = root.get();
+    }
+
+    auto insert(int val) -> void {
+        if (root == nullptr) {
+            root = std::make_unique<BiTreeNode>(val);
+            return;
         }
 
-        BiTree(std::initializer_list<int> list) {
-            for (auto &val: list) {
-                insert(val);
-            }
-            curr = root.get();
-        }
-
-        auto insert(int val) -> void {
-            if (root == nullptr) {
-                root = std::make_unique<BiTreeNode>(val);
-                return;
-            }
-
-            auto current = root.get();
-            while (current != nullptr) {
-                if (val < current->val) {
-                    if (current->left == nullptr) {
-                        current->left = std::make_unique<BiTreeNode>(val);
-                        return;
-                    }
-                    current = current->left.get();
-                } else {
-                    if (current->right == nullptr) {
-                        current->right = std::make_unique<BiTreeNode>(val);
-                        return;
-                    }
-                    current = current->right.get();
+        auto current = root.get();
+        while (current != nullptr) {
+            if (val < current->val) {
+                if (current->left == nullptr) {
+                    current->left = std::make_unique<BiTreeNode>(val);
+                    return;
                 }
-            }
-        }
-
-        ~BiTree() {
-            root.reset();
-        }
-
-        auto dfs_sum(BiTreeNode *node) -> std::pair<int, int> {
-            if (node == nullptr) {
-                return {0, 0};
-            }
-
-            auto left = dfs_sum(node->left.get());
-            auto right = dfs_sum(node->right.get());
-
-            return {left.first + right.first + node->val, left.second + right.second + 1};
-        }
-
-        auto dfs(BiTreeNode *node) -> void {
-            if (node == nullptr) {
-                return;
-            }
-
-            DotPrint(node);
-            dfs(node->left.get());
-            dfs(node->right.get());
-        }
-
-        void DotPrint(struct BiTreeNode *TreeNode) {
-            if (TreeNode != NULL) {
-                printf("%d -> {", TreeNode->val);
-                if (TreeNode->left != NULL) {
-                    printf(" %d", TreeNode->left->val);
+                current = current->left.get();
+            } else {
+                if (current->right == nullptr) {
+                    current->right = std::make_unique<BiTreeNode>(val);
+                    return;
                 }
-                printf(" ");
-                if (TreeNode->right != NULL) {
-                    printf("%d ", TreeNode->right->val);
-                }
+                current = current->right.get();
             }
-            printf("}\n");
         }
+    }
+
+    ~BiTree() {
+        root.reset();
+    }
+
+    auto dfs_sum(BiTreeNode *node) -> std::pair<int, int> {
+        if (node == nullptr) {
+            return {0, 0};
+        }
+
+        auto left = dfs_sum(node->left.get());
+        auto right = dfs_sum(node->right.get());
+
+        return {left.first + right.first + node->val, left.second + right.second + 1};
+    }
+
+    auto dfs(BiTreeNode *node) -> void {
+        if (node == nullptr) {
+            return;
+        }
+
+        DotPrint(node);
+        dfs(node->left.get());
+        dfs(node->right.get());
+    }
+
+    void DotPrint(struct BiTreeNode *TreeNode) {
+        if (TreeNode != NULL) {
+            printf("%d -> {", TreeNode->val);
+            if (TreeNode->left != NULL) {
+                printf(" %d", TreeNode->left->val);
+            }
+            printf(" ");
+            if (TreeNode->right != NULL) {
+                printf("%d ", TreeNode->right->val);
+            }
+        }
+        printf("}\n");
+    }
 };
 
 auto print_tree_to_markdown(BiTree &tree) -> void {

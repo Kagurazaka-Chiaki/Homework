@@ -5,16 +5,15 @@
 
 #include <iostream>
 #include <stack>
-#include <vector>
 #include <string>
+#include <vector>
 
 class Solution {
-public:
+  public:
     bool findNumberIn2DArray(std::vector<std::vector<int>> &matrix, int target) {
         return true;
     }
 };
-
 
 bool findNumberIn2DArray(std::vector<std::vector<int>> &matrix, int target) {
 
@@ -36,20 +35,18 @@ bool findNumberIn2DArray(std::vector<std::vector<int>> &matrix, int target) {
         } else {
             row--;
         }
-
     }
 
     return found;
 }
 
-
 std::vector<std::vector<int>> build_2d_vector() {
     std::vector<std::vector<int>> matrix;
 
-    std::vector<int> data_1 = { 1, 2, 8, 9 };
-    std::vector<int> data_2 = { 2, 4, 9, 12 };
-    std::vector<int> data_3 = { 4, 7, 10, 13 };
-    std::vector<int> data_4 = { 6, 8, 11, 15 };
+    std::vector<int> data_1 = {1, 2, 8, 9};
+    std::vector<int> data_2 = {2, 4, 9, 12};
+    std::vector<int> data_3 = {4, 7, 10, 13};
+    std::vector<int> data_4 = {6, 8, 11, 15};
 
     matrix.push_back(data_1);
     matrix.push_back(data_2);
@@ -81,7 +78,8 @@ void print_2d_vector(std::vector<std::vector<int>> matrix) {
 
 int main(int argc, char const *argv[]) {
     /* code */
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
 
     auto matrix = build_2d_vector();
 

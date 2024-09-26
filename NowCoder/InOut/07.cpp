@@ -6,7 +6,6 @@
 #include <sstream>
 #include <vector>
 
-
 auto gunc(std::stringstream &s) -> std::vector<int> {
     int i = 0;
     std::vector<int> v;

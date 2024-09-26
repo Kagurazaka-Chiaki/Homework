@@ -8,7 +8,7 @@
 **/
 
 class Solution {
-public:
+  public:
     int climbStairs(int n) {
         if (n == 1 || n == 2) { return n; }
         int prev = 0, curr = 0, next = 1;

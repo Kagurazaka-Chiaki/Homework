@@ -14,7 +14,8 @@ auto func() -> bool {
 }
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     bool temp = func();
     while (temp) {

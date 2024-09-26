@@ -5,7 +5,6 @@
 
 #include "dplib/solution.hpp"
 
-
 int recursion(std::vector<int> &note, int n) {
     if (n == 1 || n == 2) { return 1; }
     if (note[n] != 0) { return note[n]; } // 剪枝

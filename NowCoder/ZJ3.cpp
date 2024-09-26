@@ -2,9 +2,10 @@
 
 using namespace std;
 
-const int MAX_LENGTH = 50000;
+int const MAX_LENGTH = 50000;
 
-template<typename T> inline int MAX(const T &a, const T &b) {
+template<typename T>
+inline int MAX(T const &a, T const &b) {
     return (a > b ? a : b);
 }
 
@@ -35,8 +36,10 @@ int WindowSolve(char str[], int n, int m) {
 }
 
 int main() {
-    int n, m; cin >> n >> m;
-    char c[MAX_LENGTH + 1] = { '\0' }; cin >> c;
+    int n, m;
+    cin >> n >> m;
+    char c[MAX_LENGTH + 1] = {'\0'};
+    cin >> c;
     cout << WindowSolve(c, n, m) << endl;
     return 0;
 }

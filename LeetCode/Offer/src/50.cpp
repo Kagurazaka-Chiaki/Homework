@@ -3,11 +3,12 @@
 **/
 
 
+#include <unordered_map>
+
 #include <iostream>
 #include <stack>
-#include <vector>
 #include <string>
-#include <unordered_map>
+#include <vector>
 
 // class Solution {
 // public:
@@ -30,21 +31,21 @@
 char firstUniqChar(std::string s) {
     std::unordered_map<char, bool> map;
 
-    for (char c : s) {
+    for (char c: s) {
         map[c] = map.find(c) == map.end();
     }
 
-    for (char c : s) {
+    for (char c: s) {
         if (map[c]) { return c; }
     }
 
     return ' ';
 }
 
-
 int main(int argc, char const *argv[]) {
     /* code */
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
 
 
     std::string sample = "njdaks";

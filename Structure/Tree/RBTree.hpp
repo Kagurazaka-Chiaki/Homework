@@ -4,12 +4,8 @@ namespace Tree {
 
     class RBTree {
 
-        private:
-
-        public:
-
-
-
+      private:
+      public:
     };
 
 }; // namespace Tree

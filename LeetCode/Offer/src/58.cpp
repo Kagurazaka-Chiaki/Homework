@@ -5,12 +5,12 @@
  *
 **/
 
+#include <cstdlib>
+#include <cstring>
 #include <iostream>
 #include <stack>
-#include <vector>
 #include <string>
-#include <cstring>
-#include <cstdlib>
+#include <vector>
 
 using namespace std;
 
@@ -35,7 +35,6 @@ void reverse(string &s, int a, int b) {
         a++;
         b--;
     }
-
 }
 
 string reverseLeftWords(string s, int n) {
@@ -45,10 +44,9 @@ string reverseLeftWords(string s, int n) {
     return s;
 }
 
-
-char* reverseLeftWords(char* s, int k) {
+char *reverseLeftWords(char *s, int k) {
     int n = strlen(s);
-    char *result = (char *)malloc((n + 1) * sizeof(char));
+    char *result = (char *) malloc((n + 1) * sizeof(char));
     for (int i = 0; i < n; i++) {
         result[i] = s[(i + k) % n];
     }
@@ -58,7 +56,8 @@ char* reverseLeftWords(char* s, int k) {
 
 int main(int argc, char const *argv[]) {
     /* code */
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
 
     std::string s = "student";
     std::string str = "abcdefg";

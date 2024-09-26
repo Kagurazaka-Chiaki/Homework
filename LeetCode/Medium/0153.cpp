@@ -8,8 +8,8 @@
 #include <vector>
 
 class Solution {
-public:
-    int findMin(std::vector<int>& nums) {
+  public:
+    int findMin(std::vector<int> &nums) {
         int left = 0;
         int right = nums.size() - 1;
         while (left < right) {

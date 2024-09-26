@@ -2,7 +2,6 @@
 
 Language: Cpp
 
-Standard: Auto
 # 解析和格式化与此标准兼容的 C++
 Standard: Latest # C++20
 

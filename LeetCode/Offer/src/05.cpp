@@ -11,12 +11,11 @@
 
 using namespace std;
 
-
 class Solution {
-public:
+  public:
     string replaceSpace(string s) {
         string result = "";
-        for (char c : s) {
+        for (char c: s) {
             if (c == ' ') {
                 result += "%20";
             } else {
@@ -27,12 +26,11 @@ public:
     }
 };
 
-
 std::string replaceSpace(std::string s) {
     int count = 0;
     int length = s.length();
 
-    for (char c : s) {
+    for (char c: s) {
         if (c == ' ') { count++; }
     }
 
@@ -85,15 +83,15 @@ int main(int argc, char const *argv[]) {
 
 #define MAX 10000
 
-char* replaceSpace(char* s){
-    char *result = (char *)malloc((3 * MAX + 1) * sizeof(char));
+char *replaceSpace(char *s) {
+    char *result = (char *) malloc((3 * MAX + 1) * sizeof(char));
     int return_size = 0;
-    for(int i = 0; s[i] != '\0'; ++i) {
-        if(s[i] == ' ') {
+    for (int i = 0; s[i] != '\0'; ++i) {
+        if (s[i] == ' ') {
             result[return_size++] = '%%';
             result[return_size++] = '2';
             result[return_size++] = '0';
-        }else {
+        } else {
             result[return_size++] = s[i];
         }
     }

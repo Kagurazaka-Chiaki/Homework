@@ -11,8 +11,8 @@
 using namespace std;
 
 class Solution {
-public:
-    vector<vector<int>> flipAndInvertImage(vector<vector<int>>& image) {
+  public:
+    vector<vector<int>> flipAndInvertImage(vector<vector<int>> &image) {
         int n = image.size();
         vector<vector<int>> result(n, vector<int>(n, 0));
         for (int i = 0; i < n; i++) {
@@ -25,7 +25,8 @@ public:
 };
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }

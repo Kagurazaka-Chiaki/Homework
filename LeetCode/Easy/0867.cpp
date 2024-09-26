@@ -11,8 +11,8 @@
 using namespace std;
 
 class Solution {
-public:
-    vector<vector<int>> transpose(vector<vector<int>>& matrix) {
+  public:
+    vector<vector<int>> transpose(vector<vector<int>> &matrix) {
         int rows = matrix.size();
         int cols = matrix[0].size();
         vector<vector<int>> result(cols, vector<int>(rows, 0));
@@ -26,7 +26,8 @@ public:
 };
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }

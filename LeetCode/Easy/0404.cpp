@@ -10,8 +10,7 @@
  * };
  */
 class Solution {
-public:
-
+  public:
     bool is_leaf_node(TreeNode *node) {
         return (node->left == nullptr) && (node->right == nullptr);
     }
@@ -26,7 +25,7 @@ public:
         return dfs(node->left, true) + dfs(node->right, false);
     }
 
-    int sumOfLeftLeaves(TreeNode* root) {
+    int sumOfLeftLeaves(TreeNode *root) {
         return dfs(root, false);
     }
 };

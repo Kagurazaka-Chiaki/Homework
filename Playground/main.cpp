@@ -10,8 +10,8 @@
 #include <vector>
 
 auto get_curr_path(std::string const &folder_name) -> std::filesystem::path {
-    auto bin_path     = std::filesystem::current_path();
-    auto build_path   = bin_path.parent_path();
+    auto bin_path = std::filesystem::current_path();
+    auto build_path = bin_path.parent_path();
     auto project_path = build_path.parent_path();
     return project_path / folder_name;
 }
@@ -53,7 +53,7 @@ void m_op2(std::unordered_map<int, std::vector<int>> &M, int n, int m, int x, in
     if (M.find(x) == M.end()) {
         M[x] = std::vector<int>(m, 0);
         for (int j = 0; j < m; ++j) {
-            int i   = (j + (y + 1)) % m;
+            int i = (j + (y + 1)) % m;
             M[x][j] = ((x + 1) - 1) * m + (i + 1);
         }
     } else {

@@ -1,10 +1,9 @@
 #include <iostream>
-
 #include <stack>
 #include <vector>
 
 class Node {
-public:
+  public:
     int val;
     Node *next;
     Node *random;
@@ -69,7 +68,6 @@ Node *split_node(Node *compound_list) {
             loop_pointer = loop_pointer->next;
             temp->next = temp->next->next;
         }
-
     }
     return result;
 }
@@ -130,7 +128,7 @@ int main(int argc, char const *argv[]) {
     std::cout << "hello, 35" << std::endl;
 
     std::vector<int> data = {
-        1, 2, 3, 4, 5
+            1, 2, 3, 4, 5
     };
 
     Node *sample = build_list(data);

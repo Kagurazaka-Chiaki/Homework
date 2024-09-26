@@ -29,7 +29,12 @@ set(spdlog_INCLUDE_DIRS ${spdlog_INCLUDE_DIR})
 
 include_directories(${spdlog_INCLUDE_DIR})
 
-add_subdirectory(Coroutine)
 message(STATUS "Subdirectory [Coroutine]")
+add_subdirectory(Coroutine)
 
+message(STATUS "Subdirectory [RTTI]")
 add_subdirectory(RTTI)
+
+message(STATUS "Subdirectory [Atomic]")
+add_subdirectory(Atomic)
+

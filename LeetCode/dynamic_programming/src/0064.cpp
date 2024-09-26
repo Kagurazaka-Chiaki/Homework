@@ -31,5 +31,4 @@ auto dp::solution::minPathSum(std::vector<std::vector<int>> const &grid) -> int 
     }
 
     return dp[m - 1][n - 1];
-
 }

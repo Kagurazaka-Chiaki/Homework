@@ -103,17 +103,17 @@ add_subdirectory(Math)
 message(STATUS "Subdirectory [Structure]")
 add_subdirectory(Structure)
 
-# message(STATUS "Subdirectory [LeetCode]")
-# add_subdirectory(LeetCode)
+message(STATUS "Subdirectory [LeetCode]")
+add_subdirectory(LeetCode)
 
-# message(STATUS "Subdirectory [Luogu]")
-# add_subdirectory(Luogu)
+message(STATUS "Subdirectory [Luogu]")
+add_subdirectory(Luogu)
 
-# message(STATUS "Subdirectory [Luogu]")
-# add_subdirectory(NowCoder)
+message(STATUS "Subdirectory [Luogu]")
+add_subdirectory(NowCoder)
 
-# message(STATUS "Subdirectory [Templates]")
-# add_subdirectory(Templates)
+message(STATUS "Subdirectory [Templates]")
+add_subdirectory(Templates)
 
 message(STATUS "Subdirectory [Common]")
 add_subdirectory(Common)

@@ -1,9 +1,7 @@
 
 #include "templib/base.hpp"
-#include "templib/sort.hpp"
 #include "templib/table.hpp"
 #include <catch2/catch_test_macros.hpp>
-
 
 TEST_CASE("template table") {
 
@@ -17,5 +15,4 @@ TEST_CASE("template table") {
     temp::t_print(mlist::value());
     auto v = temp::t_index(mlist::value());
     CHECK(table[n] == v[n]);
-
 }

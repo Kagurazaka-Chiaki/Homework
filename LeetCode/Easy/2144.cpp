@@ -2,13 +2,12 @@
 #include <vector>
 
 class Solution {
-public:
-
-    static int cmp(const int *a, const int *b) {
-        return - *(int *) a + *(int *) b;
+  public:
+    static int cmp(int const *a, int const *b) {
+        return -*(int *) a + *(int *) b;
     }
 
-    int minimumCost(std::vector<int>& cost) {
+    int minimumCost(std::vector<int> &cost) {
         int ans = 0;
         std::sort(cost.rbegin(), cost.rend());
         for (int i = 0; i < cost.size(); ++i) {

@@ -3,13 +3,13 @@
 **/
 
 
-#include <iostream>
-#include <deque>
-#include <stack>
-#include <vector>
-#include <string>
 #include <unordered_map>
 
+#include <deque>
+#include <iostream>
+#include <stack>
+#include <string>
+#include <vector>
 
 int max(int a, int b) {
     return (a > b) ? a : b;
@@ -24,22 +24,20 @@ struct TreeNode {
     int val;
     TreeNode *left;
     TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+
+    TreeNode(int x)
+        : val(x), left(NULL), right(NULL) {}
 };
 
-
 class Solution {
-public:
+  public:
     std::vector<int> level_order(TreeNode *root) {
-
     }
 
     std::vector<std::vector<int>> levelOrder(TreeNode *root) {
-
     }
 
     std::vector<std::vector<int>> levelReOrder(TreeNode *root) {
-
     }
 };
 
@@ -53,7 +51,6 @@ int Height(TreeNode *root) {
     return max(Height(root->left), Height(root->right)) + 1;
 }
 
-
 TreeNode *RotateLeft(TreeNode *root) {
     if (root == NULL) { return NULL; }
     if (root->right == NULL) { return root; }
@@ -66,7 +63,6 @@ TreeNode *RotateLeft(TreeNode *root) {
     root = Pivot;
     return root;
 }
-
 
 TreeNode *RotateRight(TreeNode *root) {
     if (root == NULL) { return NULL; }
@@ -136,10 +132,10 @@ TreeNode *build_tree() {
     TreeNode *result = nullptr;
 
     auto data = std::vector<std::string>{
-        "3", "9", "20","null", "null", "15","7"
+            "3", "9", "20", "null", "null", "15", "7"
     };
 
-    for (auto i : data) {
+    for (auto i: data) {
         if (i == "null") {
             continue;
         } else {
@@ -188,10 +184,10 @@ void DFS(TreeNode *root) {
     // PrintTreeNode(root);
 }
 
-
 int main(int argc, char const *argv[]) {
     /* code */
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
 
     auto s = new Solution();
 

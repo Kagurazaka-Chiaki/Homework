@@ -10,8 +10,7 @@
  * };
  */
 class Solution {
-public:
-
+  public:
     bool is_leaf_node(TreeNode *root) {
         return root->left == nullptr && root->right == nullptr;
     }
@@ -23,12 +22,12 @@ public:
             return str_number + "";
         } else if (root->right == nullptr) {
             return str_number + "(" + dfs(root->left) + ")";
-        } else {  
+        } else {
             return str_number + "(" + dfs(root->left) + ")(" + dfs(root->right) + ")";
         }
     }
 
-    string tree2str(TreeNode* root) {
+    string tree2str(TreeNode *root) {
         return dfs(root);
     }
 };

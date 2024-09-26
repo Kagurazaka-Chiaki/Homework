@@ -22,19 +22,25 @@ class Solution {
     }
 
 
-public:
+  public:
     int divide(int dividend, int divisor) {
-        if (dividend ==  0) { return 0; }
-        if (divisor  ==  1) { return dividend; }
-        if (divisor  ==  2) { return dividend >> 1; }
-        if (divisor  == -1) {
+        if (dividend == 0) { return 0; }
+        if (divisor == 1) { return dividend; }
+        if (divisor == 2) { return dividend >> 1; }
+        if (divisor == -1) {
             return (dividend > INT_MIN) ? -dividend : INT_MAX;
         }
-        
+
         int flag = 0;
         long x = dividend, y = divisor;
-        if (x < 0) { flag = ~flag; x = -x; }
-        if (y < 0) { flag = ~flag; y = -y; }
+        if (x < 0) {
+            flag = ~flag;
+            x = -x;
+        }
+        if (y < 0) {
+            flag = ~flag;
+            y = -y;
+        }
         // left = quotient = 0
         long quotient = 0;
         long right = x;

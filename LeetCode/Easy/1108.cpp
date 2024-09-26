@@ -5,17 +5,17 @@
  * 
 **/
 
-#include <vector>
-#include <string>
 #include <cstdlib>
+#include <string>
+#include <vector>
 
 using namespace std;
 
 class Solution {
-public:
+  public:
     string defangIPaddr(string address) {
         string result;
-        for (char i : address) {
+        for (char i: address) {
             if (i == '.') {
                 result.push_back('[');
                 result.push_back('.');
@@ -29,7 +29,7 @@ public:
 
     string defangIPaddr(string address) {
         string result = "";
-        for (char c : address) {
+        for (char c: address) {
             if (c == '.') {
                 result += "[.]";
             } else {
@@ -40,15 +40,15 @@ public:
     }
 };
 
-char * defangIPaddr(char * address){
-    char *result = (char *)malloc((16 + 6) * sizeof(char));
+char *defangIPaddr(char *address) {
+    char *result = (char *) malloc((16 + 6) * sizeof(char));
     int returnSize = 0;
-    for(int i = 0; address[i] != '\0'; i++) {
-        if(address[i] == '.') {
+    for (int i = 0; address[i] != '\0'; i++) {
+        if (address[i] == '.') {
             result[returnSize++] = '[';
             result[returnSize++] = '.';
             result[returnSize++] = ']';
-        }else {
+        } else {
             result[returnSize++] = address[i];
         }
     }

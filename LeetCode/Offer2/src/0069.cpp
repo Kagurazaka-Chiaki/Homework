@@ -10,8 +10,8 @@
 using namespace std;
 
 class Solution {
-public:
-    int peakIndexInMountainArray(vector<int>& arr) {
+  public:
+    int peakIndexInMountainArray(vector<int> &arr) {
         int prev = 0;
         for (int i = 1; i < arr.size(); i++) {
             if (arr[i] < arr[prev]) { break; }
@@ -21,9 +21,9 @@ public:
     }
 };
 
-
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }

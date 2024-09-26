@@ -15,10 +15,10 @@
 
 #include <algorithm>
 //#include <bits/stdc++.h>
+#include <eigen3/Eigen/Dense>
+
 #include <memory>
 #include <vector>
-
-#include <eigen3/Eigen/Dense>
 
 using namespace std;
 
@@ -112,5 +112,5 @@ using namespace std;
 
 auto main() -> int {
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }

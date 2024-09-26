@@ -11,8 +11,8 @@
 using namespace std;
 
 class Solution {
-public:
-    vector<int> luckyNumbers (vector<vector<int>>& matrix) {
+  public:
+    vector<int> luckyNumbers(vector<vector<int>> &matrix) {
         int m = matrix.size();
         int n = matrix[0].size();
 
@@ -24,7 +24,7 @@ public:
             }
             row_min.push_back(temp);
         }
-        
+
         vector<int> col_max;
         for (int j = 0; j < n; j++) {
             int temp = INT_MIN;
@@ -33,22 +33,23 @@ public:
             }
             col_max.push_back(temp);
         }
-        
+
         vector<int> result;
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                if(matrix[i][j] == row_min[i] && matrix[i][j] == col_max[j]) {
+                if (matrix[i][j] == row_min[i] && matrix[i][j] == col_max[j]) {
                     result.push_back(matrix[i][j]);
                 }
             }
         }
-    
+
         return result;
     }
 };
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }

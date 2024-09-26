@@ -10,10 +10,10 @@
 using namespace std;
 
 class Solution {
-public:
-    int minCount(vector<int>& coins) {
+  public:
+    int minCount(vector<int> &coins) {
         int total = 0;
-        for (int i : coins) {
+        for (int i: coins) {
             total = total + (i + 1) / 2;
         }
         return total;

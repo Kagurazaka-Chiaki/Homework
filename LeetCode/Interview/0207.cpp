@@ -7,8 +7,9 @@
  * };
  */
 class Solution {
-    unordered_map<ListNode *,int> hash;
-public:
+    unordered_map<ListNode *, int> hash;
+
+  public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         hash.clear();
         while (headA) {

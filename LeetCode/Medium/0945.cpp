@@ -9,18 +9,17 @@
 
 using namespace std;
 
-
 class Solution {
 
     void display(unordered_map<int, int> hash_map, string str) {
         cout << str << endl;
-        for (auto& x: hash_map) {
+        for (auto &x: hash_map) {
             cout << x.first << " : " << x.second << endl;
         }
     }
 
-public:
-    int minIncrementForUnique(vector<int>& nums) {
+  public:
+    int minIncrementForUnique(vector<int> &nums) {
         sort(nums.begin(), nums.end());
         int result = 0, taken = 0;
         for (int i = 1; i < nums.size(); ++i) {

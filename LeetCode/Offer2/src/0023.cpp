@@ -12,14 +12,17 @@ using namespace std;
 **/
 
 struct ListNode {
-     int val;
+    int val;
     ListNode *next;
-     ListNode(int x) : val(x), next(NULL) {}
+
+    ListNode(int x)
+        : val(x), next(NULL) {}
 };
 
 class Solution {
-    unordered_map<ListNode *,int> hash;
-public:
+    unordered_map<ListNode *, int> hash;
+
+  public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         hash.clear();
         while (headA) {
@@ -36,9 +39,9 @@ public:
     }
 };
 
-
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }

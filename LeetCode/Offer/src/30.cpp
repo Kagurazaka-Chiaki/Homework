@@ -1,14 +1,13 @@
 #include <iostream>
-
 #include <stack>
 
 class MinStack {
-private:
+  private:
     std::stack<int> stack1, stack2;
-public:
+
+  public:
     /** initialize your data structure here. */
     MinStack() {
-
     }
 
     void push(int x) {

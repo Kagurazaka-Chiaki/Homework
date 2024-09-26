@@ -8,7 +8,7 @@
 #include <cmath>
 
 class Solution {
-public:
+  public:
     int mySqrt(int x) {
         if (x == 0) { return 0; }
         double C = x, x0 = x;

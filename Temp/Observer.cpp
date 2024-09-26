@@ -10,94 +10,94 @@ class Observer;
 
 //抽象被观察者
 class Subject {
-    public:
-        Subject()
-            : m_nState(0) {}
+  public:
+    Subject()
+        : m_nState(0) {}
 
-        virtual ~Subject()                                             = default;
+    virtual ~Subject() = default;
 
-        virtual void Attach(std::shared_ptr<Observer> const pObserver) = 0;
+    virtual void Attach(std::shared_ptr<Observer> const pObserver) = 0;
 
-        virtual void Detach(std::shared_ptr<Observer> const pObserver) = 0;
+    virtual void Detach(std::shared_ptr<Observer> const pObserver) = 0;
 
-        virtual void Notify()                                          = 0;
+    virtual void Notify() = 0;
 
-        virtual int GetState() { return m_nState; }
+    virtual int GetState() { return m_nState; }
 
-        void SetState(int state) {
-            std::cout << "Subject updated !" << std::endl;
-            m_nState = state;
-        }
+    void SetState(int state) {
+        std::cout << "Subject updated !" << std::endl;
+        m_nState = state;
+    }
 
-    protected:
-        std::list<std::shared_ptr<Observer>> m_pObserver_list;
-        int m_nState;
+  protected:
+    std::list<std::shared_ptr<Observer>> m_pObserver_list;
+    int m_nState;
 };
 
 //抽象观察者
 class Observer {
-    public:
-        virtual ~Observer() = default;
+  public:
+    virtual ~Observer() = default;
 
-        Observer(std::shared_ptr<Subject> const pSubject, std::string const &name = "unknown")
-            : m_pSubject(pSubject), m_strName(name) {}
+    Observer(std::shared_ptr<Subject> const pSubject, std::string const &name = "unknown")
+        : m_pSubject(pSubject), m_strName(name) {}
 
-        virtual void Update() = 0;
+    virtual void Update() = 0;
 
-        virtual std::string const &name() { return m_strName; }
+    virtual std::string const &name() { return m_strName; }
 
-    protected:
-        std::shared_ptr<Subject> m_pSubject;
-        std::string m_strName;
+  protected:
+    std::shared_ptr<Subject> m_pSubject;
+    std::string m_strName;
 };
 
 //具体被观察者
 class ConcreteSubject : public Subject {
-    public:
-        void Attach(std::shared_ptr<Observer> const pObserver) override {
-            auto iter = std::find(m_pObserver_list.begin(), m_pObserver_list.end(), pObserver);
-            if (iter == m_pObserver_list.end()) {
-                std::cout << "Attach observer" << pObserver->name() << std::endl;
-                m_pObserver_list.emplace_back(pObserver);
-            }
+  public:
+    void Attach(std::shared_ptr<Observer> const pObserver) override {
+        auto iter = std::find(m_pObserver_list.begin(), m_pObserver_list.end(), pObserver);
+        if (iter == m_pObserver_list.end()) {
+            std::cout << "Attach observer" << pObserver->name() << std::endl;
+            m_pObserver_list.emplace_back(pObserver);
         }
+    }
 
-        void Detach(std::shared_ptr<Observer> const pObserver) override {
-            std::cout << "Detach observer" << pObserver->name() << std::endl;
-            m_pObserver_list.remove(pObserver);
-        }
+    void Detach(std::shared_ptr<Observer> const pObserver) override {
+        std::cout << "Detach observer" << pObserver->name() << std::endl;
+        m_pObserver_list.remove(pObserver);
+    }
 
-        //循环通知所有观察者
-        void Notify() override {
-            auto it = m_pObserver_list.begin();
-            while (it != m_pObserver_list.end()) {
-                (*it++)->Update();
-            }
+    //循环通知所有观察者
+    void Notify() override {
+        auto it = m_pObserver_list.begin();
+        while (it != m_pObserver_list.end()) {
+            (*it++)->Update();
         }
+    }
 };
 
 //具体观察者1
 class Observer1 : public Observer {
-    public:
-        Observer1(std::shared_ptr<Subject> const pSubject, std::string const &name = "unknown")
-            : Observer(pSubject, name) {}
+  public:
+    Observer1(std::shared_ptr<Subject> const pSubject, std::string const &name = "unknown")
+        : Observer(pSubject, name) {}
 
-        void Update() override {
-            std::cout << "Observer1_" << m_strName << " get the update.New state is: "
-                      << m_pSubject->GetState() << std::endl;
-        }
+    void Update() override {
+        std::cout << "Observer1_" << m_strName << " get the update.New state is: "
+                  << m_pSubject->GetState() << std::endl;
+    }
 };
 
 //具体观察者2
 class Observer2 : public Observer {
-    public:
-        Observer2(std::shared_ptr<Subject> const pSubject, std::string const &name = "unknown")
-            : Observer(pSubject, name) {}
+  public:
+    Observer2(std::shared_ptr<Subject> const pSubject, std::string const &name = "unknown")
+        : Observer(pSubject, name) {}
 
-        void Update() override {
-            std::cout << "Observer2_" << m_strName << " get the update.New state is: "
-                      << m_pSubject->GetState() << std::endl;
-        }
+    void Update() override {
+        std::cout << "Observer2_" << m_strName << " get the update.New state is: "
+                  << m_pSubject->GetState() << std::endl;
+    }
 };
 
 int main() {

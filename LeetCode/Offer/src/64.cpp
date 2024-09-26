@@ -11,19 +11,20 @@
 
 using namespace std;
 
-typedef int (* fun)(int);
+typedef int (*fun)(int);
 
 int teminator(int n) {
     return 0;
 }
 
-int sumNums(int n){
+int sumNums(int n) {
     static fun f[2] = {teminator, sumNums};
     return n + f[!!n](n - 1);
 }
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }

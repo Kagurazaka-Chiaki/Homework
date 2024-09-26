@@ -5,28 +5,27 @@
  * 
 **/
 
-#include <vector>
-#include <string>
 #include <cstdlib>
+#include <string>
+#include <vector>
 
 using namespace std;
 
 class Solution {
-public:
-    vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
-
+  public:
+    vector<int> smallerNumbersThanCurrent(vector<int> &nums) {
     }
 };
 
 /**
  * Note: The returned array must be malloced, assume caller calls free().
 **/
-int* smallerNumbersThanCurrent(int* nums, int numsSize, int* returnSize){
-    int *result = (int *)malloc(numsSize * sizeof(int));
-    for(int i = 0; i < numsSize; ++i) {
+int *smallerNumbersThanCurrent(int *nums, int numsSize, int *returnSize) {
+    int *result = (int *) malloc(numsSize * sizeof(int));
+    for (int i = 0; i < numsSize; ++i) {
         result[i] = 0;
-        for(int j = 0; j < numsSize; ++j) {   
-            if(nums[j] < nums[i]) {
+        for (int j = 0; j < numsSize; ++j) {
+            if (nums[j] < nums[i]) {
                 ++result[i];
             }
         }

@@ -11,7 +11,7 @@
 using namespace std;
 
 class Solution {
-public:
+  public:
     int numberOfSteps(int num) {
         if (num == 0) { return 0; }
         if (num % 2 == 1) {
@@ -23,7 +23,8 @@ public:
 };
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }

@@ -10,11 +10,11 @@
 using namespace std;
 
 class Solution {
-public:
-    int maximumDifference(vector<int>& nums) {
+  public:
+    int maximumDifference(vector<int> &nums) {
         int result = 0;
         int minimum = INT_MAX;
-        for (int i : nums) {
+        for (int i: nums) {
             result = max(result, i - minimum);
             minimum = min(minimum, i);
         }
@@ -23,7 +23,8 @@ public:
 };
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }

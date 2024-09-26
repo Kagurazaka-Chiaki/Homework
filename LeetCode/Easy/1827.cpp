@@ -9,10 +9,9 @@
 
 using namespace std;
 
-
 class Solution {
-public:
-    int minOperations(vector<int>& nums) {
+  public:
+    int minOperations(vector<int> &nums) {
         int result = 0;
         int prev = nums[0] + 1;
         for (int i = 1; i < nums.size(); i++) {

@@ -36,61 +36,61 @@
 // Arbitrary Precision Arithmetic
 class APA {
 
-    private:
-        int len = 64;
+  private:
+    int len = 64;
 
-        std::unique_ptr<char[]> data;
+    std::unique_ptr<char[]> data;
 
-    public:
-        APA() = default;
+  public:
+    APA() = default;
 
-        explicit APA(int len)
-            : len(len) {
-            data = std::make_unique<char[]>(len + 1);
-            std::memset(data.get(), '\0', len + 1);
-            std::memset(data.get(), '0', len);
-        }
+    explicit APA(int len)
+        : len(len) {
+        data = std::make_unique<char[]>(len + 1);
+        std::memset(data.get(), '\0', len + 1);
+        std::memset(data.get(), '0', len);
+    }
 
-        // copy
-        APA(const APA &other)            = delete;
-        APA &operator=(const APA &other) = delete;
+    // copy
+    APA(const APA &other) = delete;
+    APA &operator=(const APA &other) = delete;
 
 
-        // move
-        APA(APA &&other)            = delete;
-        APA &operator=(APA &&other) = delete;
+    // move
+    APA(APA &&other) = delete;
+    APA &operator=(APA &&other) = delete;
 
-        ~APA()                      = default;
+    ~APA() = default;
 
-        friend std::ostream &operator<<(std::ostream &os, const APA &apa) {
-            os << "len: " << apa.len << " data: " << apa.data.get();
-            return os;
-        }
+    friend std::ostream &operator<<(std::ostream &os, const APA &apa) {
+        os << "len: " << apa.len << " data: " << apa.data.get();
+        return os;
+    }
 
-        auto clear() -> void {
-            std::memset(data.get(), '\0', len + 1);
-            std::memset(data.get(), '0', len);
-        }
+    auto clear() -> void {
+        std::memset(data.get(), '\0', len + 1);
+        std::memset(data.get(), '0', len);
+    }
 
-        auto read(char const *str) -> void {
-            std::memset(data.get(), '\0', len + 1);
-            std::memcpy(data.get(), str, std::strlen(str));
-        }
+    auto read(char const *str) -> void {
+        std::memset(data.get(), '\0', len + 1);
+        std::memcpy(data.get(), str, std::strlen(str));
+    }
 
-        auto from_int(int num) -> void {
-            std::memset(data.get(), '\0', len + 1);
-            std::sprintf(data.get(), "%d", num);
-        }
+    auto from_int(int num) -> void {
+        std::memset(data.get(), '\0', len + 1);
+        std::sprintf(data.get(), "%d", num);
+    }
 
-        auto from_double(double num) -> void {
-            std::memset(data.get(), '\0', len + 1);
-            std::sprintf(data.get(), "%f", num);
-        }
+    auto from_double(double num) -> void {
+        std::memset(data.get(), '\0', len + 1);
+        std::sprintf(data.get(), "%f", num);
+    }
 };
 
 auto ModifyCal_Div(double a, double b) -> void {
     auto int_a = static_cast<int>(a);
-    auto len   = (int_a % 10) + 1;
+    auto len = (int_a % 10) + 1;
     auto str_a = std::make_unique<char[]>(len + 1);
 }
 
@@ -192,9 +192,9 @@ auto main(int argc, char const *argv[]) -> int {
     double b = (-12423.600377 - -12600.000000) / 3150.000000;
 
 
-    auto d   = log10(-9525.600289 + 12600.000000) - log10(3150.000000);
+    auto d = log10(-9525.600289 + 12600.000000) - log10(3150.000000);
 
-    auto e   = pow(10, d);
+    auto e = pow(10, d);
 
     std::cout << a << " " << b << " " << std::endl;
 

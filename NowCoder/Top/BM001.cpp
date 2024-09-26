@@ -10,9 +10,10 @@ using namespace std;
 struct ListNode {
     int val;
     struct ListNode *next;
-    ListNode(int x) : val(x), next(nullptr) {}
-};
 
+    ListNode(int x)
+        : val(x), next(nullptr) {}
+};
 
 // auto slice(vector<int> const &v, int const &a, int const &b) {
 //     auto it_a = v.begin(), it_b = v.begin();
@@ -59,14 +60,15 @@ auto func(ListNode *head) -> ListNode * {
 }
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
 
     vector<int> input = {
-        2, 1, 5, 3, 4
+            2, 1, 5, 3, 4
     };
     vector<int> output = {
-        4, 3, 5, 1, 2
+            4, 3, 5, 1, 2
     };
 
     ListNode *a = link_list(input);

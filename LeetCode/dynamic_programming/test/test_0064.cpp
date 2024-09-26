@@ -1,8 +1,7 @@
+#include "dplib/solution.hpp"
 #include <catch2/catch_test_macros.hpp>
 
-#include "dplib/solution.hpp"
-
-TEST_CASE( "Test 0064" ) {
+TEST_CASE("Test 0064") {
     auto &S = dp::solution::singleton();
 
     auto const test_vec = std::vector<std::vector<int>>{

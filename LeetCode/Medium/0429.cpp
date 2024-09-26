@@ -20,15 +20,15 @@ public:
 
 class Solution {
 
-    unordered_map<Node*, int> depth;
-    queue<Node *> que; 
+    unordered_map<Node *, int> depth;
+    queue<Node *> que;
 
-public:
-    vector<vector<int>> levelOrder(Node* root) {
+  public:
+    vector<vector<int>> levelOrder(Node *root) {
         vector<vector<int>> result;
         result.clear();
-        if (root == NULL) { return result;}
-        while(!que.empty()) { que.pop(); }
+        if (root == NULL) { return result; }
+        while (!que.empty()) { que.pop(); }
 
         que.push(root);
         while (!que.empty()) {
@@ -41,7 +41,7 @@ public:
                 result[depth[temp]].push_back(temp->val);
             }
 
-            for (Node *item : temp->children) {
+            for (Node *item: temp->children) {
                 que.push(item);
                 depth[item] = depth[temp] + 1;
             }
@@ -50,5 +50,3 @@ public:
         return result;
     }
 };
-
-

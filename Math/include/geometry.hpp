@@ -121,16 +121,13 @@ namespace math {
         line(vec<3> const &p, vec<3> const &v)
             : _p(p), _v(v) {}
 
-        line(std::initializer_list<double> const &p, std::initializer_list<double> const &v)
+        line(std::initializer_list<double> const &p,
+             std::initializer_list<double> const &v)
             : _p(p), _v(v) {}
 
-        auto point() const -> vec<3> {
-            return _p;
-        }
+        auto point() const -> vec<3> { return _p; }
 
-        auto direction() const -> vec<3> {
-            return _v;
-        }
+        auto direction() const -> vec<3> { return _v; }
     };
 
     class triangle {
@@ -146,25 +143,15 @@ namespace math {
         triangle(std::initializer_list<double> const &a, std::initializer_list<double> const &b, std::initializer_list<double> const &c)
             : _a(a), _b(b), _c(c) {}
 
-        auto A() const -> vec<3> {
-            return _a;
-        }
+        auto A() const -> vec<3> { return _a; }
 
-        auto B() const -> vec<3> {
-            return _b;
-        }
+        auto B() const -> vec<3> { return _b; }
 
-        auto C() const -> vec<3> {
-            return _c;
-        }
+        auto C() const -> vec<3> { return _c; }
 
-        auto area() const -> double {
-            return triangle_area(_a, _b, _c);
-        }
+        auto area() const -> double { return triangle_area(_a, _b, _c); }
 
-        auto normal() const -> vec<3> {
-            return (_b - _a).cross(_c - _a).unit();
-        }
+        auto normal() const -> vec<3> { return (_b - _a).cross(_c - _a).unit(); }
     };
 
     class plane {
@@ -234,7 +221,8 @@ namespace math {
         return u + v <= 1;
     }
 
-    // inline auto ray_triangle_intersection(vec<3> const &v1, vec<3> const &v2, vec<3> const &v3, vec<3> const &o, vec<3> const &dir) -> bool {
+    // inline auto ray_triangle_intersection(vec<3> const &v1, vec<3> const &v2,
+    // vec<3> const &v3, vec<3> const &o, vec<3> const &dir) -> bool {
     //     auto const &e1 = v2 - v1;
     //     auto const &e2 = v3 - v1;
     //     auto const &det = dir.cross(e2).dot(e1);

@@ -4,7 +4,6 @@
 
 #include "dplib/solution.hpp"
 
-
 // dp 值迭代
 int dp::solution::tribonacci(int n) {
     if (n == 0) { return 0; }

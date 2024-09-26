@@ -10,7 +10,8 @@ auto func() -> void {
 }
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     int t = 0; // t \in [1, 100]
     std::cin >> t;

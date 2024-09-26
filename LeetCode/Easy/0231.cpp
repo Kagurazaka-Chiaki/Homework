@@ -13,7 +13,7 @@ class Solution {
         return std::log(a) / std::log(b);
     }
 
-public:
+  public:
     bool isPowerOfTwo(int n) {
         // if (n <= 0) { return false; }
         // if (n == 536870912 || n == 1073741824) { return true; }
@@ -22,5 +22,4 @@ public:
         // return n > 0 && (n & -n) == n;
         return n > 0 && 1073741824 % n == 0;
     }
-
 };

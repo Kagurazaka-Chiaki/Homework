@@ -22,6 +22,9 @@ message(STATUS "Enter ${PROJECT_NAME_STR}")
 # message(STATUS "Subdirectory [Offer2]")
 # add_subdirectory(Offer2)
 
+message(STATUS "Subdirectory [Workspace]")
+add_subdirectory(workspace)
+
 message(STATUS "Subdirectory [二分查找]")
 add_subdirectory(binary_search)
 
@@ -29,7 +32,9 @@ message(STATUS "Subdirectory [链表]")
 add_subdirectory(linked_list)
 
 message(STATUS "Subdirectory [动态规划]")
-add_subdirectory(dp)
+add_subdirectory(dynamic_programming)
+
+message(STATUS "Subdirectory [树]")
 
 
 add_executable(lib_main main.cpp)

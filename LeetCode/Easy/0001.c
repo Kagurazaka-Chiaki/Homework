@@ -21,11 +21,12 @@ int main(void) {
 
     return 0;
 }
+
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
-int* twoSum(int* nums, int numsSize, int target, int* returnSize){
-    int *List = (int *)malloc(80000 * sizeof(int));
+int *twoSum(int *nums, int numsSize, int target, int *returnSize) {
+    int *List = (int *) malloc(80000 * sizeof(int));
     int count = 0;
     for (int i = 0; i < numsSize; i++) {
         int diff = target - nums[i];
@@ -45,7 +46,6 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize){
     *returnSize = count;
     return List;
 }
-
 
 void PrintArray(int *Array, int Length) {
     for (int i = 0; i < Length; i++) {

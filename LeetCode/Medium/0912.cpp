@@ -11,23 +11,22 @@
 using namespace std;
 
 class Solution {
-public:
-    vector<int> sortArray(vector<int>& nums) {
+  public:
+    vector<int> sortArray(vector<int> &nums) {
         sort(nums.begin(), nums.end());
         return nums;
     }
 };
 
-
-int cmp(const void *a, const void *b) {
+int cmp(void const *a, void const *b) {
     return *(int *) a - *(int *) b;
 }
 
 /**
  * Note: The returned array must be malloced, assume caller calls free().
 **/
-int* sortArray(int* nums, int numsSize, int* returnSize){
+int *sortArray(int *nums, int numsSize, int *returnSize) {
     qsort(nums, numsSize, sizeof(int), cmp);
-    *returnSize = numsSize; 
+    *returnSize = numsSize;
     return nums;
 }

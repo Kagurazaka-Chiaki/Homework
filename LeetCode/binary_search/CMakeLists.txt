@@ -13,7 +13,7 @@ set(SOURCE_DIR ${SOURCE_DIR} ${PROJECT_SOURCE_DIR}/src)
 set(TEST_DIR ${TEST_DIR} ${PROJECT_SOURCE_DIR}/test)
 
 # Include
-message(STATUS "-> Include ${INCLUDE_DIR}/dplib")
+message(STATUS "-> Include ${INCLUDE_DIR}/bslib")
 # include_directories(include)
 
 # Lib

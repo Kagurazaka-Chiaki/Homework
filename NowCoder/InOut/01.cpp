@@ -5,9 +5,9 @@
 
 #include <iostream>
 
-
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     int a = 0, b = 0;
     while (std::cin >> a >> b) {

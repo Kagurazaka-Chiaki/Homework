@@ -5,9 +5,9 @@
  * 
 **/
 
-#include <iostream>
 #include <algorithm>
 #include <deque>
+#include <iostream>
 
 /**
  * Definition for a binary tree node.
@@ -23,15 +23,15 @@
 
 class Solution {
 
-    void dfs(TreeNode* root, vector<int>& ans) {
+    void dfs(TreeNode *root, vector<int> &ans) {
         if (root == nullptr) { return; }
         dfs(root->left, ans);
         ans.push_back(root->val);
         dfs(root->right, ans);
     }
 
-public:
-    vector<int> inorderTraversal(TreeNode* root) {
+  public:
+    vector<int> inorderTraversal(TreeNode *root) {
         vector<int> ans;
         ans.clear();
         dfs(root, ans);
@@ -40,7 +40,8 @@ public:
 };
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }

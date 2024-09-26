@@ -7,7 +7,9 @@
 struct ListNode {
     int val;
     ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
+
+    ListNode(int x)
+        : val(x), next(NULL) {}
 };
 
 ListNode *reverseList(ListNode *head) {
@@ -25,7 +27,8 @@ ListNode *reverseList(ListNode *head) {
 int main(int argc, char const *argv[]) {
     /* code */
 
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
 
     std::cout << "hello, 06" << std::endl;
     return 0;

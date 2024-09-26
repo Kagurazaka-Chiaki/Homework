@@ -19,7 +19,8 @@ auto func(std::stringstream &s) -> void {
 }
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     std::string line;
     while (getline(std::cin, line)) {

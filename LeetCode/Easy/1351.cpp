@@ -10,11 +10,11 @@
 using namespace std;
 
 class Solution {
-public:
-    int countNegatives(vector<vector<int>>& grid) {
+  public:
+    int countNegatives(vector<vector<int>> &grid) {
         int result = 0;
-        for (auto rows : grid) {
-            for (auto i : rows) {
+        for (auto rows: grid) {
+            for (auto i: rows) {
                 if (i < 0) {
                     result++;
                 }
@@ -25,7 +25,8 @@ public:
 };
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
     return 0;
 }

@@ -13,7 +13,7 @@ set(INCLUDE_DIR ${INCLUDE_DIR} ${PROJECT_SOURCE_DIR}/include)
 set(TEST_DIR ${TEST_DIR} ${PROJECT_SOURCE_DIR}/test)
 
 # Include
-message(STATUS "-> Include ${INCLUDE_DIR}/dplib")
+message(STATUS "-> Include ${INCLUDE_DIR}")
 include_directories(include)
 
 # Lib

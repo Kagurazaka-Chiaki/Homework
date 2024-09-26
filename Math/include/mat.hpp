@@ -3,7 +3,6 @@
 #ifndef MAT_HPP
 #define MAT_HPP
 
-#define _USE_MATH_DEFINES
 #include <algorithm>
 #include <array>
 #include <cmath>

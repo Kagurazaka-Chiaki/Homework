@@ -13,7 +13,7 @@ class Solution {
         return (x >> 31) + 1;
     }
 
-public:
+  public:
     int maximum(int a, int b) {
         return ((long) a + (long) b + abs((long) a - (long) b)) / 2;
     }

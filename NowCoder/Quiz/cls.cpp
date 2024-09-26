@@ -6,16 +6,15 @@ int i = 1;
 
 class MyCls {
 
-private:
-
+  private:
     int m_n_fir;
     int m_n_sec;
     int m_n_thd;
     int &m_n_for;
 
-public:
-
-    MyCls() : m_n_for(m_n_thd), m_n_sec(i++), m_n_fir(i++), m_n_thd(i++) {
+  public:
+    MyCls()
+        : m_n_for(m_n_thd), m_n_sec(i++), m_n_fir(i++), m_n_thd(i++) {
         m_n_thd = i;
     }
 
@@ -26,7 +25,8 @@ public:
 };
 
 int main(int argc, char const *argv[]) {
-    (void) argc; (void) argv;
+    (void) argc;
+    (void) argv;
     /* code */
 
     MyCls ocls;

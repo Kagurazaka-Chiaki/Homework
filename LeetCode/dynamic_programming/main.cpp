@@ -5,10 +5,8 @@
 
 #include "dplib/solution.hpp"
 
-
 #include <iostream>
 #include <vector>
-
 
 auto main(int argc, char const *argv[]) -> int {
     (void) argc;

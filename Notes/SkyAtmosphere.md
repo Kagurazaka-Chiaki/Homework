@@ -285,10 +285,15 @@ $$
 \gamma(\theta)
     = \frac{S(\lambda, \theta, h)}{\beta(\lambda, h)} \\
     = \underset{S(\lambda, \theta, h)}{
-        \underbrace{ \frac{\pi^2 \left(n^2-1 \right )^2}{2} \frac{\rho\left(h\right)}{N} \frac{1}{\lambda^4} \left(1+\cos^2\theta \right ) }
+        \underbrace{
+            \frac{\pi^2 ( n^2-1 )^2}{2}
+            \frac{\rho(h)}{N}
+            \frac{1}{\lambda^4}
+            (1 + \cos^{2}\theta )
+        }
     } \;
     \underset{1 / \beta(\lambda, h)}{
-        \underbrace{ \frac{3}{8\pi^3 \left(n^2-1 \right )^2} \frac{N}{\rho\left(h\right)} \lambda^4 }
+        \underbrace{ \frac{3}{8\pi^3 (n^{2} - 1)^2} \frac{N}{\rho(h)} \lambda^4 }
     } \\
     = \frac{3}{16\pi} (1 + \cos^{2} \theta)
 $$
@@ -308,7 +313,7 @@ $\rho(h)$ 表示 $h$ 米高度的大气测量值，经过归一化后，它从�
 低层大气中的密度比是呈指数衰减，可以用指数曲线来近似密度比：
 
 $$
-\rho(h) = \exp \left\{-\frac{h}{H}\right\}
+\rho(h) = \exp \left \{ -\frac{h}{H} \right \}
 $$
 
 其中 $H_0$ 是高度标量。对于地球低层大气中的瑞利散射，通常假设 $H = 8500$ 为米。
@@ -355,9 +360,9 @@ $$
 当光在具有散射系数 $\beta$ 的均匀介质中传播时
 
 $$
-I_1 = I_0 \left(1-\frac{\beta}{2}\right) \quad
-I_2 = \boxed{I_1} \left(1-\frac{\beta}{2}\right)
-    = I_0 \left(1-\frac{\beta}{2}\right)^2
+I_1 = I_0 \left (1-\frac{\beta}{2} \right ) \quad
+I_2 = \boxed{I_1} \left ( 1 - \frac{\beta}{2} \right )
+    = I_0 \left (1-\frac{\beta}{2} \right )^2
 $$
 
 显然
@@ -368,13 +373,13 @@ $$
 
 $$
 \lim_{n\rightarrow \infty } \left(1-\frac{\beta}{n}\right)^n = e^{-\beta}
-= \exp\left\{-\beta\right\}
+= \exp \{ - \beta \}
 $$
 
 因此
 
 $$
-I = I_0 \exp \left\{-\beta x \right\}
+I = I_0 \exp \{-\beta x \}
 $$
 
 #### 均匀透射率 Uniform Transmittance
@@ -388,7 +393,7 @@ $$
 散射的光量取决于行进的距离。旅程越长，衰减越强。根据指数衰减
 
 $$
-I_{P} = I_{C} \cdot \exp{\left\{-\beta \overline{CP}\right\}}
+I_{P} = I_{C} \cdot \exp{ \left \{ -\beta \overline{CP} \right \} }
 $$
 
 #### 大气透射率 Atmospheric Transmittance
@@ -402,25 +407,25 @@ $$
 例如，存在点 $Q \in \overline{CP}$，划分为 $\overline{CQ}$ 和 $\overline{QP}$, 则
 
 $$
-I_{Q} = I_{C} \exp{\left\{-\beta{(\lambda, h_{0})} \overline{CQ} \right\}}
+I_{Q} = I_{C} \exp{\left \{-\beta{(\lambda, h_{0})} \overline{CQ} \right \}}
 $$
 
 $$
-I_{P} = \boxed{I_{Q}} \exp{\left\{-\beta{(\lambda, h_{1})} \overline{QP} \right\}}
+I_{P} = \boxed{I_{Q}} \exp{\left \{-\beta{(\lambda, h_{1})} \overline{QP} \right \}}
 $$
 
 $$
-I_{P} = I_{C} \exp{\left\{-\beta{(\lambda, h_{0})} \overline{CQ} \right\}}
-    \exp{\left\{-\beta{(\lambda, h_{1})} \overline{QP} \right\}}
+I_{P} = I_{C} \exp{\left \{-\beta{(\lambda, h_{0})} \overline{CQ} \right \}}
+    \exp{\left \{-\beta{(\lambda, h_{1})} \overline{QP} \right \}}
 $$
 
 $$
 I_{P} = I_{C}
     \exp{
-        \left\{
+        \left \{
             -\beta{(\lambda, h_{0})} \overline{CQ}
             -\beta{(\lambda, h_{1})} \overline{QP}
-        \right\}
+        \right \}
     }
 $$
 
@@ -428,21 +433,21 @@ $$
 
 $$
 I_P = I_C \cdot
-\exp \left\{
+\exp \left \{
     - \sum_{Q \in \overline{CP}} { \beta( \lambda, h_{Q}) } \, \mathrm{d} s
-\right\}
+\right \}
 $$
 
 其中 $h_{Q}$ 是点 $Q$ 的高度。最终大气在任意段上的透射率方程
 
 $$
 T(\overline{CP}) =
-\exp \left\{
+\exp \left \{
     - \underset{\beta(\lambda)}{\underset{\text{constant}}{
         \underbrace{ \frac{8 \pi^{3} (n^{2} - 1)^{2}}{3} \frac{1}{N} \frac{1}{\lambda^{4}} }}}
     \overset{\text{optical depth} \, D(\overline{CP})}{
         \overbrace{ \sum_{Q \in \overline{CP}} { \rho(h_{Q}) } \, \mathrm{d} s}}
-\right\}
+\right \}
 $$
 
 由求和表示的数量被称为 光学深度 $D(\overline{CP})$ ，也是将在着色器中实际计算的量。
@@ -452,17 +457,17 @@ $$
 在最后的着色器中，我们将只计算光学深度，并提供海平面 $\beta$ 的散射系数作为输入。
 
 $$
-T(\overline{CP}) = \exp \left\{
+T(\overline{CP}) = \exp \left \{
     - \beta(\lambda) D(\overline{CP})
-\right\}
+\right \}
 $$
 
 到达 P 点的光为
 
 $$
-I_{P} = I_{C} \cdot \exp \left\{
+I_{P} = I_{C} \cdot \exp \left \{
     - \beta(\lambda) D(\overline{CP})
-\right\}
+\right \}
 $$
 
 #### 光采样 Light Sampling
@@ -497,16 +502,16 @@ $$
 
 $$
 T(\overline{CP})  T(\overline{PA}) =
-\exp \left\{
+\exp \left \{
     - \beta(\lambda) \left( D(\overline{CP}) + D(\overline{PA}) \right)
-\right\}
+\right \}
 $$
 
 光学深度定义为
 
 $$
 D(\overline{PA}) = \sum_{Q \in \overline{PA}} {
-    \exp \left\{ - \frac{h_{Q}}{H} \right\}
+    \exp \left \{ - \frac{h_{Q}}{H} \right \}
 } \, \mathrm{d} s
 $$
 
@@ -516,9 +521,9 @@ $$
 L(P) =
     \underset{\text{combined transmittance}}{
         \underbrace{
-            \exp \left\{
+            \exp \left \{
                 - \beta(\lambda) \left( D(\overline{CP}) + D(\overline{PA}) \right)
-            \right\}
+            \right \}
         }
     } \, \underset{\text{optical depth of} \,\mathrm{d} s}{\underbrace{\rho(h) \mathrm{d} s}}
 $$
@@ -565,9 +570,9 @@ $x$ 点的散射光来源于其一是太阳光 $s$ 在经过一定光学深度�
 大气透射率 $T$ 是由于吸收和散射光而产生的，在散射建模部分可以只知道 $T$ 与光学深度 $D$ 有关;
 
 $$
-T(x, x_{0}) = \exp \left\{
+T(x, x_{0}) = \exp \left \{
     - \int_{x}^{x_{0}} \beta_{Ray}(y) + \beta_{Mie}(y) \mathrm{d} y
-\right\}
+\right \}
 $$
 
 $\mathcal{I}[L]$ 是在 $x_{0}$ 处反射向 $x$ (视线 $V$ 方向的反方向 $-V$) 的光, 在大气边界处为 0.
@@ -617,9 +622,9 @@ $$
 L = L_{0} + [\mathcal{R} + \mathcal{S}](L_{0}) + [\mathcal{R} + \mathcal{S}]((\mathcal{R} + \mathcal{S})[L_{0})]
 $$
 
-$$
-L = L_{0} + L_{1} + L_{2} + \cdots = L_{0} + L_{\ast}
-$$
+既是
+
+$$ L = L_{0} + L_{1} + L_{2} + \cdots = L_{0} + L_{\ast} $$
 
 单次散射
 
@@ -651,9 +656,9 @@ L \simeq L_{0}
     - T(x, x_{s}) \overline{\mathcal{S}}[\overline{L}_{x}]_{x_{s}}
 $$
 
-前两个方程中的 $T$ 与 $\mathcal{E}$ 可以直接从两张2D预计算的纹理获得，
+前两个方程中的 $T$ 与 $\mathcal{E}$ 可以直接从两张 2D 预计算的纹理获得，
 
-至于第三项的 $\overline{\mathcal{S}}[\overline{L}]$ 可以从一张预计算的4D纹理获取，
+至于第三项的 $\overline{\mathcal{S}}[\overline{L}]$ 可以从一张预计算的 4D 纹理获取，
 
 这样原本复杂的计算部分可以直接转换为纹理采样，然后再参与 $L(x,v,s)$ 的计算。预计算的过程如下
 

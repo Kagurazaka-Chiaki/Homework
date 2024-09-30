@@ -1,13 +1,57 @@
 
 #include <unordered_map>
 
-#include <cstdio>
+#include <algorithm>
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <ostream>
 #include <string>
+#include <utility>
 #include <vector>
+
+template<typename T>
+void print_vector(std::vector<T> const &vec) {
+    for (auto const &v: vec) {
+        std::cout << "[" << v << "]";
+    }
+    std::cout << std::endl;
+}
+
+template<typename T>
+void print_matrix(std::vector<std::vector<T>> const &mat) {
+    std::cout << "[" << std::endl;
+    for (auto const &m: mat) {
+        print_vector(m);
+    }
+    std::cout << "]" << std::endl;
+}
+
+template<typename T>
+std::ostream &operator<<(std::ostream &os, std::vector<T> const &vec) {
+    os << "vec: " << "size: {" << vec.size() << "} ";
+    for (auto const &v: vec) {
+        os << "[" << v << "]";
+    }
+    return os << std::endl;
+}
+
+template<typename T>
+std::ostream &operator<<(std::ostream &os, std::pair<T, T> const &pair) {
+    os << "pair: " << "{" << pair.first << ", " << pair.second << "}";
+}
+
+template<typename K, typename V>
+void print_map(std::unordered_map<K, V> const &map) {
+    auto all_key_vec = std::vector<K>(map.size());
+    std::transform(map.begin(), map.end(), all_key_vec.begin(), [](auto const &pair) { return pair.first; });
+    std::sort(all_key_vec.begin(), all_key_vec.end());
+    std::cout << "map: " << "size: [" << map.size() << "]" << std::endl;
+    for (auto const &key: all_key_vec) {
+        std::cout << "[" << key << "]: " << map.at(key) << std::endl;
+    }
+}
 
 auto get_curr_path(std::string const &folder_name) -> std::filesystem::path {
     auto bin_path = std::filesystem::current_path();
@@ -16,160 +60,58 @@ auto get_curr_path(std::string const &folder_name) -> std::filesystem::path {
     return project_path / folder_name;
 }
 
-void m_op1(std::unordered_map<int, std::vector<int>> &M, int n, int m, int x, int y) {
-    if (M.find(x) == M.end() && M.find(y) == M.end()) {
-        M[x] = std::vector<int>(m, 0);
-        M[y] = std::vector<int>(m, 0);
-        for (int j = 0; j < m; ++j) {
-            M[y][j] = ((x + 1) - 1) * m + (j + 1);
-        }
-        for (int j = 0; j < m; ++j) {
-            M[x][j] = ((y + 1) - 1) * m + (j + 1);
-        }
-    } else if (M.find(x) != M.end() && M.find(y) == M.end()) {
-        M[y] = std::vector<int>(m, 0);
-        for (int j = 0; j < m; ++j) {
-            M[y][j] = ((x + 1) - 1) * m + (j + 1);
-        }
-        for (int j = 0; j < m; ++j) {
-            M[x][j] = ((y + 1) - 1) * m + (j + 1);
-        }
-    } else if (M.find(x) == M.end() && M.find(y) != M.end()) {
-        M[x] = std::vector<int>(m, 0);
-        for (int j = 0; j < m; ++j) {
-            M[y][j] = ((x + 1) - 1) * m + (j + 1);
-        }
-        for (int j = 0; j < m; ++j) {
-            M[x][j] = ((y + 1) - 1) * m + (j + 1);
-        }
-    } else if (M.find(x) != M.end() && M.find(y) != M.end()) {
-        for (int j = 0; j < m; ++j) {
-            std::swap(M[x][j], M[y][j]);
-        }
+int get_sum(std::vector<int> const &tree, int s, int t, int p, int l, int r) {
+    if (l <= s && t <= r) {
+        return tree[p];
     }
+    int m = (s + t) / 2;
+    int res = 0;
+    if (l <= m) {
+        res += get_sum(tree, s, m, 2 * p, l, r);
+    }
+    if (r > m) {
+        res += get_sum(tree, m + 1, t, 2 * p + 1, l, r);
+    }
+    return res;
 }
 
-void m_op2(std::unordered_map<int, std::vector<int>> &M, int n, int m, int x, int y) {
-    if (M.find(x) == M.end()) {
-        M[x] = std::vector<int>(m, 0);
-        for (int j = 0; j < m; ++j) {
-            int i = (j + (y + 1)) % m;
-            M[x][j] = ((x + 1) - 1) * m + (i + 1);
-        }
-    } else {
-        std::vector<int> save = {};
-        for (int j = 0; j < m; ++j) {
-            save.push_back(M[x][j]);
-        }
-        for (int j = 0; j < m; ++j) {
-            M[x][j] = save[(j + (y + 1)) % m];
-        }
+void build_tree(std::vector<int> &tree, std::vector<int>const &d, int s, int t, int p) {
+    if (s == t) {
+        tree[p] = d[s];
+        return;
     }
+    int m = (s + t) / 2;
+    build_tree(tree, d, s, m, 2 * p);
+    build_tree(tree, d, m + 1, t, 2 * p + 1);
+    tree[p] = tree[2 * p] + tree[2 * p + 1];
 }
 
-void m_op3(std::unordered_map<int, std::vector<int>> &M, int n, int m, int x, int y) {
-    if (M.find(x) == M.end()) {
-        M[x] = std::vector<int>(m, 0);
-        for (int j = 0; j < m; ++j) {
-            M[x][j] = ((x + 1) - 1) * m + (j + 1);
-        }
-    }
-    if (M.find(x) != M.end()) {
-        printf("[%d]\n", M[x][y]);
-    }
+namespace global {
+    std::unordered_map<int, std::vector<std::vector<int>>> v = {};
+
+    int ans = 0;
+
 }
 
-// x 行与 y 行交换
-void v_op1(std::vector<std::vector<int>> &M, int n, int m, int x, int y) {
-    for (int j = 0; j < m; ++j) {
-        std::swap(M[x][j], M[y][j]);
-    }
-}
-
-// x 行左移 y 格
-void v_op2(std::vector<std::vector<int>> &M, int n, int m, int x, int y) {
-    std::vector<int> save = {};
-    for (int j = 0; j < m; ++j) {
-        save.push_back(M[x][j]);
-    }
-    for (int j = 0; j < m; ++j) {
-        M[x][j] = save[(j + (y + 1)) % m];
-    }
-}
-
-// 输出 M[x][y]
-void v_op3(std::vector<std::vector<int>> &M, int n, int m, int x, int y) {
-    printf("[%d]\n", M[x][y]);
-}
-
-void print_vec(std::vector<std::vector<int>> const &M) {
-    for (auto const &row: M) {
-        for (auto const &col: row) {
-            std::cout << col << " ";
-        }
-        std::cout << std::endl;
-    }
-}
-
-void print_map(std::unordered_map<int, std::vector<int>> const &M) {
-    for (auto const &row: M) {
-        std::cout << row.first << " -> ";
-        if (row.second.empty()) {
-            std::cout << "empty" << std::endl;
-            continue;
-        }
-        for (auto const &col: row.second) {
-            std::cout << col << " ";
-        }
-        std::cout << std::endl;
-    }
-}
+#include "GenMat.hpp"
 
 void compute(std::fstream &fcin, std::fstream &fcout) {
 
-    int n, m, T;
-    fcin >> n >> m >> T;
-    fcout << n << " " << m << " " << T << std::endl;
+    auto gm = math::GenMat<int>(2, 3);
 
+    // 1 2 3
+    // 4 5 6
 
-    std::unordered_map<int, std::vector<int>> M = {};
+    gm.swap_row(1, 2);
 
-    // // vector 超过限制内存
-    // std::vector<std::vector<int>> M = std::vector<std::vector<int>>(n, std::vector<int>(m, 0));
-    // for (int i = 0; i < n; ++i) {
-    //     for (int j = 0; j < m; ++j) {
-    //         M[i][j] = ((i + 1) - 1) * m + (j + 1);
-    //     }
-    // }
+    gm.show_raw();
 
-    // print_vec(M);
+    gm.shift_row(1, 4);
 
-    for (int i = 0; i < T; ++i) {
-        int t, x, y;
-        fcin >> t >> x >> y;
-        fcout << t << " " << x << " " << y << " -> " << std::endl;
-        switch (t) {
-            case 1:
-                m_op1(M, n, m, x - 1, y - 1);
-                print_map(M);
-                // v_op1(M, n, m, x - 1, y - 1);
-                // print_vec(M);
-                break;
-            case 2:
-                m_op2(M, n, m, x - 1, y - 1);
-                print_map(M);
-                // v_op2(M, n, m, x - 1, y - 1);
-                // print_vec(M);
-                break;
-            case 3:
-                m_op3(M, n, m, x - 1, y - 1);
-                // v_op3(M, n, m, x - 1, y - 1);
-                // print_vec(M);
-                break;
-            default:
-                break;
-        }
-    }
+    gm.show_raw();
+
+    std::cout << gm.get_num(1, 3) << std::endl;
+    
 }
 
 int main() {

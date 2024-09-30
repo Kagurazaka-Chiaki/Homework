@@ -22,49 +22,55 @@
  * 
  * 你不需要用到所有的数对，你可以以任何顺序选择其中的一些数对来构造。
  * 
+ * 
+ * 
  * 示例 1：
+ * 
  * 
  * 输入：pairs = [[1,2], [2,3], [3,4]]
  * 输出：2
  * 解释：最长的数对链是 [1,2] -> [3,4] 。
  * 
+ * 
  * 示例 2：
+ * 
  * 
  * 输入：pairs = [[1,2],[7,8],[4,5]]
  * 输出：3
  * 解释：最长的数对链是 [1,2] -> [4,5] -> [7,8] 。
  * 
+ * 
+ * 
  * 提示：
+ * 
  * 
  * n == pairs.length
  * 1 <= n <= 1000
  * -1000 <= lefti < righti <= 1000
  * 
+ * 
  */
 
-#include "LeetCode.hpp"
 
+#include "dplib/solution.hpp"
 #include <algorithm>
-#include <vector>
 
 // @lc code=start
-class Solution {
-  public:
-    int findLongestChain(std::vector<std::vector<int>> &pairs) {
-        int n = pairs.size();
-        std::sort(pairs.begin(), pairs.end(), [](auto const &a, auto const &b) {
-            return a[0] < b[0];
-        });
-        auto dp = std::vector<int>(n, 0);
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < i; ++j) {
-                if (pairs[i][0] < pairs[j][0]) {
-                    dp[i] = std::max(dp[i], dp[j] + 1);
-                }
+
+auto dp::solution::findLongestChain(std::vector<std::vector<int>> &pairs) -> int {
+    int n = pairs.size();
+    std::sort(pairs.begin(), pairs.end(), [](auto const &a, auto const &b) {
+        return a[0] < b[0];
+    });
+    auto dp = std::vector<int>(n, 0);
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < i; ++j) {
+            if (pairs[i][0] < pairs[j][0]) {
+                dp[i] = std::max(dp[i], dp[j] + 1);
             }
         }
-        return dp[n - 1];
     }
-};
+    return dp[n - 1];
+}
 
 // @lc code=end

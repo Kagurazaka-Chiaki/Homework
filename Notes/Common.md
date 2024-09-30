@@ -87,6 +87,31 @@ sudo netsh winsock reset
 ---
 
 
+```
+Github Markdown 报错
+
+Missing or unrecognized delimiter for \left
+
+原因：
+According to GitHub Flavored Markdown Spec, Sec. 6.1
+
+Any ASCII punctuation character may be backslash-escaped:
+\!\"\#\$\%\&\'\(\)\*\+\,\-\.\/\:\;\<\=\>\?\@\[\\\]\^\_\`\{\|\}\~
+
+Hence the whole process is
+
+you type in \left\{ and gfm parser uses it as input
+gfm parser returns \left{ and github-mathjax (and mathjax) uses it as input
+mathjax complains about { is not a delimiter
+```
+<details>
+
+```
+用空格隔开 -> \left \{
+```
+
+</details>
+
 
 
 

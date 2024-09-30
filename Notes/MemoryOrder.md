@@ -11,6 +11,8 @@
     Relaxed operation: there are no synchronization or ordering constraints imposed on other reads or writes,
     only this operation's atomicity is guaranteed (see Relaxed ordering below).
 
+    没有对其他读取或写入施加的同步或排序约束，仅保证此操作的原子性
+
 `std::memory_order_consume`
 
     A load operation with this memory order performs a consume operation on the affected memory location:

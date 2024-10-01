@@ -59,7 +59,7 @@
     plus a single total order exists in which all threads observe all modifications in the same order
     (see Sequentially-consistent ordering below).
 
-    具有此内存顺序的 load 操作执行 acquire 操作，store 执行 release 操作，read-modify-write 同时执行 acquire 操作和 release 操作，
+    具有此内存顺序的 `load` 操作执行 acquire 操作，store 执行 release 操作，read-modify-write 同时执行 acquire 操作和 release 操作，
     此外还存在一个总顺序，其中所有线程都以相同的顺序观察所有修改
 
 ### Memory Consistency Model 内存一致性模型

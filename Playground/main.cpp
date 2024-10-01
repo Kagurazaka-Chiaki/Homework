@@ -6,6 +6,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <new>
 #include <ostream>
 #include <string>
 #include <utility>
@@ -110,6 +111,7 @@ void compute(std::fstream &fcin, std::fstream &fcout) {
 
     gm.show_raw();
 
+    throw std::bad_alloc();
     std::cout << gm.get_num(1, 3) << std::endl;
     
 }

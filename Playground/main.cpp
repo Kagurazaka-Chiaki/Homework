@@ -3,10 +3,10 @@
 
 #include <algorithm>
 #include <cstdlib>
+#include <deque>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
-#include <new>
 #include <ostream>
 #include <string>
 #include <utility>
@@ -76,7 +76,7 @@ int get_sum(std::vector<int> const &tree, int s, int t, int p, int l, int r) {
     return res;
 }
 
-void build_tree(std::vector<int> &tree, std::vector<int>const &d, int s, int t, int p) {
+void build_tree(std::vector<int> &tree, std::vector<int> const &d, int s, int t, int p) {
     if (s == t) {
         tree[p] = d[s];
         return;
@@ -91,29 +91,89 @@ namespace global {
     std::unordered_map<int, std::vector<std::vector<int>>> v = {};
 
     int ans = 0;
+} // namespace global
 
-}
+struct node {
+    int from = 0;
+    int to = 0;
+    int val = 0;
+};
 
-#include "GenMat.hpp"
+struct state {
+    int x = 0;
+    int y = 0;
+    int dist = 0;
+    int hp = 0;
+};
 
 void compute(std::fstream &fcin, std::fstream &fcout) {
 
-    auto gm = math::GenMat<int>(2, 3);
+    int n, m, h;
+    fcin >> n >> m >> h;
 
-    // 1 2 3
-    // 4 5 6
+    std::cout << "n: " << n << " m: " << m << std::endl;
 
-    gm.swap_row(1, 2);
+    auto map = std::vector<std::vector<char>>(n, std::vector<char>(m, '\0'));
 
-    gm.show_raw();
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            fcin >> map[i][j];
+        }
+    }
 
-    gm.shift_row(1, 4);
+    std::cout << "map: " << std::endl;
 
-    gm.show_raw();
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            std::cout << map[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
 
-    throw std::bad_alloc();
-    std::cout << gm.get_num(1, 3) << std::endl;
-    
+    auto dir = std::vector<std::pair<int, int>>({
+        {-1,  0}, // 上
+        { 1,  0}, // 下
+        { 0, -1}, // 左
+        { 0,  1}  // 右
+    });
+
+    // bfs
+    auto q = std::deque<state>();
+    //
+    auto flag = std::vector<std::vector<int>>(n, std::vector<int>(m, 0));
+
+    // 起始状态
+    q.push_back({0, 0, 0, h});
+
+    while (!q.empty()) {
+        state cur = q.front();
+        q.pop_front();
+
+        std::cout << "cur: " << cur.x << " " << cur.y << " " << cur.dist << " " << cur.hp << std::endl;
+
+        if (cur.x == n - 1 && cur.y == m - 1) { continue; }
+
+        if (flag[cur.x][cur.y] == 1) { continue; }
+
+        for (auto const &d: dir) {
+            int nx = cur.x + d.first;
+            int ny = cur.y + d.second;
+
+            if (nx < 0 || nx > n - 1 || ny < 0 || ny > m - 1) { continue; }
+
+            if (map[nx][ny] == '*') { continue; }
+
+            if (map[nx][ny] == '.') {
+                q.push_back({nx, ny, cur.dist + 1, cur.hp});
+            }
+
+            if (map[nx][ny] >= '1' && map[nx][ny] <= '9') {
+                int nh = cur.hp - (map[nx][ny] - '0');
+                if (nh <= 0) { continue; }
+                q.push_back({nx, ny, cur.dist + 1, cur.hp});
+            }
+        }
+    }
 }
 
 int main() {

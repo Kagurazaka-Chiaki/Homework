@@ -51,6 +51,10 @@ namespace math {
             return *this;
         }
 
+        auto swap(point &other) noexcept -> void {
+            std::swap(this->_data, other._data);
+        }
+
         ~point() noexcept = default;
 
         auto operator[](std::size_t i) -> double & {
@@ -121,8 +125,7 @@ namespace math {
         line(vec<3> const &p, vec<3> const &v)
             : _p(p), _v(v) {}
 
-        line(std::initializer_list<double> const &p,
-             std::initializer_list<double> const &v)
+        line(std::initializer_list<double> const &p, std::initializer_list<double> const &v)
             : _p(p), _v(v) {}
 
         auto point() const -> vec<3> { return _p; }
@@ -163,8 +166,7 @@ namespace math {
         plane(vec<3> const &normal, vec<3> const &point)
             : _normal(normal), _point(point) {}
 
-        plane(std::initializer_list<double> const &normal,
-              std::initializer_list<double> const &point)
+        plane(std::initializer_list<double> const &normal, std::initializer_list<double> const &point)
             : _normal(normal), _point(point) {}
 
         auto project(vec<3> const &p) const -> vec<3> {

@@ -1,19 +1,12 @@
 /**
- *
+ *  BM001 反转链表
 **/
 
+#include "NowCoderTop101.hpp"
 
-#include <bits/stdc++.h>
-
-using namespace std;
-
-struct ListNode {
-    int val;
-    struct ListNode *next;
-
-    ListNode(int x)
-        : val(x), next(nullptr) {}
-};
+#include <cassert>
+#include <iostream>
+#include <vector>
 
 // auto slice(vector<int> const &v, int const &a, int const &b) {
 //     auto it_a = v.begin(), it_b = v.begin();
@@ -32,10 +25,10 @@ void print_link_list(ListNode *l) {
         printf("%p -> [%d, %p]\n", pointer, pointer->val, pointer->next);
         pointer = pointer->next;
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
-auto link_list(vector<int> const &input) -> ListNode * {
+auto link_list(std::vector<int> const &input) -> ListNode * {
     ListNode *head = new ListNode(input[0]);
     ListNode *pointer = head;
     for (auto it = input.begin() + 1; it != input.end(); ++it) {
@@ -64,11 +57,11 @@ int main(int argc, char const *argv[]) {
     (void) argv;
     /* code */
 
-    vector<int> input = {
-            2, 1, 5, 3, 4
+    std::vector<int> input = {
+        2, 1, 5, 3, 4
     };
-    vector<int> output = {
-            4, 3, 5, 1, 2
+    std::vector<int> output = {
+        4, 3, 5, 1, 2
     };
 
     ListNode *a = link_list(input);

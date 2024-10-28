@@ -38,7 +38,7 @@ namespace math {
         }
 
         auto shift_row(int x, int y) -> void { // TODO: 错误 - 优化
-            this->map[x - 1][1] = -y; // offset
+            this->map[x - 1][1] = -y;          // offset
             auto ori = func(row, col, x, y) % col;
             std::cout << "Ori: " << ori << std::endl;
             this->map[x - 1][0] = func(row, col, x, y);
@@ -47,7 +47,7 @@ namespace math {
         auto get_num(int x, int y) -> T {
             auto o = this->map[x - 1][1];
             auto h = this->map[x - 1][0];
-            
+
             int k = 0;
             if (o < 0) {
                 // k = o mod col
@@ -68,12 +68,11 @@ namespace math {
                 std::cout << "Head: " << this->map[i][0] << " Offset: " << this->map[i][1] << " ";
                 std::cout << std::endl;
             }
-        
         }
 
         // auto show_all() -> void {
-            
-            
+
+
         // }
     };
 

@@ -43,7 +43,7 @@ message(STATUS "Operation system is ${CMAKE_SYSTEM} ${CMAKE_CXX_COMPILER_ID}")
 if(MSVC)
     message(STATUS "MSVC ${MSVC_VERSION}")
     # 支持 C++ 异常处理并设置 MSVC 输入代码编码格式为 utf-8
-    add_compile_options("/EHsc" "/source-charset:utf-8")
+    add_compile_options("/EHsc") # "/source-charset:utf-8" "/execution-charset:utf-8"
     message(STATUS "$ENV{VCPKG_ROOT}")
     set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
 endif(MSVC)
@@ -76,6 +76,10 @@ message(STATUS "Find Catch2 ${Catch2_VERSION} -> ${Catch2_FOUND}")
 # add_executable(tests test.cpp)
 # target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 
+# glm
+find_package(glm CONFIG REQUIRED)
+message(STATUS "Find glm ${glm_VERSION} -> ${glm_FOUND}")
+
 # Spdlog
 find_package(spdlog CONFIG REQUIRED)
 message(STATUS "Find spdlog ${spdlog_VERSION} -> ${spdlog_FOUND}")
@@ -87,6 +91,10 @@ message(STATUS "Find ICU ${ICU_VERSION} -> ${ICU_FOUND}")
 # Proxy
 find_package(proxy CONFIG REQUIRED)
 message(STATUS "Found Proxy: ${proxy_DIR}")
+
+# stb
+find_package(Stb REQUIRED)
+message(STATUS "Found stb: ${Stb_INCLUDE_DIR}")
 
 # Custom Functions
 include(CMake/function.cmake)
@@ -115,8 +123,8 @@ add_subdirectory(NowCoder)
 message(STATUS "Subdirectory [Templates]")
 add_subdirectory(Templates)
 
-message(STATUS "Subdirectory [Common]")
-add_subdirectory(Common)
+# message(STATUS "Subdirectory [Common]")
+# add_subdirectory(Common)
 
 message(STATUS "Subdirectory [Temp]")
 add_subdirectory(Temp)
@@ -124,8 +132,14 @@ add_subdirectory(Temp)
 message(STATUS "Subdirectory [Notes]")
 add_subdirectory(Notes)
 
+message(STATUS "Subdirectory [Pathfinding]")
+add_subdirectory(Pathfinding)
+
 message(STATUS "Subdirectory [Playground]")
 add_subdirectory(Playground)
+
+message(STATUS "Subdirectory [Vision]")
+add_subdirectory(Vision)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

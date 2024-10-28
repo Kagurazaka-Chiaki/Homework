@@ -4,7 +4,9 @@
         "catch2",
         "spdlog",
         "icu",
-        "proxy"
+        "proxy",
+        "stb",
+        "glm"
     ],
     "version": "0.0.1",
     "name": "homework"

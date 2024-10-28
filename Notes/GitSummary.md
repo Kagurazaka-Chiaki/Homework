@@ -77,18 +77,15 @@ git push -u origin dev
 
 <!-- TODO -->
 
-
 ### git stash
 
 <details>
 
 临时保存修改，并命名
 
-
 ```bash
 git stash save "fix: ..."
 ```
-
 
 保存开发到一半的代码
 
@@ -115,8 +112,7 @@ git stash apply @{%d}
 
 </details>
 
-
-###  git submodule
+### git submodule
 
 <details>
 
@@ -147,5 +143,10 @@ git rm --cached projectfolder
 # git submodule add [new_url] "project/folder"
 ```
 
+更新子模块
+
+```bash
+git submodule update --recursive --remote
+```
 
 </details>

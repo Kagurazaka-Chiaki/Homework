@@ -27,7 +27,7 @@ IndentPPDirectives:      BeforeHash
 IndentAccessModifiers:   false
 AccessModifierOffset:    -2
 
-ContinuationIndentWidth: 8
+ContinuationIndentWidth: 4
 
 
 # 在大括号前换行:
@@ -132,7 +132,7 @@ IncludeCategories:
 AlignAfterOpenBracket:                      BlockIndent
 
 # 结构数组使用初始化时，将字段对齐为列
-AlignArrayOfStructures:                     Left
+AlignArrayOfStructures:                     Right
 
 # 对齐连续赋值
 AlignConsecutiveAssignments:
@@ -151,6 +151,9 @@ AlignConsecutiveMacros:
   Enabled: true
   AcrossEmptyLines: true
   AcrossComments: false
+
+# 对齐反斜杠
+AlignEscapedNewlines:                       Right
 
 AlignOperands:                              AlignAfterOperator
 AllowAllArgumentsOnNextLine:                false

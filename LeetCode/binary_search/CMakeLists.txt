@@ -19,7 +19,7 @@ message(STATUS "-> Include ${INCLUDE_DIR}/bslib")
 # Lib
 message(STATUS "-> Lib ...")
 file(GLOB BS_CPP_SRC_LIST ${SOURCE_DIR}/*.cpp)
-add_library(bs SHARED ${BS_CPP_SRC_LIST})
+add_library(bs STATIC ${BS_CPP_SRC_LIST})
 target_include_directories(bs PUBLIC ${INCLUDE_DIR})
 
 # Build

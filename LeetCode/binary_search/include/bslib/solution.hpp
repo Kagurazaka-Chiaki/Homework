@@ -9,6 +9,9 @@ namespace bs {
       public:
         solution() = default;
 
+        // 0034. 在排序数组中查找元素的第一个和最后一个位置
+        auto searchRange(std::vector<int> &nums, int target) -> std::vector<int>;
+
         // 0035. 搜索插入位置
         auto searchInsert(std::vector<int> &nums, int target) -> int;
 

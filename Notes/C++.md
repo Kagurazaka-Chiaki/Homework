@@ -194,3 +194,47 @@ int main() {
 
 `RAII` 依赖于在所有可能的执行路径上隐式或显式删除基于堆的对象，以触发其资源释放析构函数（或等效函数）。
 这可以通过使用智能指针来管理所有堆对象来实现，而弱指针则用于循环引用的对象。
+
+
+### 模板
+
+显示具体化
+- 因为对于某些特殊类型，可能不适合模板实现，需要重新定义实现，此时就是使用显示具体化的场景
+
+```cpp
+template <> void Swap<job> (job &,job &);
+```
+
+显示实例化
+- 是无论是否有程序用，编译器都会生成一个实例函数
+
+```cpp
+template  void  Swap<int> (int ,int);
+```
+
+
+隐式实例化
+- 使用模板之前，编译器不生成模板的声明和定义示例，后面有程序用了，编译器才会根据模板生成一个实例函数
+
+
+### std::async std::thread
+
+
+https://stackoverflow.com/questions/25814365/when-to-use-stdasync-vs-stdthreads
+
+It's not really an either-or thing - you can use futures (together with promises) with manually created std::threads. Using std::async is a convenient way to fire off a thread for some asynchronous computation and marshal the result back via a future but std::async is rather limited in the current standard. It will become more useful if the suggested extensions to incorporate some of the ideas from Microsoft's PPL are accepted.
+
+Currently, std::async is probably best suited to handling either very long running computations or long running IO for fairly simple programs. It doesn't guarantee low overhead though (and in fact the way it is specified makes it difficult to implement with a thread pool behind the scenes), so it's not well suited for finer grained workloads. For that you either need to roll your own thread pools using std::thread or use something like Microsoft's PPL or Intel's TBB.
+
+You can also use `std::thread` for 'traditional' POSIX thread style code written in a more modern and portable way.
+
+Bartosz Milewski discusses some of the limitations of the way std::async is currently specified in his article Async Tasks in C++11: Not Quite There Yet
+
+
+One use-case of using std::future over `std::thread` is you want to call a function which returns a value. When you want return value of the function, you can call `get()` method of future.
+在 `std::thread` 上使用 std::future 的一个用例是你想调用一个返回值的函数。当需要函数的返回值时，可以调用 future 的 `get()` 方法。
+
+`std::thread` doesn't provide a direct way to get the return value of the function.
+`std::thread` 没有提供获取函数返回值的直接方法。
+
+

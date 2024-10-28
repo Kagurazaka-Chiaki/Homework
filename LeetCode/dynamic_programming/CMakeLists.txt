@@ -19,7 +19,7 @@ message(STATUS "-> Include ${INCLUDE_DIR}/dplib")
 # Lib
 # message(STATUS "-> Lib ...")
 file(GLOB SINGLE_CPP_SRC_LIST ${SOURCE_DIR}/*.cpp)
-add_library(dp SHARED ${SINGLE_CPP_SRC_LIST})
+add_library(dp STATIC ${SINGLE_CPP_SRC_LIST})
 target_include_directories(dp PUBLIC ${INCLUDE_DIR})
 
 

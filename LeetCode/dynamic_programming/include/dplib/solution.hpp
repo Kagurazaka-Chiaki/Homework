@@ -55,6 +55,7 @@ namespace dp {
         // 0045. 跳跃游戏 II
 
         // 0053. 最大子数组和
+        auto maxSubArray(std::vector<int> &nums) -> int;
 
         // 0918. 环形子数组的最大和
 

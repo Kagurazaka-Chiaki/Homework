@@ -2,10 +2,7 @@
  *
 **/
 
-
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <unordered_map>
 
 /**
  * Definition for singly-linked list.
@@ -20,7 +17,7 @@ struct ListNode {
 };
 
 class Solution {
-    unordered_map<ListNode *, int> hash;
+    std::unordered_map<ListNode *, int> hash;
 
   public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {

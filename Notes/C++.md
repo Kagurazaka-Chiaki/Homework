@@ -195,10 +195,10 @@ int main() {
 `RAII` 依赖于在所有可能的执行路径上隐式或显式删除基于堆的对象，以触发其资源释放析构函数（或等效函数）。
 这可以通过使用智能指针来管理所有堆对象来实现，而弱指针则用于循环引用的对象。
 
-
 ### 模板
 
 显示具体化
+
 - 因为对于某些特殊类型，可能不适合模板实现，需要重新定义实现，此时就是使用显示具体化的场景
 
 ```cpp
@@ -206,19 +206,18 @@ template <> void Swap<job> (job &,job &);
 ```
 
 显示实例化
+
 - 是无论是否有程序用，编译器都会生成一个实例函数
 
 ```cpp
 template  void  Swap<int> (int ,int);
 ```
 
-
 隐式实例化
+
 - 使用模板之前，编译器不生成模板的声明和定义示例，后面有程序用了，编译器才会根据模板生成一个实例函数
 
-
 ### std::async std::thread
-
 
 https://stackoverflow.com/questions/25814365/when-to-use-stdasync-vs-stdthreads
 
@@ -230,11 +229,44 @@ You can also use `std::thread` for 'traditional' POSIX thread style code written
 
 Bartosz Milewski discusses some of the limitations of the way std::async is currently specified in his article Async Tasks in C++11: Not Quite There Yet
 
-
 One use-case of using std::future over `std::thread` is you want to call a function which returns a value. When you want return value of the function, you can call `get()` method of future.
 在 `std::thread` 上使用 std::future 的一个用例是你想调用一个返回值的函数。当需要函数的返回值时，可以调用 future 的 `get()` 方法。
 
 `std::thread` doesn't provide a direct way to get the return value of the function.
 `std::thread` 没有提供获取函数返回值的直接方法。
 
+##### 回答 C++ 什么时候要手动调用析构函数
+
+如果在类 CA 中添加了构造函数，或者添加析构函数，就会发现程序会出现错误。
+
+由于 union 里面的东西共享内存，所以不能定义静态、引用类型的变量。
+
+由于在 union 里也不允许存放带有构造函数、析构函数和复制构造函数等的类的对象，但是可以存放对应的类对象指针。
+
+编译器无法保证类的构造函数和析构函数得到正确的调用，由此，就可能出现内存泄漏。
+
+所以，在 C++中使用 union 时，尽量保持 C 语言中使用 union 的风格，尽量不要让 union 带有对象。
+
+```cpp
+#include <iostream>
+
+template<class T>
+union Forget {
+    T value;
+
+    ~Forget() {}
+};
+
+struct A {
+    ~A() {
+        std::cout << "destroy A\n";
+    }
+};
+
+int main() {
+    auto f = Forget<A>{A{}}; // 不会执行A的析构
+    // f.value.~A(); // 需要手动调用析构, 否则资源泄露
+}
+```
+注： union 类型的析构函数在执行 body 之后不会调用 variant member 对象的析构函数
 

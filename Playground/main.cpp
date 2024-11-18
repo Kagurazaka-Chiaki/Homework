@@ -2,6 +2,7 @@
 #include <unordered_map>
 
 #include <algorithm>
+#include <cstdio>
 #include <cstdlib>
 #include <deque>
 #include <filesystem>
@@ -93,6 +94,7 @@ namespace global {
     int ans = 0;
 } // namespace global
 
+
 struct node {
     int from = 0;
     int to = 0;
@@ -113,11 +115,11 @@ void compute(std::fstream &fcin, std::fstream &fcout) {
 
     std::cout << "n: " << n << " m: " << m << std::endl;
 
-    auto map = std::vector<std::vector<char>>(n, std::vector<char>(m, '\0'));
+    auto raw_map = std::vector<std::vector<char>>(n, std::vector<char>(m, '\0'));
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            fcin >> map[i][j];
+            fcin >> raw_map[i][j];
         }
     }
 
@@ -125,7 +127,7 @@ void compute(std::fstream &fcin, std::fstream &fcout) {
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            std::cout << map[i][j] << " ";
+            std::cout << raw_map[i][j] << " ";
         }
         std::cout << std::endl;
     }
@@ -151,26 +153,30 @@ void compute(std::fstream &fcin, std::fstream &fcout) {
 
         std::cout << "cur: " << cur.x << " " << cur.y << " " << cur.dist << " " << cur.hp << std::endl;
 
-        if (cur.x == n - 1 && cur.y == m - 1) { continue; }
-
-        if (flag[cur.x][cur.y] == 1) { continue; }
+        if (cur.x == n - 1 && cur.y == m - 1) { 
+            std::cout << "ans: " << cur.dist << std::endl;
+            break; 
+        }
 
         for (auto const &d: dir) {
             int nx = cur.x + d.first;
             int ny = cur.y + d.second;
 
-            if (nx < 0 || nx > n - 1 || ny < 0 || ny > m - 1) { continue; }
+            if (nx < 0 || nx >= n || ny < 0 || ny >= m) { continue; }
 
-            if (map[nx][ny] == '*') { continue; }
+            printf("(%d, %d) -> [%c] %d\n", nx, ny, raw_map[nx][ny], flag[nx][ny]);
 
-            if (map[nx][ny] == '.') {
+            if (raw_map[nx][ny] == '*') { continue; }
+
+            if (raw_map[nx][ny] == '.') {
                 q.push_back({nx, ny, cur.dist + 1, cur.hp});
             }
 
-            if (map[nx][ny] >= '1' && map[nx][ny] <= '9') {
-                int nh = cur.hp - (map[nx][ny] - '0');
-                if (nh <= 0) { continue; }
-                q.push_back({nx, ny, cur.dist + 1, cur.hp});
+            if (raw_map[nx][ny] >= '0' && raw_map[nx][ny] <= '9') {
+                int nhp = cur.hp - (raw_map[nx][ny] - '0');
+                printf("nhp: %d\n", nhp);
+                if (nhp <= 0) { continue; }
+                q.push_back({nx, ny, cur.dist + 1, nhp});
             }
         }
     }

@@ -2,7 +2,6 @@
 #ifndef IMAGE_HPP
 #define IMAGE_HPP
 
-#include "vertex.hpp"
 #include <spdlog/spdlog.h>
 
 #include <vector>
@@ -201,33 +200,6 @@ class Image {
         return res;
     }
 
-    auto height_map_to_vertex(double const max_height) -> std::vector<graphics::vertex> {
-        auto vertices = std::vector<graphics::vertex>();
-
-        auto map_height = [](uint8_t const *data, int w, int h, int channels, int i, int j) -> float {
-            int index = (i * w + j) * channels;
-            return data[index] / 255.0f;
-        };
-
-        auto map_width = [](int w, int h, int i, int j) -> float {
-            return j / (float) w;
-        };
-
-
-        for (int i = 0; i < h; ++i) {
-            for (int j = 0; j < w; ++j) {
-                int index = (i * w + j) * channels;
-                auto x = i;
-                auto y = j;
-                auto z = data[index] / 255.0f * max_height;
-                auto color = glm::vec3(data[index] / 255.0f, data[index] / 255.0f, data[index] / 255.0f);
-                auto texcoord = glm::vec2(j / (float) w, i / (float) h);
-                vertices.push_back({glm::vec3(x, y, z), color, texcoord});
-            }
-        }
-
-        return vertices;
-    }
 };
 
 #endif // IMAGE_HPP

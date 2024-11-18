@@ -21,9 +21,7 @@
  * 
  * 注意：不允许旋转信封。
  * 
- * 
  * 示例 1：
- * 
  * 
  * 输入：envelopes = [[5,4],[6,4],[6,7],[2,3]]
  * 输出：3
@@ -31,20 +29,14 @@
  * 
  * 示例 2：
  * 
- * 
  * 输入：envelopes = [[1,1],[1,1],[1,1]]
  * 输出：1
  * 
- * 
- * 
- * 
  * 提示：
- * 
  * 
  * 1 <= envelopes.length <= 10^5
  * envelopes[i].length == 2
  * 1 <= wi, hi <= 10^5
- * 
  * 
  */
 
@@ -55,15 +47,36 @@
 
 // @lc code=start
 class Solution {
-public:
-    int maxEnvelopes(std::vector<std::vector<int>>& envelopes) {
-        std::sort(envelopes.begin(), envelopes.end(),
-                  [](auto const& a, auto const& b) {
-                      return a[0] == b[0] ? a[1] > b[1]: a[0] < b[0];
-                  });
+  public:
+    int maxEnvelopes(std::vector<std::vector<int>> &envelopes) {
+        if (envelopes.empty()) { return 0; }
+        // [[5,4],[6,4],[6,7],[2,3]]
+        std::sort(
+            envelopes.begin(), envelopes.end(),
+            [](auto const &a, auto const &b) {
+                return a[0] == b[0] ? a[1] > b[1] : a[0] < b[0];
+            }
+        );
+        // [
+        // [2, 3],
+        // [5, 4],
+        // [6, 7],
+        // [6, 4]
+        // ]
+        auto dp = std::vector<int>();
+        dp.push_back(envelopes[0][1]);
+        for (auto const &envelope : envelopes) {
+            if (int num = envelope[1]; num > dp.back()) {
+                dp.push_back(num);
+            } else {
+                auto it = std::lower_bound(dp.begin(), dp.end(), num);
+                *it = num;
+            }
+        }
+        return dp.size();
 
-        auto dp = std::vector<int>(envelopes.size(), 1);
         // TODO: 直接 dp 超时
+        // auto dp = std::vector<int>(envelopes.size(), 1);
         // for (int i = 0; i < envelopes.size(); ++i) {
         //     for (int j = 0; j < i; ++j) {
         //         if (envelopes[i][1] > envelopes[j][1]) {
@@ -71,9 +84,9 @@ public:
         //         }
         //     }
         // }
-        auto ans = std::max_element(dp.begin(), dp.end());
-        return *ans;
+        // auto ans = std::max_element(dp.begin(), dp.end());
+        // return *ans;
     }
 };
-// @lc code=end
 
+// @lc code=end

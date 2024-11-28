@@ -3,7 +3,7 @@
 #include "NowCoderTop101.hpp"
 
 class Solution {
-public:
+  public:
     bool hasCycle(ListNode *head) {
         if (head == nullptr) { return false; }
         ListNode *p1 = head;

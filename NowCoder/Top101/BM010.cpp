@@ -1,10 +1,9 @@
-// 链表中环的入口结点
-
+// BM10 两个链表的第一个公共结点
 
 #include "NowCoderTop101.hpp"
 
 class Solution {
-  public:
+
     ListNode *EntryNodeOfLoop(ListNode *pHead) {
         if (pHead == nullptr) { return nullptr; }
         ListNode *p1 = pHead;
@@ -37,5 +36,20 @@ class Solution {
             return p1;
         }
         return nullptr;
+    }
+
+  public:
+    ListNode *FindFirstCommonNode(ListNode *pHead1, ListNode *pHead2) {
+        if (pHead1 == nullptr || pHead2 == nullptr) { return nullptr; }
+        int n = 1;
+        ListNode *p1 = pHead1;
+        while (p1->next != nullptr) {
+            p1 = p1->next;
+            ++n;
+        }
+        p1->next = pHead2;
+        ListNode *ans = EntryNodeOfLoop(pHead1);
+        p1->next = nullptr;
+        return ans;
     }
 };

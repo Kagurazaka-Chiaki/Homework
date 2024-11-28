@@ -79,5 +79,10 @@ auto SomeVeryLongFunctionName() -> SomeVeryLongReturnTypeName { ... }
 为什么 `UEC++` 有这样的限制，暂时不知道
 
 
+你的问题比较尖锐了
 
+1. 相较于之前的创新点在哪里
+2. 使用成本
+3. 创新点对方案的优势
+4. 相比其他人的独特性在哪里
 

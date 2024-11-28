@@ -1,3 +1,11 @@
 [submodule "LaTeXTemplate"]
 	path = LaTeXTemplate
 	url = https://github.com/Kagurazaka-Chiaki/LaTeXTemplate.git
+
+[submodule "Notes/GameDevNote"]
+	path = Notes/GameDevNote
+	url = https://github.com/Kagurazaka-Chiaki/GameDevNote.git
+	
+[submodule "Notes/EngineFeatureNote"]
+	path = Notes/EngineFeatureNote
+	url = https://github.com/Kagurazaka-Chiaki/EngineFeatureNote

@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.28)
 
 project(NowCoderTop)
 
+message(STATUS "-> Enter [NowCoderTop101]")
 
 file(GLOB SINGLE_CPP_LIST "*.cpp")
 foreach(SINGLE_CPP ${SINGLE_CPP_LIST})

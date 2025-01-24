@@ -47,7 +47,10 @@ if(MSVC)
     add_compile_options("/EHsc") # "/source-charset:utf-8" "/execution-charset:utf-8"
     message(STATUS "$ENV{VCPKG_ROOT}")
     set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+    # 多核编译
+    add_compile_options("/MP")
 endif(MSVC)
+
 
 
 # if(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang")
@@ -97,6 +100,10 @@ message(STATUS "Found Proxy: ${proxy_DIR}")
 find_package(Stb REQUIRED)
 message(STATUS "Found stb: ${Stb_INCLUDE_DIR}")
 
+# Assimp
+find_package(assimp CONFIG REQUIRED)
+message(STATUS "Found assimp: ${assimp_FOUND}")
+
 # Custom Functions
 include(CMake/function.cmake)
 
@@ -124,8 +131,8 @@ add_subdirectory(NowCoder)
 message(STATUS "Subdirectory [Templates]")
 add_subdirectory(Templates)
 
-# message(STATUS "Subdirectory [Common]")
-# add_subdirectory(Common)
+message(STATUS "Subdirectory [Common]")
+add_subdirectory(Common)
 
 message(STATUS "Subdirectory [Temp]")
 add_subdirectory(Temp)
@@ -141,6 +148,9 @@ add_subdirectory(Playground)
 
 message(STATUS "Subdirectory [Vision]")
 add_subdirectory(Vision)
+
+message(STATUS "Subdirectory [Model]")
+add_subdirectory(Model)
 
 message(STATUS "Subdirectory [Modules]")
 # add_subdirectory(Modules) # C++20 Modules Not Supported

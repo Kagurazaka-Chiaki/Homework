@@ -5,10 +5,7 @@
  * 
 **/
 
-
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <unordered_map>
 
 // Definition for a binary tree node.
 struct TreeNode {
@@ -17,11 +14,11 @@ struct TreeNode {
     TreeNode *right;
 
     TreeNode(int x)
-        : val(x), left(NULL), right(NULL) {}
+        : val(x), left(nullptr), right(nullptr) {}
 };
 
 class Solution {
-    unordered_map<int, int> hash;
+    std::unordered_map<int, int> hash;
 
     void transfer(struct TreeNode *root) {
         if (root == nullptr) { return; }

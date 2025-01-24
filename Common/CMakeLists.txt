@@ -38,3 +38,5 @@ add_subdirectory(RTTI)
 message(STATUS "Subdirectory [Atomic]")
 add_subdirectory(Atomic)
 
+message(STATUS "Subdirectory [Macro]")
+add_subdirectory(Macro)

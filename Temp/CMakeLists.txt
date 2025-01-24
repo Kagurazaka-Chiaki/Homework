@@ -20,7 +20,9 @@ message(STATUS "Find Catch2 ${Catch2_VERSION} -> ${Catch2_FOUND}")
 add_executable(${PROJECT_NAME} main.cpp)
 target_link_libraries(${PROJECT_NAME} PRIVATE ICU::uc ICU::i18n Eigen3::Eigen)
 
-
+add_executable(test_dummy test_dummy.cpp)
+target_link_libraries(test_dummy PRIVATE Catch2::Catch2WithMain)
+add_test(NAME test_dummy COMMAND test_dummy)
 
 
 add_executable(tests test.cpp)

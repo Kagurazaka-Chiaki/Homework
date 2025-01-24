@@ -150,3 +150,22 @@ git submodule update --recursive --remote
 ```
 
 </details>
+
+
+### git tag
+
+<details>
+
+Sync tags to a forked repo
+
+Fetch tag:
+```bash
+git fetch --tags upstream
+```
+
+Push tags:
+```bash
+git push --tags
+```
+
+</details>

@@ -155,6 +155,9 @@ add_subdirectory(Model)
 message(STATUS "Subdirectory [Modules]")
 # add_subdirectory(Modules) # C++20 Modules Not Supported
 
+message(STATUS "Subdirectory [Unity]")
+add_subdirectory(Unity)
+
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)

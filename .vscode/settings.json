@@ -1,12 +1,12 @@
 {
-  "cmake.cmakePath": "D:/Cmake/bin//cmake.exe",
+  "cmake.cmakePath": "${env:CMAKE_HOME}/bin/cmake.exe",
   "cmake.configureArgs": [
     "-DBoost_NO_WARN_NEW_VERSIONS=1",
     "-DVCPKG_APPLOCAL_DEPS=ON",
     "-DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON",
-    "-DCMAKE_MAKE_PROGRAM=D:/Cmake/bin/ninja.exe",
+    "-DCMAKE_MAKE_PROGRAM=${env:NINJA_HOME}/ninja.exe",
     "-DVCPKG_TARGET_TRIPLET=x64-windows",
-    "-DVCPKG_MANIFEST_MODE=OFF"
+    "-DVCPKG_MANIFEST_MODE=ON"
   ],
   "vcpkg.general.enable": true,
   "vcpkg.target.hostTriplet": "x64-windows",
@@ -17,5 +17,5 @@
   },
   "vcpkg.target.installDependencies": true,
   "vcpkg.target.preferSystemLibs": false,
-  "vcpkg.target.useManifest": false
+  "vcpkg.target.useManifest": true
 }

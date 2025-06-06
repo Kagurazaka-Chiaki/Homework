@@ -48,7 +48,7 @@ namespace Localize {
             gbk.assign(gbk_buffer.get(), gbk_len);
         }
 
-    
+
         ucnv_close(utf8_converter);
         ucnv_close(gbk_converter);
     }

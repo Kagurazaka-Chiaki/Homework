@@ -134,11 +134,15 @@ AlignAfterOpenBracket:                      BlockIndent
 # 结构数组使用初始化时，将字段对齐为列
 AlignArrayOfStructures:                     Right
 
-# 对齐连续赋值
-AlignConsecutiveAssignments:
-  Enabled: false
-  AcrossEmptyLines: true
-  AcrossComments: false
+# # 对齐连续赋值
+# AlignConsecutiveAssignments:
+#   Enabled: false
+#   AcrossEmptyLines: true
+#   AcrossComments: false
+
+AlignConsecutiveAssignments: Consecutive
+AlignConsecutiveDeclarations: Consecutive
+# AlignOperands: AlignAfterOperator
 
 # 对齐连续位域
 AlignConsecutiveBitFields:

@@ -76,3 +76,8 @@ a.out
 # Vcpkg #
 #########
 vcpkg_installed/
+
+
+# Config #
+##########
+!Config/

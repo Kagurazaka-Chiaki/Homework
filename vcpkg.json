@@ -5,7 +5,6 @@
         "catch2",
         "spdlog",
         "icu",
-        "proxy",
         "stb",
         "glm"
     ],

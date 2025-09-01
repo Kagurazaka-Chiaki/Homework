@@ -1,7 +1,7 @@
 #
 
-set(CMAKE_VERSION 3.28 FATAL_ERROR)
-set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_VERSION 3.28)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_BUILE_TYPE DEBUG)
@@ -49,6 +49,8 @@ if(MSVC)
     set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
     # 多核编译
     add_compile_options("/MP")
+    # 设置 C++ 标准
+    add_compile_options("/std:c++20")
 endif(MSVC)
 
 
@@ -92,9 +94,9 @@ message(STATUS "Find spdlog ${spdlog_VERSION} -> ${spdlog_FOUND}")
 find_package(ICU COMPONENTS uc i18n REQUIRED)
 message(STATUS "Find ICU ${ICU_VERSION} -> ${ICU_FOUND}")
 
-# Proxy
-find_package(proxy CONFIG REQUIRED)
-message(STATUS "Found Proxy: ${proxy_DIR}")
+# # Proxy
+# find_package(proxy CONFIG REQUIRED)
+# message(STATUS "Found Proxy: ${proxy_DIR}")
 
 # stb
 find_package(Stb REQUIRED)

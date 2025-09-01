@@ -12,3 +12,9 @@ add_executable(SegmentTree SegmentTree.cpp SegmentTree.hpp)
 add_executable(SegmentTreeTest SegmentTreeTest.cpp SegmentTree.hpp)
 add_test(SegmentTreeTest SegmentTreeTest)
 target_link_libraries(SegmentTreeTest PRIVATE Catch2::Catch2WithMain)
+
+
+# QuadTree
+add_executable(QuadTree QuadTree.cpp QuadTree.hpp)
+
+# QuadTreeTest

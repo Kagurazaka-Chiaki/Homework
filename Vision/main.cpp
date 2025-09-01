@@ -1,6 +1,7 @@
 
 #include "image.hpp"
 
+#include <cstdlib>
 #include <filesystem>
 #include <fstream>
 #include <ios>
@@ -54,9 +55,11 @@ int main() {
 
     I.write_to_file("output.png");
 
-    auto a = I.height_map_to_vertex(1000);
+    // auto a = I.height_map_to_vertex(1000);
 
-    for (auto const &v : a) {
-        std::cout << v << std::endl;
-    }
+    // for (auto const &v : a) {
+    //     std::cout << v << std::endl;
+    // }
+
+    return EXIT_SUCCESS;
 }

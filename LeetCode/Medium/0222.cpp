@@ -1,18 +1,14 @@
 /**
  * @brief 222. 完全二叉树的节点个数
- * 
+ *
  * https://leetcode-cn.com/problems/count-complete-tree-nodes/
- * 
+ *
 **/
 
 
-#include <bits/stdc++.h>
-
-using namespace std;
-
 // Definition for a binary tree node.
 struct TreeNode {
-    int val;
+    int       val;
     TreeNode *left;
     TreeNode *right;
 

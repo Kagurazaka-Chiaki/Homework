@@ -1,209 +1,182 @@
-/**
- *
-**/
+// #include <iostream>
+// int f1(int x) {
+//     if (x <= 1) {
+//         return 1;
+//     } else {
+//         return 2 * f1(x - 1);
+//     }
+// }
+// int f2(int x) {
+//     if (x <= 1) {
+//         return 1;
+//     } else {
+//         return f2(x - 1) + f1(x) + x / 2;
+//     }
+// }
+// int f3(int x) {
+//     if (x <= 1) {
+//         return 1;
+//     } else {
+//         return f3(x - 1) + f2(x) + x;
+//     }
+// }
+// auto main(int argc, char const *argv[]) -> int {
+//     std::cout << f3(5) << std::endl;
+//     return 0;
+// }
 
-#include <unicode/ucnv.h>
-#include <unicode/unistr.h>
 
-#include <cstring>
-// #include <iomanip>
+#include <array>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
 #include <iostream>
+#include <queue>
+#include <utility>
+#include <vector>
+#include <unordered_map>
 
-// #include <vector>
-
-// #include <bits/stdc++.h>
-
-// #include <Eigen/Dense>
-
-// class Base {
-//         int value;
-
-//     public:
-//         Base(int v)
-//             : value(v) {}
-
-//         friend int Fun1(Base &);
-//         friend int Fun2(const Base &);
-//         friend int Fun3(Base);
-//         friend int Fun4(const Base);
-// };
-
-// int Fun1(Base &);
-// int Fun2(const Base &);
-// int Fun3(Base);
-// int Fun4(const Base);
-
-// Arbitrary Precision Arithmetic
-class APA {
-
-  private:
-    int len = 64;
-
-    std::unique_ptr<char[]> data;
-
-  public:
-    APA() = default;
-
-    explicit APA(int len)
-        : len(len) {
-        data = std::make_unique<char[]>(len + 1);
-        std::memset(data.get(), '\0', len + 1);
-        std::memset(data.get(), '0', len);
+template<typename T>
+void pp(std::vector<T> const& vec) {
+    for (T const& v : vec) {
+        std::cout << v << ' ';
     }
-
-    // copy
-    APA(const APA &other) = delete;
-    APA &operator=(const APA &other) = delete;
+    std::cout << '\n';
+}
 
 
-    // move
-    APA(APA &&other) = delete;
-    APA &operator=(APA &&other) = delete;
-
-    ~APA() = default;
-
-    friend std::ostream &operator<<(std::ostream &os, const APA &apa) {
-        os << "len: " << apa.len << " data: " << apa.data.get();
-        return os;
+void ppp(std::unordered_map<int, std::pair<int, int>> const& map) {
+    for (auto const& it : map) {
+        std::cout << '[' << it.first << "-> {" << it.second.first << ", " << it.second.second << "} ]\n";
     }
+    std::cout << '\n';
+}
 
-    auto clear() -> void {
-        std::memset(data.get(), '\0', len + 1);
-        std::memset(data.get(), '0', len);
-    }
 
-    auto read(char const *str) -> void {
-        std::memset(data.get(), '\0', len + 1);
-        std::memcpy(data.get(), str, std::strlen(str));
+int map_str_to_int(char x) {
+    switch (x) {
+        case '.':
+            return 0;
+        case '#':
+            return 1;
+        default:
+            return x;
     }
+    return x;
+}
 
-    auto from_int(int num) -> void {
-        std::memset(data.get(), '\0', len + 1);
-        std::sprintf(data.get(), "%d", num);
-    }
-
-    auto from_double(double num) -> void {
-        std::memset(data.get(), '\0', len + 1);
-        std::sprintf(data.get(), "%f", num);
-    }
+std::array<std::pair<int, int>, 4> dir4 = {
+    std::pair{-1,  0},
+    std::pair{ 0,  1},
+    std::pair{ 1,  0},
+    std::pair{ 0, -1},
 };
 
-auto ModifyCal_Div(double a, double b) -> void {
-    auto int_a = static_cast<int>(a);
-    auto len = (int_a % 10) + 1;
-    auto str_a = std::make_unique<char[]>(len + 1);
+auto h(std::pair<int, int> s, std::pair<int, int> t) {
+    return std::abs(s.first - t.first) +  std::abs(s.second - t.second);
 }
 
-#include <filesystem>
+void p(std::pair<int, int> pair) {
+    printf("[%d, %d]", pair.first, pair.second);
+}
 
-auto main(int argc, char const *argv[]) -> int {
+auto astar(
+    std::vector<std::vector<int>> &g, int n, int m,
+    std::pair<int, int> s, std::pair<int, int> t,
+    std::unordered_map<int, std::pair<int, int>> a, std::vector<int> b
+) {
+    for (auto &it : a) {
+        int x = a[it.first].first;
+        int y = a[it.first].second;
+        if (b[it.first - '0' + 1] != 1) {
+            g[x][y] = 1;
+        }
+    }
+    std::vector<std::pair<int, int>> path;
+    std::queue<std::pair<int, int>> q;
+    std::vector<std::vector<int>> vis(n, std::vector<int>(m, 0));
+    q.push(s);
+    // vis[s.first][s.second] = 1;
+    while (!q.empty()) {
+        auto curr = q.front();
+        q.pop();
+        // p(curr);
+        if (curr == t) {
+            break;
+        }
+        path.push_back(curr);
+        if (vis[s.first][s.second] == 1) { continue; }
+        vis[s.first][s.second] = 1;
+        for (auto const &[dx, dy] : dir4) {
+            int nx = dx + curr.first;
+            int ny = dy + curr.second;
+            // printf("[%d, %d]", nx, ny);
+            if (nx < 0 || nx > n - 1) { continue; }
+            if (ny < 0 || ny > m - 1) { continue; }
+            // printf("[%d, %d]", nx, ny);
+            if (g[nx][ny] == 0) {
+                // printf("[%d, %d]", nx, ny);
+                q.push(std::pair<int, int>(nx, ny));
+            }
+        }
+    }
+    return path;
+}
 
-    (void) argc;
-    (void) argv;
-
-    auto path = std::filesystem::current_path();
-
-    // APA apa(10); // 0000 0000
-
-    // std::cout << apa << std::endl;
-
-    // apa.read("123456789");
-
-    // std::cout << apa << std::endl;
-
-    // apa.from_int(123456789);
-
-    // std::cout << apa << std::endl;
-
-    // apa.from_double(123456789.123456789);
-
-    // std::cout << apa << std::endl;
-
-    // system("chcp 65001");
-
-    // Eigen::MatrixXd mat1(3, 3);
-
-    // Eigen::MatrixXd mat2(3, 3);
-
-    // mat1 << 1, 2, 3, 4, 5, 6, 7, 8, 9;
-
-    // mat1(0, 0) = 1.3;
-    // mat2(0, 0) = 1.3;
-    // auto k = mat1 == mat2;
-    // std::cout << mat1 << '\n'
-    //           << k << std::endl;
-
-    // Fun1(1); Error
-    // Fun2(1);
-    // Fun3(1);
-    // Fun4(1);
-
-    // std::cout << 是一个对象
-
-    // 二叉树
-    // 后序 dabec
-    // 中序 debac
-    // 前序
-
-    // int a = 10, b = 20;
-    // int &c = b;
-    // b = a;
-    // int *d = &b;
-    // *d = 30;
-    // int f = c + *d + a;
-
-    // std::cout << f;
-
-    // int *p0 = (int *)malloc(sizeof(int));
-    // *p0 = 6;
-    // int *p1 = (int *)malloc(sizeof(int));
-    // *p1 = 5;
-    // int *p2 = (int *)malloc(sizeof(int));
-    // *p2 = 4;
-    // int *p3 = (int *)malloc(sizeof(int));
-    // *p3 = 3;
-    // int *p4 = (int *)malloc(sizeof(int));
-    // *p4 = 2;
-    // int *p5 = (int *)malloc(sizeof(int));
-    // *p5 = 1;
-
-    // auto a = std::vector<int *>{p0, p1, p2, p3, p4, p5};
-
-    // int n = a.size();
-
-    // for (int i = 0; i < n; i++) {
-    //     std::cout << a[i] << " -> " << *a[i] << std::endl;
-    // }
-
-    // for (int i = 0; i < n - 1; i++) {
-    //     for (int j = 0; j < n - 1 - i; j++) {
-    //         if (*(a[j]) > *(a[j + 1])) {
-    //             std::swap(a[j], a[j + 1]);
-    //         }
+int main() {
+    int n, m;
+    scanf("%d %d\n", &n, &m);
+    // printf("%d x %d\n", n, m);
+    std::vector<std::vector<int>> g(n, std::vector<int>(m, 0));
+    std::unordered_map<int, std::pair<int, int>> eg{};
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m - 1; ++j) {
+            char x;
+            scanf("%c", &x);
+            // printf("[%c]", x);
+            if (x != '.' && x != '#') {
+                eg[x] = std::pair<int, int>{i, j};
+            }
+            g[i][j] = map_str_to_int(x);
+        }
+        char x;
+        scanf("%c\n", &x);
+        // printf("[%c]", x);
+        if (x != '.' && x != '#') {
+            eg[x] = std::pair<int, int>{i, m - 1};
+        }
+        g[i][m - 1] = map_str_to_int(x);
+    }
+    // for (int i = 0; i < n; ++i) {
+    //     for (int j = 0; j < m; ++j) {
+    //         printf("[%2d]", g[i][j]);
     //     }
+    //     printf("\n");
     // }
-
-    // for (int i = 0; i < n; i++) {
-    //     std::cout << a[i] << " -> " << *a[i] << std::endl;
+    // ppp(eg);
+    std::vector<int> b(5, 1);
+    int ans = 0;
+    auto path = astar(g, n, m, eg['S'], eg['1'], eg, b);
+    b['1' - '0' - 1] = 0;
+    // pp(b);
+    // for (auto v : path) {
+    //     p(v);
     // }
-
-
-    double a = ((-9525.600289 - -12600.000000) / 3150.000000) - 0.00005;
-    double b = (-12423.600377 - -12600.000000) / 3150.000000;
-
-
-    auto d = log10(-9525.600289 + 12600.000000) - log10(3150.000000);
-
-    auto e = pow(10, d);
-
-    std::cout << a << " " << b << " " << std::endl;
-
-
-    a = -9525.600289;
-    b = ((-9525.600289 / 3150.0) - (-12600.0 / 3150.0)) * pow(10, static_cast<int>(a) % 10);
-
-    std::cout << b << std::endl;
-
-
-    return 0;
+    // printf("\n");
+    ans += path.size();
+    // printf("%d", ans);
+    for (int s = '1'; s < '6'; ++s) {
+        // printf("%d -> %d\n", s, s + 1);
+        auto path = astar(g, n, m, eg[s], eg[s + 1], eg, b);
+        b[s - '0' - 1] = 0;
+        // pp(b);
+        // for (auto v : path) {
+        //     p(v);
+        // }
+        // printf("\n");
+        ans += path.size() - 1;
+    }
+    printf("%d", ans + 2);
+    return EXIT_SUCCESS;
 }
+// 64 位输出请用 printf("%lld")

@@ -3,19 +3,16 @@
 **/
 
 #include "LinkedList.hpp"
-#include "Node.hpp"
 
-#include <algorithm>
 #include <iostream>
-#include <memory>
 
 auto reverse_list(lib::ListNode *head) {
     auto p = head;
     while (p->next != nullptr) {
-        auto q = p->next;
+        auto q  = p->next;
         p->next = q->next;
         q->next = head;
-        head = q;
+        head    = q;
     }
     return head;
 }

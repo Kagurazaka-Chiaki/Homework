@@ -8,9 +8,9 @@ file(GLOB SINGLE_HPP_SRC_LIST ${CMAKE_CURRENT_SOURCE_DIR}/include/*.hpp)
 # message(STATUS "Single Source List: ${SINGLE_CPP_SRC_LIST}")
 # message(STATUS "Single Header List: ${SINGLE_HPP_SRC_LIST}")
 
-add_library(leetcode_lib STATIC ${SINGLE_HPP_SRC_LIST})
-target_include_directories(leetcode_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
-set_target_properties(leetcode_lib PROPERTIES LINKER_LANGUAGE CXX)
+# add_library(leetcode_lib STATIC ${SINGLE_HPP_SRC_LIST})
+# target_include_directories(leetcode_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+# set_target_properties(leetcode_lib PROPERTIES LINKER_LANGUAGE CXX)
 
 foreach(SINGLE_CPP_SRC ${SINGLE_CPP_SRC_LIST})
     get_filename_component(SINGLE_CPP_SRC_NAME ${SINGLE_CPP_SRC} NAME)
@@ -34,8 +34,8 @@ foreach(SINGLE_CPP_SRC ${SINGLE_CPP_SRC_LIST})
 
     message(STATUS "Single Executable Number: ${SINGLE_EXEC_NUM}")
 
-    add_executable(${SINGLE_EXEC_NUM} ${SINGLE_CPP_SRC})
-    target_link_libraries(${SINGLE_EXEC_NUM} PRIVATE leetcode_lib)
+    add_executable(${SINGLE_EXEC_NUM} ${SINGLE_CPP_SRC} ${SINGLE_HPP_SRC_LIST})
+    # target_link_libraries(${SINGLE_EXEC_NUM} PRIVATE leetcode_lib)
 endforeach()
 
 message(STATUS "Leave LeetCode [Workspace] ${CMAKE_CURRENT_SOURCE_DIR}")

@@ -37,6 +37,9 @@ add_subdirectory(dynamic_programming)
 message(STATUS "Subdirectory [树]")
 
 
+message(STATUS "Subdirectory [设计题]")
+add_subdirectory(design)
+
 add_executable(lib_main main.cpp)
 target_link_libraries(lib_main PUBLIC dp bs)
 

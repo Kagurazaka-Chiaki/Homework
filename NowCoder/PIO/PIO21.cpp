@@ -37,6 +37,5 @@ int main(int argc, char const *argv[]) {
         // cout << result << endl;
         std::cout << std::accumulate(vec.begin(), vec.end(), 0) << std::endl;
     }
-
     return 0;
 }

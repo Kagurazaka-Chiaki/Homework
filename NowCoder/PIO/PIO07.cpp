@@ -1,5 +1,3 @@
-//
-
 #include <iostream>
 
 auto gunc(int const &n) -> void {
@@ -26,9 +24,23 @@ int main(int argc, char const *argv[]) {
     (void) argc;
     (void) argv;
     /* code */
-    bool temp = func();
-    while (temp) {
-        temp = func();
+    // bool temp = func();
+    // while (temp) {
+    //     temp = func();
+    // }
+    int t;
+    std::cin >> t;
+    while (t--) {
+        int n;
+        std::cin >> n;
+        long long sum = 0LL;
+        while (n--) {
+            long long a;
+            std::cin >> a;
+            sum += a;
+        }
+        std::cout << sum << '\n';
     }
-    return 0;
 }
+
+// 64 位输出请用 printf("%lld")

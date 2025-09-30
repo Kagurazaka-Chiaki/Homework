@@ -18,9 +18,22 @@
  * };
  */
 
-#include "LeetCode.hpp"
-
 #include <algorithm>
+
+struct TreeNode {
+    int       val;
+    TreeNode *left;
+    TreeNode *right;
+
+    TreeNode()
+        : val(0), left(nullptr), right(nullptr) {}
+
+    TreeNode(int x)
+        : val(x), left(nullptr), right(nullptr) {}
+
+    TreeNode(int x, TreeNode *left, TreeNode *right)
+        : val(x), left(left), right(right) {}
+};
 
 class Solution {
 
@@ -30,9 +43,9 @@ class Solution {
         if (root == nullptr) {
             return 0;
         }
-        int left = dfs(root->left, ans);
+        int left  = dfs(root->left, ans);
         int right = dfs(root->right, ans);
-        ans = std::max(ans, left + right);
+        ans       = std::max(ans, left + right);
         return std::max(left, right) + 1;
     }
 

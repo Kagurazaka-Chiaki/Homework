@@ -3,9 +3,7 @@
 **/
 
 #include <iostream>
-#include <sstream>
 #include <string>
-#include <tuple>
 
 auto main(int argc, char const *argv[]) -> int {
     (void) argc;
@@ -30,7 +28,5 @@ auto main(int argc, char const *argv[]) -> int {
 
         t = t - 1;
     }
-
-
     return 0;
 }

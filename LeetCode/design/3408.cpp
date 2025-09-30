@@ -1,0 +1,66 @@
+/**
+ * 3408. 设计任务管理器
+ * https://leetcode.cn/problems/design-task-manager/
+**/
+
+#include <queue>
+#include <unordered_map>
+#include <vector>
+
+class TaskManager {
+
+    struct data {
+        int user_id;
+        int task_id;
+        int priority;
+    };
+
+    struct user_task {
+        int priority;
+        int user_id;
+    };
+
+    std::unordered_map<int, user_task> map;
+    std::priority_queue<data> pq;
+
+public:
+    TaskManager(std::vector<std::vector<int>>& tasks) {
+        for (auto &task : tasks) {
+            this->add(task[0], task[1], task[2]);
+        }
+    }
+
+    void add(int userId, int taskId, int priority) {
+        map[taskId] = {priority, userId};
+        pq.emplace(userId, taskId, priority);
+    }
+
+    void edit(int taskId, int newPriority) {
+        this->add(map[taskId].user_id, taskId, newPriority);
+    }
+
+    void rmv(int taskId) {
+        map[taskId].priority = -1;
+    }
+
+    int execTop() {
+        while (!pq.empty()) {
+            auto &[p, t, u] = pq.top();
+            pq.pop();
+            if (map[t].priority == p && map[t].user_id == u) {
+                rmv(t);
+                return u;
+            }
+        }
+        return -1;
+    }
+};
+
+/**
+ * Your TaskManager object will be instantiated and called as such:
+ * TaskManager* obj = new TaskManager(tasks);
+ * obj->add(userId,taskId,priority);
+ * obj->edit(taskId,newPriority);
+ * obj->rmv(taskId);
+ * int param_4 = obj->execTop();
+ */

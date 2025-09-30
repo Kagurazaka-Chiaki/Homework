@@ -1,6 +1,3 @@
-//
-
-
 #include <iostream>
 
 auto func() -> void {
@@ -19,5 +16,9 @@ int main(int argc, char const *argv[]) {
         func();
         t--;
     }
+    // int a, b;
+    // while (std::cin >> a >> b) { // 注意 while 处理多个 case
+    //     std::cout << a + b << std::endl;
+    // }
     return 0;
 }

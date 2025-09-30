@@ -1,6 +1,6 @@
 /**
  * @brief 450. 删除二叉搜索树中的节点
- * 
+ *
  *
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -10,6 +10,8 @@
  * };
  */
 
+
+#include <cstdlib>
 
 struct TreeNode {
     int val;

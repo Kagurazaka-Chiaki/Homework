@@ -1,5 +1,4 @@
 
-#include <cstddef>
 #include <stdio.h>
 #include <stdlib.h>
 // #include <pthread.h>
@@ -8,20 +7,20 @@
 #define MAX 1
 
 struct Detail {
-        int Value;
+    int Value;
 };
 
 struct Node {
-        // pthread_mutex_t *mutex;
-        struct Detail *Data;
-        struct Node *Prev;
-        struct Node *Next;
+    // pthread_mutex_t *mutex;
+    struct Detail *Data;
+    struct Node   *Prev;
+    struct Node   *Next;
 };
 
 struct Queue {
-        int Length;
-        struct Node *Head;
-        struct Node *Tail;
+    int          Length;
+    struct Node *Head;
+    struct Node *Tail;
 };
 
 void PrintQueueNode(struct Node *Item) {
@@ -39,21 +38,21 @@ void PrintQueue(struct Queue *Q) {
 
 struct Detail *InitItem(int Data) {
     struct Detail *New = (struct Detail *) malloc(sizeof(struct Detail));
-    New->Value = Data;
+    New->Value         = Data;
     return New;
 }
 
 struct Queue *InitQueue() {
     struct Queue *New = (struct Queue *) malloc(sizeof(struct Queue));
     New->Head = New->Tail = NULL;
-    New->Length = 0;
+    New->Length           = 0;
     return New;
 }
 
 struct Node *InitQueueNode(int Value) {
     struct Node *New = (struct Node *) malloc(sizeof(struct Node));
     New->Prev = New->Next = NULL;
-    New->Data = InitItem(Value);
+    New->Data             = InitItem(Value);
     return New;
 }
 
@@ -65,38 +64,38 @@ void JoinQueue(struct Queue *Q, struct Node *Item) {
     if (Q->Head == NULL && Q->Tail == NULL) {
         Q->Head = Q->Tail = Item;
     } else {
-        Item->Next = Q->Head;
+        Item->Next    = Q->Head;
         Q->Head->Prev = Item;
-        Q->Head = Item;
+        Q->Head       = Item;
     }
     Q->Length++;
 }
 
 void AppendQueue(struct Queue *Q, struct Node *Item) {
-    Item->Prev = Q->Tail;
+    Item->Prev    = Q->Tail;
     Q->Tail->Next = Item;
-    Q->Tail = Item;
+    Q->Tail       = Item;
 }
 
 void Insert(struct Queue *Q, struct Node *Item) {
     if (Q->Head == NULL && Q->Tail == NULL) {
         Q->Head = Q->Tail = Item;
     } else if (Q->Head->Data->Value >= Item->Data->Value) {
-        Item->Next = Q->Head;
+        Item->Next    = Q->Head;
         Q->Head->Prev = Item;
-        Q->Head = Item;
+        Q->Head       = Item;
     } else if (Q->Tail->Data->Value <= Item->Data->Value) {
-        Item->Prev = Q->Tail;
+        Item->Prev    = Q->Tail;
         Q->Tail->Next = Item;
-        Q->Tail = Item;
+        Q->Tail       = Item;
     } else {
         struct Node *pointer = Q->Head;
         while (pointer != NULL) {
             if (pointer->Data->Value > Item->Data->Value) {
-                Item->Next = pointer;
-                Item->Prev = pointer->Prev;
+                Item->Next          = pointer;
+                Item->Prev          = pointer->Prev;
                 pointer->Prev->Next = Item;
-                pointer->Prev = Item;
+                pointer->Prev       = Item;
                 break;
             }
             pointer = pointer->Next;
@@ -110,7 +109,7 @@ bool is_equal(struct Node *A, struct Node *B) {
 }
 
 struct Node *SearchQueue(struct Queue *Q, struct Node *Target) {
-    struct Node *Result = NULL;
+    struct Node *Result  = NULL;
     struct Node *pointer = Q->Head;
     while (pointer != NULL) {
         if (is_equal(pointer, Target) == true) {
@@ -129,10 +128,10 @@ void DeleteQueue(struct Queue *Q, struct Node *Target) {
     if (flag->Prev == NULL && flag->Next == NULL) {
         Q->Head = Q->Tail = NULL;
     } else if (flag->Prev == NULL && flag->Next != NULL) {
-        Q->Head = Q->Head->Next;
+        Q->Head       = Q->Head->Next;
         Q->Head->Prev = flag->Next = NULL;
     } else if (flag->Next == NULL && flag->Prev != NULL) {
-        Q->Tail = Q->Tail->Prev;
+        Q->Tail       = Q->Tail->Prev;
         Q->Tail->Next = flag->Prev = NULL;
     } else {
         flag->Prev->Next = flag->Next;
@@ -149,14 +148,14 @@ struct Node *LeaveQueue(struct Queue *Q) {
     struct Node *Result = NULL;
 
     if (Q->Length == 1) {
-        Result = Q->Head;
+        Result  = Q->Head;
         Q->Head = Q->Tail = NULL;
         Result->Prev = Result->Next = NULL;
     } else {
-        Result = Q->Head;
-        Q->Head = Q->Head->Next;
+        Result        = Q->Head;
+        Q->Head       = Q->Head->Next;
         Q->Head->Prev = NULL;
-        Result->Next = NULL;
+        Result->Next  = NULL;
     }
     Q->Length--;
     return Result;
@@ -176,8 +175,8 @@ void FreeQueue(struct Queue *Q) {
 }
 
 int main(int argc, char const *argv[]) {
-    struct Queue *Q = InitQueue();
-    int Array[MAX] = {10};
+    struct Queue *Q          = InitQueue();
+    int           Array[MAX] = {10};
     for (int i = 0; i < MAX; i++) {
         struct Node *N = InitQueueNode(Array[i]);
         // JoinQueue(Q, N);

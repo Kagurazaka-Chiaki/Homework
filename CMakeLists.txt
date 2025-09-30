@@ -1,13 +1,13 @@
 #
 
-set(CMAKE_VERSION 3.28)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_VERSION 3.31)
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_BUILE_TYPE DEBUG)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_CXX_SCAN_FOR_MODULES ON)
+set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 # set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
@@ -51,6 +51,8 @@ if(MSVC)
     add_compile_options("/MP")
     # 设置 C++ 标准
     add_compile_options("/std:c++20")
+    # 使 MSVC 的 __cplusplus 宏符合实际的 C++ 标准
+    add_compile_options("/Zc:__cplusplus")
 endif(MSVC)
 
 
@@ -74,6 +76,7 @@ include(CTest)
 find_package(Eigen3 CONFIG REQUIRED)
 include_directories(${EIGEN3_INCLUDE_DIRS})
 message(STATUS "Find Eigen3 ${Eigen3_VERSION} -> ${Eigen3_FOUND}")
+message(STATUS "Eigen3 include dir: ${EIGEN3_INCLUDE_DIRS}")
 
 # Catch2 v3
 find_package(Catch2 CONFIG REQUIRED)
@@ -159,6 +162,12 @@ message(STATUS "Subdirectory [Modules]")
 
 message(STATUS "Subdirectory [Unity]")
 add_subdirectory(Unity)
+
+message(STATUS "Subdirectory [Concurrency]")
+add_subdirectory(Concurrency)
+
+message(STATUS "Subdirectory [Automaton]")
+add_subdirectory(Automaton)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

@@ -124,59 +124,59 @@ auto astar(
 }
 
 int main() {
-    int n, m;
-    scanf("%d %d\n", &n, &m);
-    // printf("%d x %d\n", n, m);
-    std::vector<std::vector<int>> g(n, std::vector<int>(m, 0));
-    std::unordered_map<int, std::pair<int, int>> eg{};
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < m - 1; ++j) {
-            char x;
-            scanf("%c", &x);
-            // printf("[%c]", x);
-            if (x != '.' && x != '#') {
-                eg[x] = std::pair<int, int>{i, j};
-            }
-            g[i][j] = map_str_to_int(x);
-        }
-        char x;
-        scanf("%c\n", &x);
-        // printf("[%c]", x);
-        if (x != '.' && x != '#') {
-            eg[x] = std::pair<int, int>{i, m - 1};
-        }
-        g[i][m - 1] = map_str_to_int(x);
-    }
+    // int n, m;
+    // scanf("%d %d\n", &n, &m);
+    // // printf("%d x %d\n", n, m);
+    // std::vector<std::vector<int>> g(n, std::vector<int>(m, 0));
+    // std::unordered_map<int, std::pair<int, int>> eg{};
     // for (int i = 0; i < n; ++i) {
-    //     for (int j = 0; j < m; ++j) {
-    //         printf("[%2d]", g[i][j]);
+    //     for (int j = 0; j < m - 1; ++j) {
+    //         char x;
+    //         scanf("%c", &x);
+    //         // printf("[%c]", x);
+    //         if (x != '.' && x != '#') {
+    //             eg[x] = std::pair<int, int>{i, j};
+    //         }
+    //         g[i][j] = map_str_to_int(x);
     //     }
-    //     printf("\n");
+    //     char x;
+    //     scanf("%c\n", &x);
+    //     // printf("[%c]", x);
+    //     if (x != '.' && x != '#') {
+    //         eg[x] = std::pair<int, int>{i, m - 1};
+    //     }
+    //     g[i][m - 1] = map_str_to_int(x);
     // }
-    // ppp(eg);
-    std::vector<int> b(5, 1);
-    int ans = 0;
-    auto path = astar(g, n, m, eg['S'], eg['1'], eg, b);
-    b['1' - '0' - 1] = 0;
-    // pp(b);
-    // for (auto v : path) {
-    //     p(v);
+    // // for (int i = 0; i < n; ++i) {
+    // //     for (int j = 0; j < m; ++j) {
+    // //         printf("[%2d]", g[i][j]);
+    // //     }
+    // //     printf("\n");
+    // // }
+    // // ppp(eg);
+    // std::vector<int> b(5, 1);
+    // int ans = 0;
+    // auto path = astar(g, n, m, eg['S'], eg['1'], eg, b);
+    // b['1' - '0' - 1] = 0;
+    // // pp(b);
+    // // for (auto v : path) {
+    // //     p(v);
+    // // }
+    // // printf("\n");
+    // ans += path.size();
+    // // printf("%d", ans);
+    // for (int s = '1'; s < '6'; ++s) {
+    //     // printf("%d -> %d\n", s, s + 1);
+    //     auto path = astar(g, n, m, eg[s], eg[s + 1], eg, b);
+    //     b[s - '0' - 1] = 0;
+    //     // pp(b);
+    //     // for (auto v : path) {
+    //     //     p(v);
+    //     // }
+    //     // printf("\n");
+    //     ans += path.size() - 1;
     // }
-    // printf("\n");
-    ans += path.size();
-    // printf("%d", ans);
-    for (int s = '1'; s < '6'; ++s) {
-        // printf("%d -> %d\n", s, s + 1);
-        auto path = astar(g, n, m, eg[s], eg[s + 1], eg, b);
-        b[s - '0' - 1] = 0;
-        // pp(b);
-        // for (auto v : path) {
-        //     p(v);
-        // }
-        // printf("\n");
-        ans += path.size() - 1;
-    }
-    printf("%d", ans + 2);
+    // printf("%d", ans + 2);
     return EXIT_SUCCESS;
 }
 // 64 位输出请用 printf("%lld")

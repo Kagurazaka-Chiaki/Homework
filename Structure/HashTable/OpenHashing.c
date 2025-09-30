@@ -1,34 +1,33 @@
-#include <locale.h>
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <wchar.h>
 
 #define Hash_Table_Length 7
 
 struct ListNode {
-        int Data;
-        char *String;
-        struct ListNode *Next;
+    int              Data;
+    char            *String;
+    struct ListNode *Next;
 };
 
 struct ListNodeRep {
-        struct ListNode *Head;
-        struct ListNode *Tail;
+    struct ListNode *Head;
+    struct ListNode *Tail;
 };
 
 struct HashTable {
-        int TableLength;
-        int TotalElements;
-        struct ListNodeRep **Array;
+    int                  TableLength;
+    int                  TotalElements;
+    struct ListNodeRep **Array;
 };
 
 struct ListNode *InitListNode(int Value, char *Word) {
     struct ListNode *New = (struct ListNode *) malloc(sizeof(struct ListNode));
-    New->String = Word;
-    New->Data = Value;
-    New->Next = NULL;
+    New->String          = Word;
+    New->Data            = Value;
+    New->Next            = NULL;
     return New;
 }
 
@@ -40,9 +39,9 @@ struct ListNodeRep *InitListNodeRep(void) {
 
 struct HashTable *InitHashTable(int MaxLength) {
     struct HashTable *New = (struct HashTable *) malloc(sizeof(struct HashTable));
-    New->Array = (struct ListNodeRep **) malloc(MaxLength * sizeof(struct ListNodeRep *));
+    New->Array            = (struct ListNodeRep **) malloc(MaxLength * sizeof(struct ListNodeRep *));
     for (int i = 0; i < MaxLength; i++) { New->Array[i] = InitListNodeRep(); }
-    New->TableLength = MaxLength;
+    New->TableLength   = MaxLength;
     New->TotalElements = 0;
     return New;
 }
@@ -72,7 +71,7 @@ void FreeList(struct ListNodeRep *List) {
     struct ListNode *pointer = List->Head;
     while (pointer != NULL) {
         struct ListNode *flag = pointer;
-        pointer = pointer->Next;
+        pointer               = pointer->Next;
         // free(flag->String);
         free(flag);
     }
@@ -88,7 +87,7 @@ void FreeHashTable(struct HashTable *Hash) {
 }
 
 int Hashing(char *Key) {
-    int sum = 0;
+    int sum    = 0;
     int length = strlen(Key);
     for (int i = 0; i < length; i++) {
         // printf("[%c %d] ", Key[i], Key[i]);
@@ -104,7 +103,7 @@ void AppendList(struct ListNodeRep *List, struct ListNode *NewNode) {
     } else {
         // NewNode->Index = List->Tail->Index + 1;
         List->Tail->Next = NewNode;
-        List->Tail = List->Tail->Next;
+        List->Tail       = List->Tail->Next;
     }
     // List->Length++;
 }
@@ -118,7 +117,7 @@ int DeleteListNode(struct ListNodeRep *List, char *Keywords) {
     struct ListNode *flag = NULL;
 
     if (strcmp(Keywords, List->Head->String) == 0) {
-        flag = List->Head;
+        flag       = List->Head;
         List->Head = List->Head->Next;
         if (flag == List->Tail) { List->Tail = NULL; }
         free(flag);
@@ -129,7 +128,7 @@ int DeleteListNode(struct ListNodeRep *List, char *Keywords) {
     while (pointer->Next != NULL) {
         if (strcmp(Keywords, pointer->Next->String) == 0) {
             struct ListNode *flag = pointer->Next;
-            pointer->Next = pointer->Next->Next;
+            pointer->Next         = pointer->Next->Next;
             // free(flag->String);
             free(flag);
             break;

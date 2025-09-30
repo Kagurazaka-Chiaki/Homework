@@ -1,16 +1,15 @@
 /**
  * 7. 整数反转
- * 
+ *
  * https://leetcode-cn.com/problems/reverse-integer/
- * 
+ *
 **/
 
 #include <stdio.h>
-#include <stdlib.h>
 
 #define SIZE 100
 
-int reverse(int x);
+int  reverse(int x);
 void PrintArray(int *Array, int Length);
 
 int main(void) {
@@ -27,7 +26,7 @@ int reverse(int x) {
 
     int flag = 0;
     if (x < 0) {
-        x = ~x + 1;
+        x    = ~x + 1;
         flag = 1;
     }
 
@@ -41,16 +40,16 @@ int reverse(int x) {
     for (int i = 1; i < count; i++) {
         k = k * 10;
     }
-    
+
     int sum = 0;
     for (long i = 1; x >= i; i = i * 10) {
         long temp = sum;
-        sum = sum + ((((x % (i * 10)) - (x % i)) / i) * (k / i));
+        sum       = sum + ((((x % (i * 10)) - (x % i)) / i) * (k / i));
         if (sum - temp != ((((x % (i * 10)) - (x % i)) / i) * (k / i))) {
             return 0;
         }
     }
-    
+
     if (flag == 1) {
         sum = sum * (-1);
     }

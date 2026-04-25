@@ -9,9 +9,13 @@ add_executable(BiTree BiTree.cpp)
 add_executable(SegmentTree SegmentTree.cpp SegmentTree.hpp)
 
 # SegmentTreeTest
-add_executable(SegmentTreeTest SegmentTreeTest.cpp SegmentTree.hpp)
-add_test(SegmentTreeTest SegmentTreeTest)
-target_link_libraries(SegmentTreeTest PRIVATE Catch2::Catch2WithMain)
+if(BUILD_TESTING)
+    homework_require_catch2()
+
+    add_executable(SegmentTreeTest SegmentTreeTest.cpp SegmentTree.hpp)
+    add_test(SegmentTreeTest SegmentTreeTest)
+    target_link_libraries(SegmentTreeTest PRIVATE Catch2::Catch2WithMain)
+endif()
 
 
 # QuadTree

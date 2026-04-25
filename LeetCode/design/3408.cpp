@@ -3,8 +3,9 @@
  * https://leetcode.cn/problems/design-task-manager/
 **/
 
-#include <queue>
 #include <unordered_map>
+
+#include <queue>
 #include <vector>
 
 class TaskManager {
@@ -15,17 +16,25 @@ class TaskManager {
         int priority;
     };
 
+    // overload < operator for priority_queue
+    friend bool operator<(const data &a, const data &b) {
+        if (a.priority != b.priority) {
+            return a.priority < b.priority; // higher priority first
+        }
+        return a.task_id > b.task_id; // lower task_id first
+    }
+
     struct user_task {
         int priority;
         int user_id;
     };
 
     std::unordered_map<int, user_task> map;
-    std::priority_queue<data> pq;
+    std::priority_queue<data>          pq;
 
-public:
-    TaskManager(std::vector<std::vector<int>>& tasks) {
-        for (auto &task : tasks) {
+  public:
+    TaskManager(std::vector<std::vector<int>> &tasks) {
+        for (auto &task: tasks) {
             this->add(task[0], task[1], task[2]);
         }
     }
@@ -64,3 +73,19 @@ public:
  * obj->rmv(taskId);
  * int param_4 = obj->execTop();
  */
+
+/**
+ *
+**/
+
+
+#include <iostream>
+
+auto main(int argc, char const *argv[]) -> int {
+    (void) argc;
+    (void) argv;
+    /* code */
+    std::cout << "Hello, 世界! \xF0\x9F\x98\x89 \n"
+              << std::endl;
+    return 0;
+}

@@ -1,21 +1,30 @@
 {
   "cmake.cmakePath": "${env:CMAKE_HOME}/bin/cmake.exe",
+  "cmake.useCMakePresets": "always",
+  "cmake.defaultConfigurePreset": "windows-clangcl-llvmcov",
+  "cmake.defaultBuildPreset": "windows-clangcl-llvmcov",
+  "cmake.defaultTestPreset": "windows-clangcl-llvmcov",
+  "cmake.configureOnOpen": false,
   "cmake.configureArgs": [
     "-DBoost_NO_WARN_NEW_VERSIONS=1",
-    "-DVCPKG_APPLOCAL_DEPS=ON",
-    "-DX_VCPKG_APPLOCAL_DEPS_INSTALL=ON",
-    "-DCMAKE_MAKE_PROGRAM=${env:NINJA_HOME}/ninja.exe",
-    "-DVCPKG_TARGET_TRIPLET=x64-windows",
-    "-DVCPKG_MANIFEST_MODE=ON"
+    "-DCMAKE_MAKE_PROGRAM=${env:NINJA_HOME}/ninja.exe"
   ],
+  "cmake.configureEnvironment": {
+    "VCPKG_FEATURE_FLAGS": "binarycaching",
+    "VCPKG_DEFAULT_BINARY_CACHE": "${env:VCPKG_DEFAULT_BINARY_CACHE}",
+    "VCPKG_BINARY_SOURCES": "${env:VCPKG_BINARY_SOURCES}"
+  },
+  "cmake.buildEnvironment": {
+    "VCPKG_FEATURE_FLAGS": "binarycaching",
+    "VCPKG_DEFAULT_BINARY_CACHE": "${env:VCPKG_DEFAULT_BINARY_CACHE}",
+    "VCPKG_BINARY_SOURCES": "${env:VCPKG_BINARY_SOURCES}"
+  },
   "vcpkg.general.enable": true,
   "vcpkg.target.hostTriplet": "x64-windows",
   "vcpkg.target.defaultTriplet": "x64-windows",
   "vcpkg.target.useStaticLib": false,
-  "cmake.configureSettings": {
-    "CMAKE_TOOLCHAIN_FILE": "D:/vcpkg/scripts/buildsystems/vcpkg.cmake"
-  },
-  "vcpkg.target.installDependencies": true,
+  "cmake.configureSettings": {},
+  "vcpkg.target.installDependencies": false,
   "vcpkg.target.preferSystemLibs": false,
   "vcpkg.target.useManifest": true
 }

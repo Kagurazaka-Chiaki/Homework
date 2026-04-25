@@ -30,7 +30,9 @@ add_executable(dp_main main.cpp)
 target_link_libraries(dp_main PRIVATE dp)
 
 # Unit tests
-message(STATUS "-> Unit Tests ...")
-add_subdirectory(test)
+if(BUILD_TESTING)
+    message(STATUS "-> Unit Tests ...")
+    add_subdirectory(test)
+endif()
 
 message(STATUS "-> Leave Project ${PROJECT_NAME_STR}")

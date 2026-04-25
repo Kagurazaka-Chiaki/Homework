@@ -31,7 +31,9 @@ target_link_libraries(bs_main PRIVATE bs)
 
 
 # Unit tests
-message(STATUS "-> Unit Tests ...")
-add_subdirectory(test)
+if(BUILD_TESTING)
+    message(STATUS "-> Unit Tests ...")
+    add_subdirectory(test)
+endif()
 
 message(STATUS "-> Leave Project ${PROJECT_NAME_STR}")

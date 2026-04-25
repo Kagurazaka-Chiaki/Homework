@@ -1,6 +1,8 @@
 
 message(STATUS "-> Enter Test ${PROJECT_NAME_STR}")
 
+homework_require_catch2()
+
 # Build tests
 file(GLOB SINGLE_CPP_TEST_LIST ${TEST_DIR}/*.cpp)
 foreach(TEST_SRC_PATH ${SINGLE_CPP_TEST_LIST})

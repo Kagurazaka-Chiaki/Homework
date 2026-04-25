@@ -1,5 +1,7 @@
 
 
+homework_require_spdlog()
+
 find_package(Vulkan REQUIRED)
 message(STATUS "Found Vulkan: ${Vulkan_INCLUDE_DIRS}")
 

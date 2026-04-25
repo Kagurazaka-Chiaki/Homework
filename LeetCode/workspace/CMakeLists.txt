@@ -34,8 +34,10 @@ foreach(SINGLE_CPP_SRC ${SINGLE_CPP_SRC_LIST})
 
     message(STATUS "Single Executable Number: ${SINGLE_EXEC_NUM}")
 
-    add_executable(${SINGLE_EXEC_NUM} ${SINGLE_CPP_SRC} ${SINGLE_HPP_SRC_LIST})
+    # add_executable(${SINGLE_EXEC_NUM} ${SINGLE_CPP_SRC} ${SINGLE_HPP_SRC_LIST})
     # target_link_libraries(${SINGLE_EXEC_NUM} PRIVATE leetcode_lib)
 endforeach()
+
+add_executable(leetcode_workspace_main main.cpp ${SINGLE_CPP_SRC_LIST} ${SINGLE_HPP_SRC_LIST})
 
 message(STATUS "Leave LeetCode [Workspace] ${CMAKE_CURRENT_SOURCE_DIR}")

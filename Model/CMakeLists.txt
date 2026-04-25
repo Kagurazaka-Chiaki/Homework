@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.28)
 
+homework_require_assimp()
+homework_require_spdlog()
+homework_require_glm()
+
 add_executable(app_model
     main.cpp
 

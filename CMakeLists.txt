@@ -4,7 +4,7 @@ set(CMAKE_VERSION 3.31)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_BUILE_TYPE DEBUG)
+set(CMAKE_BUILD_TYPE DEBUG)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
@@ -45,14 +45,15 @@ if(MSVC)
     message(STATUS "MSVC ${MSVC_VERSION}")
     # 支持 C++ 异常处理并设置 MSVC 输入代码编码格式为 utf-8
     add_compile_options("/EHsc") # "/source-charset:utf-8" "/execution-charset:utf-8"
-    message(STATUS "$ENV{VCPKG_ROOT}")
-    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+    message(STATUS "VCPKG_ROOT=$ENV{VCPKG_ROOT}")
     # 多核编译
     add_compile_options("/MP")
     # 设置 C++ 标准
-    add_compile_options("/std:c++20")
+    # add_compile_options("/std:c++20")
     # 使 MSVC 的 __cplusplus 宏符合实际的 C++ 标准
     add_compile_options("/Zc:__cplusplus")
+    # C++ 模块支持
+    # add_compile_options("/experimental:module")
 endif(MSVC)
 
 
@@ -71,103 +72,65 @@ message(STATUS "Enable testing ${CMAKE_SYSTEM}")
 enable_testing()
 include(CTest)
 
-# Dependencies
-# Eigen
-find_package(Eigen3 CONFIG REQUIRED)
-include_directories(${EIGEN3_INCLUDE_DIRS})
-message(STATUS "Find Eigen3 ${Eigen3_VERSION} -> ${Eigen3_FOUND}")
-message(STATUS "Eigen3 include dir: ${EIGEN3_INCLUDE_DIRS}")
+# Build groups
+option(HOMEWORK_ENABLE_ALGO_MODULES "Build algorithm/problem-solving modules" ON)
+option(HOMEWORK_ENABLE_SUPPORT_MODULES "Build lightweight support modules" ON)
+option(HOMEWORK_ENABLE_EXPERIMENTAL_MODULES "Build experimental modules with extra dependencies" ON)
+option(HOMEWORK_ENABLE_GRAPHICS_MODULES "Build graphics/model/unity modules" ON)
+option(HOMEWORK_ENABLE_CXX_MODULES "Enable experimental C++20 module targets" OFF)
 
-# Catch2 v3
-find_package(Catch2 CONFIG REQUIRED)
-message(STATUS "Find Catch2 ${Catch2_VERSION} -> ${Catch2_FOUND}")
-# These tests can use the Catch2-provided main
-# add_executable(tests test.cpp)
-# target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
+if(HOMEWORK_ENABLE_GRAPHICS_MODULES OR HOMEWORK_ENABLE_EXPERIMENTAL_MODULES)
+    set(HOMEWORK_BUILD_FLAVOR "full")
+else()
+    set(HOMEWORK_BUILD_FLAVOR "lite")
+endif()
 
-# glm
-find_package(glm CONFIG REQUIRED)
-message(STATUS "Find glm ${glm_VERSION} -> ${glm_FOUND}")
+message(STATUS "HomeWork build flavor: ${HOMEWORK_BUILD_FLAVOR}")
+message(
+    STATUS
+    "HomeWork modules: algo=${HOMEWORK_ENABLE_ALGO_MODULES}, "
+    "support=${HOMEWORK_ENABLE_SUPPORT_MODULES}, "
+    "experimental=${HOMEWORK_ENABLE_EXPERIMENTAL_MODULES}, "
+    "graphics=${HOMEWORK_ENABLE_GRAPHICS_MODULES}, "
+    "tests=${BUILD_TESTING}, "
+    "cxx_modules=${HOMEWORK_ENABLE_CXX_MODULES}"
+)
 
-# Spdlog
-find_package(spdlog CONFIG REQUIRED)
-message(STATUS "Find spdlog ${spdlog_VERSION} -> ${spdlog_FOUND}")
+macro(homework_add_module dir enabled_var)
+    if(${enabled_var})
+        message(STATUS "Subdirectory [${dir}]")
+        add_subdirectory(${dir})
+    else()
+        message(STATUS "Skip subdirectory [${dir}]")
+    endif()
+endmacro()
 
-# ICU
-find_package(ICU COMPONENTS uc i18n REQUIRED)
-message(STATUS "Find ICU ${ICU_VERSION} -> ${ICU_FOUND}")
-
-# # Proxy
-# find_package(proxy CONFIG REQUIRED)
-# message(STATUS "Found Proxy: ${proxy_DIR}")
-
-# stb
-find_package(Stb REQUIRED)
-message(STATUS "Found stb: ${Stb_INCLUDE_DIR}")
-
-# Assimp
-find_package(assimp CONFIG REQUIRED)
-message(STATUS "Found assimp: ${assimp_FOUND}")
-
-# Custom Functions
-include(CMake/function.cmake)
-
-# include(CMake/package.cmake)
+include(CMake/package.cmake)
 
 # Enter Project
 message(STATUS "Enter Project ${PROJECT_NAME_STR}")
 # add_library(Homework Homework.cpp)
 
-message(STATUS "Subdirectory [Math]")
-add_subdirectory(Math)
-
-message(STATUS "Subdirectory [Structure]")
-add_subdirectory(Structure)
-
-message(STATUS "Subdirectory [LeetCode]")
-add_subdirectory(LeetCode)
-
-message(STATUS "Subdirectory [Luogu]")
-add_subdirectory(Luogu)
-
-message(STATUS "Subdirectory [Luogu]")
-add_subdirectory(NowCoder)
-
-message(STATUS "Subdirectory [Templates]")
-add_subdirectory(Templates)
-
-message(STATUS "Subdirectory [Common]")
-add_subdirectory(Common)
-
-message(STATUS "Subdirectory [Temp]")
-add_subdirectory(Temp)
-
-message(STATUS "Subdirectory [Notes]")
-add_subdirectory(Notes)
-
-message(STATUS "Subdirectory [Pathfinding]")
-add_subdirectory(Pathfinding)
-
-message(STATUS "Subdirectory [Playground]")
-add_subdirectory(Playground)
-
-message(STATUS "Subdirectory [Vision]")
-add_subdirectory(Vision)
-
-message(STATUS "Subdirectory [Model]")
-add_subdirectory(Model)
+homework_add_module(Math HOMEWORK_ENABLE_SUPPORT_MODULES)
+homework_add_module(Structure HOMEWORK_ENABLE_ALGO_MODULES)
+homework_add_module(LeetCode HOMEWORK_ENABLE_ALGO_MODULES)
+homework_add_module(Luogu HOMEWORK_ENABLE_ALGO_MODULES)
+homework_add_module(NowCoder HOMEWORK_ENABLE_ALGO_MODULES)
+homework_add_module(Templates HOMEWORK_ENABLE_SUPPORT_MODULES)
+homework_add_module(Common HOMEWORK_ENABLE_EXPERIMENTAL_MODULES)
+homework_add_module(Temp HOMEWORK_ENABLE_EXPERIMENTAL_MODULES)
+homework_add_module(Notes HOMEWORK_ENABLE_SUPPORT_MODULES)
+homework_add_module(Pathfinding HOMEWORK_ENABLE_SUPPORT_MODULES)
+homework_add_module(Playground HOMEWORK_ENABLE_SUPPORT_MODULES)
+homework_add_module(Vision HOMEWORK_ENABLE_GRAPHICS_MODULES)
+homework_add_module(Model HOMEWORK_ENABLE_GRAPHICS_MODULES)
 
 message(STATUS "Subdirectory [Modules]")
 # add_subdirectory(Modules) # C++20 Modules Not Supported
 
-message(STATUS "Subdirectory [Unity]")
-add_subdirectory(Unity)
-
-message(STATUS "Subdirectory [Concurrency]")
-add_subdirectory(Concurrency)
-
-message(STATUS "Subdirectory [Automaton]")
-add_subdirectory(Automaton)
+homework_add_module(Unity HOMEWORK_ENABLE_GRAPHICS_MODULES)
+homework_add_module(Concurrency HOMEWORK_ENABLE_SUPPORT_MODULES)
+homework_add_module(Automaton HOMEWORK_ENABLE_SUPPORT_MODULES)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

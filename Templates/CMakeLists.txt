@@ -27,7 +27,9 @@ message(STATUS "-> Building ...")
 add_subdirectory(src)
 
 # Unit tests
-message(STATUS "-> Unit Tests ...")
-add_subdirectory(test)
+if(BUILD_TESTING)
+    message(STATUS "-> Unit Tests ...")
+    add_subdirectory(test)
+endif()
 
 message(STATUS "-> Leave Project ${PROJECT_NAME_STR}")

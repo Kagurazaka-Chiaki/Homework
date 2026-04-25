@@ -1,6 +1,8 @@
 
 message(STATUS "-> Enter Test ${PROJECT_NAME_STR}")
 
+homework_require_catch2()
+
 # message(STATUS ${CMAKE_CURRENT_BINARY_DIR})
 
 # get_filename_component(CMAKE_CURRENT_BINARY_PARENT_DIR ${CMAKE_CURRENT_BINARY_DIR} DIRECTORY)

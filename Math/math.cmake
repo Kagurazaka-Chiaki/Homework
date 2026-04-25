@@ -13,17 +13,15 @@ file(GLOB _MATH_HEADERS_ CONFIGURE_DEPENDS  "${_Mathlib_SOURCE_DIR_}/include/*.h
 # message(STATUS "Mathlib headers ${_MATH_HEADERS_}")
 
 # find spdlog
-find_package(spdlog REQUIRED)
+find_package(spdlog CONFIG REQUIRED)
 message(STATUS "Find spdlog ${spdlog_VERSION}  -> ${spdlog_FOUND}")
-set(spdlog_INCLUDE_DIRS ${spdlog_INCLUDE_DIR})
-include_directories(${spdlog_INCLUDE_DIR})
 
 # message(STATUS ${_MATH_HEADERS_} ${_MATH_SOURCES_})
 add_library(Mathlib STATIC ${_MATH_HEADERS_} ${_MATH_SOURCES_})
-# target_link_libraries(Mathlib PUBLIC spdlog::spdlog)
 include_directories(${_Mathlib_SOURCE_DIR_}/include)
 set_target_properties(Mathlib PROPERTIES LINKER_LANGUAGE CXX)
 target_include_directories(Mathlib PUBLIC "${_Mathlib_SOURCE_DIR_}/include")
+target_link_libraries(Mathlib PUBLIC spdlog::spdlog)
 install(TARGETS Mathlib
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}

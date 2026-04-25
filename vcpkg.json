@@ -4,9 +4,7 @@
         "eigen3",
         "catch2",
         "spdlog",
-        "icu",
-        "stb",
-        "glm"
+        "icu"
     ],
     "version": "0.0.1",
     "name": "homework"

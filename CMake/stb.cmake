@@ -1,0 +1,23 @@
+include_guard(GLOBAL)
+
+function(homework_setup_stb)
+    if(TARGET stb::stb)
+        return()
+    endif()
+
+    if(EXISTS "${HOMEWORK_THIRD_PARTY_DIR}/stb/stb_image.h")
+        add_library(homework_stb INTERFACE)
+        add_library(stb::stb ALIAS homework_stb)
+        target_include_directories(homework_stb INTERFACE "${HOMEWORK_THIRD_PARTY_DIR}/stb")
+        message(STATUS "Use vendored stb -> ${HOMEWORK_THIRD_PARTY_DIR}/stb")
+    endif()
+endfunction()
+
+macro(homework_require_stb)
+    homework_setup_stb()
+    if(NOT TARGET stb::stb)
+        message(FATAL_ERROR "stb is missing. Run: git submodule update --init --recursive ThirdParty/stb")
+    else()
+        message(STATUS "Find stb target -> ${HOMEWORK_THIRD_PARTY_DIR}/stb")
+    endif()
+endmacro()

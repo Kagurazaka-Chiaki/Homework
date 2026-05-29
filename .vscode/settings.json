@@ -7,7 +7,8 @@
   "cmake.configureOnOpen": false,
   "cmake.configureArgs": [
     "-DBoost_NO_WARN_NEW_VERSIONS=1",
-    "-DCMAKE_MAKE_PROGRAM=${env:NINJA_HOME}/ninja.exe"
+    "-DCMAKE_MAKE_PROGRAM=${env:NINJA_HOME}/ninja.exe",
+    "-DVCPKG_MANIFEST_MODE=ON"
   ],
   "cmake.configureEnvironment": {
     "VCPKG_FEATURE_FLAGS": "binarycaching",

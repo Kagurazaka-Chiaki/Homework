@@ -9,6 +9,7 @@ namespace math {
     //   v                 v
     //   1                 16
     // 3.1415 9265 3589 7932 3846
+    [[deprecated("Use epsilon::math::kPiV<double>")]]
     inline constexpr double pi = 3.14159265358979323846;
 
 } // namespace math

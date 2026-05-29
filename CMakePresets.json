@@ -1,300 +1,102 @@
 {
-    "version": 10,
-    "cmakeMinimumRequired": {
-        "major": 3,
-        "minor": 31,
-        "patch": 0
+  "version": 10,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 31,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "$comment": [
+        "========== 跨平台通用基类 =========",
+        "BUILD_SHARED_LIBS=OFF：add_library 默认生成静态库。",
+        "CMAKE_POSITION_INDEPENDENT_CODE=OFF：默认不生成位置无关代码。",
+        "CMAKE_INTERPROCEDURAL_OPTIMIZATION=OFF：默认不启用 IPO/LTO。"
+      ],
+      "name": "common-base",
+      "hidden": true,
+      "cacheVariables": {
+        "BUILD_SHARED_LIBS": "OFF",
+        "CMAKE_POSITION_INDEPENDENT_CODE": "OFF",
+        "CMAKE_INTERPROCEDURAL_OPTIMIZATION": "OFF"
+      }
     },
-    "configurePresets": [
-        {
-            "$comment": [
-                "========== 跨平台通用基类 =========",
-                "支持 std::expected（资源加载错误处理）",
-                "支持 if consteval（编译期优化）",
-                "跨平台通用优化：BUILD_SHARED_LIBS=OFF、CMAKE_POSITION_INDEPENDENT_CODE=OFF、CMAKE_INTERPROCEDURAL_OPTIMIZATION=OFF"
-            ],
-            "name": "common-base",
-            "hidden": true,
-            "cacheVariables": {
-                "CMAKE_CXX_STANDARD": "23",
-                "CMAKE_CXX_STANDARD_REQUIRED": "ON",
-                "CMAKE_CXX_EXTENSIONS": "OFF",
-                "BUILD_SHARED_LIBS": "OFF",
-                "CMAKE_POSITION_INDEPENDENT_CODE": "OFF",
-                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": "OFF"
-            }
-        },
-
-        {
-            "$comment": [
-                "========== Windows VS2026 Base ==========",
-                "toolset v145,host=x64（MSVC 19.44+）",
-                "静态链接 CRT: 消除 vcruntime 依赖，减小部署复杂度",
-                "Debug flags: /MTd /Ob0 /Od /RTC1 /JMC",
-                "Release flags: /MT /O2 /Ob3 /DNDEBUG /Gw /Gy",
-                "Release linker flags: /DEBUG:FASTLINK /INCREMENTAL:NO /OPT:REF /OPT:ICF",
-                "内嵌调试信息: CMAKE_MSVC_DEBUG_INFORMATION_FORMAT=Embedded",
-                "编译器环境 CL: /MP /cgthreads4 /d2FH4-",
-                "VS vendor: enableMicrosoftCodeAnalysis=true, enableCppCoreCheck=true"
-            ],
-            "name": "windows-base",
-            "hidden": true,
-            "inherits": "common-base",
-            "generator": "Ninja",
-            "architecture": {
-                "value": "x64",
-                "strategy": "external"
-            },
-            "toolset": {
-                "value": "v145,host=x64",
-                "strategy": "external"
-            },
-            "binaryDir": "${sourceDir}/build/${presetName}",
-            "installDir": "${sourceDir}/install/${presetName}",
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "cl",
-                "CMAKE_CXX_COMPILER": "cl",
-                "CMAKE_MAKE_PROGRAM": "$env{NINJA_HOME}/ninja.exe",
-                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-                "DELTA_GRFX_ENABLE_COVERAGE": "OFF",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>",
-                "CMAKE_CXX_FLAGS_DEBUG": "/MTd /Zc:__cplusplus /Ob0 /Od /RTC1 /JMC /EHsc- /GR-",
-                "CMAKE_CXX_FLAGS_RELEASE": "/MT /Zc:__cplusplus /O2 /Ob3 /DNDEBUG /Gw /Gy",
-                "CMAKE_EXE_LINKER_FLAGS_RELEASE": "/DEBUG:FASTLINK /INCREMENTAL:NO /OPT:REF /OPT:ICF",
-                "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "Embedded"
-            },
-            "environment": {
-                "CL": "/MP /cgthreads4 /d2FH4-"
-            },
-            "vendor": {
-                "microsoft.com/VisualStudioSettings/CMake/1.0": {
-                    "intelliSenseMode": "windows-msvc-x64",
-                    "enableMicrosoftCodeAnalysis": true,
-                    "enableCppCoreCheck": true
-                }
-            }
-        },
-        {
-            "$comment": [
-                "ASan/UBSan flags: /fsanitize=address"
-            ],
-            "name": "windows-debug",
-            "displayName": "Windows Debug (VS2026 + ASan)",
-            "description": "Debug build with AddressSanitizer/UndefinedBehaviorSanitizer",
-            "inherits": "windows-base",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "FLINT_ENABLE_ASAN": "ON"
-            },
-            "environment": {
-                "CL": "/MP /cgthreads4 /fsanitize=address"
-            }
-        },
-        {
-            "name": "windows-debug-renderdoc",
-            "displayName": "Windows Debug (RenderDoc)",
-            "description": "Debug build for RenderDoc capture (ASan disabled)",
-            "inherits": "windows-base",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "FLINT_ENABLE_ASAN": "OFF"
-            }
-        },
-        {
-            "$comment": [
-                "增量 LTO: CMAKE_CXX_FLAGS_RELEASE 启用 /GL- /Gw /Gy /Qpar",
-                "LINK 环境变量: /LTCG:INCREMENTAL"
-            ],
-            "name": "windows-release",
-            "displayName": "Windows Release (VS2026 + LTO)",
-            "description": "Optimized release with Incremental LTO",
-            "inherits": "windows-base",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": "ON",
-                "CMAKE_CXX_FLAGS_RELEASE": "/MT /Zc:__cplusplus /O2 /Ob3 /DNDEBUG /GL- /Gw /Gy /Qpar"
-            },
-            "environment": {
-                "LINK": "/LTCG:INCREMENTAL"
-            }
-        },
-        {
-            "$comment": [
-                "平衡优化与调试: /MT /O2 /Ob3 + Embedded debug info"
-            ],
-            "name": "windows-relwithdebinfo",
-            "displayName": "Windows RelWithDebInfo (VS2026)",
-            "description": "Release with embedded debug symbols (profiling)",
-            "inherits": "windows-base",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-                "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "/MT /Zc:__cplusplus /O2 /Ob3 /DNDEBUG",
-                "CMAKE_MSVC_DEBUG_INFORMATION_FORMAT": "Embedded"
-            }
-        },
-        {
-            "name": "windows-clangcl-llvmcov",
-            "displayName": "Windows Debug (clang-cl + llvm-cov)",
-            "description": "Full project build using clang-cl with LLVM source-based coverage enabled",
-            "inherits": "common-base",
-            "generator": "Ninja",
-            "architecture": {
-                "value": "x64",
-                "strategy": "external"
-            },
-            "binaryDir": "${sourceDir}/build/${presetName}",
-            "installDir": "${sourceDir}/install/${presetName}",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_C_COMPILER": "clang-cl",
-                "CMAKE_CXX_COMPILER": "clang-cl",
-                "CMAKE_LINKER": "lld-link",
-                "CMAKE_MAKE_PROGRAM": "$env{NINJA_HOME}/ninja.exe",
-                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-                "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDebug",
-                "DELTA_GRFX_ENABLE_COVERAGE": "ON",
-                "DCMAKE_EXPORT_COMPILE_COMMANDS": "ON"
-            },
-            "vendor": {
-                "microsoft.com/VisualStudioSettings/CMake/1.0": {
-                    "intelliSenseMode": "windows-clang-x64"
-                }
-            }
-        },
-
-        {
-            "$comment": [
-                "========== Debian Clang Base ==========",
-                "Debug flags: -g3 -O0 -fno-inline -fsanitize=address -fsanitize=undefined -fsanitize=memory",
-                "Release flags: -O3 -DNDEBUG -flto=thin -fno-fat-lto-objects -march=native",
-                "Release linker flags: --gc-sections -z relro -z now --icf=all",
-                "默认使用 LLD 链接器",
-                "Ninja 并行度 parallelJobs=0（自动使用所有逻辑核心）"
-            ],
-            "name": "debian-base",
-            "hidden": true,
-            "inherits": "common-base",
-            "generator": "Ninja",
-            "binaryDir": "${sourceDir}/build/${presetName}",
-            "installDir": "${sourceDir}/install/${presetName}",
-            "cacheVariables": {
-                "CMAKE_C_COMPILER": "clang-19",
-                "CMAKE_CXX_COMPILER": "clang++-19",
-                "CMAKE_CXX_FLAGS_DEBUG": "-g3 -O0 -fno-inline -fsanitize=address -fsanitize=undefined -fsanitize=memory",
-                "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG -flto=thin -fno-fat-lto-objects -march=native",
-                "CMAKE_EXE_LINKER_FLAGS_RELEASE": "-Wl,--gc-sections -Wl,-z,relro -Wl,-z,now -Wl,--icf=all",
-                "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld-19"
-            },
-            "environment": {
-                "CC": "clang-19",
-                "CXX": "clang++-19",
-                "LDFLAGS": "-fuse-ld=lld-19"
-            },
-            "vendor": {
-                "kitware.com/ninja": {
-                    "parallelJobs": 0
-                }
-            }
-        },
-        {
-            "$comment": [
-                "libc++ 配置: -stdlib=libc++ -fno-exceptions -fno-rtti -fexperimental-library"
-            ],
-            "name": "debian-debug",
-            "displayName": "Debian Debug (Clang 19 + libc++ + MSan)",
-            "description": "Debug build with MemorySanitizer (detects uninitialized memory)",
-            "inherits": "debian-base",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_CXX_FLAGS": "-fcolor-diagnostics -fansi-escape-codes -stdlib=libc++ -fno-exceptions -fno-rtti -fexperimental-library",
-                "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld-19 -stdlib=libc++ -lc++abi"
-            }
-        },
-        {
-            "name": "debian-release",
-            "displayName": "Debian Release (Clang 19 + ThinLTO + ICF)",
-            "description": "Optimized release with ICF",
-            "inherits": "debian-base",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_INTERPROCEDURAL_OPTIMIZATION": "ON",
-                "CMAKE_CXX_FLAGS": "-O3 -DNDEBUG -flto=thin -fno-fat-lto-objects -stdlib=libc++ -fno-exceptions -fno-rtti -march=native -fexperimental-library",
-                "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld-19 -stdlib=libc++ -lc++abi -Wl,--gc-sections -Wl,-z,relro -Wl,-z,now -Wl,--icf=all"
-            }
-        },
-        {
-            "name": "debian-relwithdebinfo",
-            "displayName": "Debian RelWithDebInfo (Clang 19)",
-            "description": "Release with debug symbols (profiling)",
-            "inherits": "debian-base",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-                "CMAKE_CXX_FLAGS": "-O2 -g -DNDEBUG -stdlib=libc++ -fno-exceptions -fno-rtti -fexperimental-library",
-                "CMAKE_EXE_LINKER_FLAGS": "-fuse-ld=lld-19 -stdlib=libc++ -lc++abi"
-            }
+    {
+      "name": "windows-clangcl-llvmcov",
+      "displayName": "Windows Debug (clang-cl + llvm-cov)",
+      "description": "Full project build using clang-cl with LLVM source-based coverage enabled",
+      "inherits": "common-base",
+      "generator": "Ninja",
+      "architecture": {
+        "value": "x64",
+        "strategy": "external"
+      },
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "installDir": "${sourceDir}/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_COMPILER": "clang-cl",
+        "CMAKE_CXX_COMPILER": "clang-cl",
+        "CMAKE_LINKER": "lld-link",
+        "CMAKE_MAKE_PROGRAM": "$env{NINJA_HOME}/ninja.exe",
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDebug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_CXX_SCAN_FOR_MODULES": "OFF",
+        "CMAKE_CXX_FLAGS": "/W4 /Zi"
+      },
+      "vendor": {
+        "microsoft.com/VisualStudioSettings/CMake/1.0": {
+          "intelliSenseMode": "windows-clang-x64"
         }
-    ],
-    "buildPresets": [
-        {
-            "name": "windows-clangcl-llvmcov",
-            "configurePreset": "windows-clangcl-llvmcov",
-            "jobs": 0
-        },
-        {
-            "name": "windows-debug",
-            "configurePreset": "windows-debug",
-            "jobs": 0
-        },
-        {
-            "name": "windows-debug-renderdoc",
-            "configurePreset": "windows-debug-renderdoc",
-            "jobs": 0
-        },
-        {
-            "name": "windows-release",
-            "configurePreset": "windows-release",
-            "jobs": 0
-        },
-        {
-            "name": "windows-relwithdebinfo",
-            "configurePreset": "windows-relwithdebinfo",
-            "jobs": 0
-        },
-
-        {
-            "name": "debian-debug",
-            "configurePreset": "debian-debug",
-            "jobs": 0
-        },
-        {
-            "name": "debian-release",
-            "configurePreset": "debian-release",
-            "jobs": 0
-        },
-        {
-            "name": "debian-relwithdebinfo",
-            "configurePreset": "debian-relwithdebinfo",
-            "jobs": 0
-        }
-    ],
-    "testPresets": [
-        {
-            "name": "windows-debug",
-            "configurePreset": "windows-debug",
-            "output": { "outputOnFailure": true },
-            "execution": { "noTestsAction": "error", "stopOnFailure": true }
-        },
-        {
-            "name": "windows-clangcl-llvmcov",
-            "configurePreset": "windows-clangcl-llvmcov",
-            "output": { "outputOnFailure": true },
-            "execution": { "noTestsAction": "error", "stopOnFailure": true }
-        },
-        {
-            "name": "debian-debug",
-            "configurePreset": "debian-debug",
-            "output": { "outputOnFailure": true },
-            "execution": { "noTestsAction": "error", "stopOnFailure": true }
-        }
-    ]
+      }
+    },
+    {
+      "name": "windows-msvc-default",
+      "displayName": "Windows MSVC Default",
+      "description": "Matches: cmake -S . -B build",
+      "generator": "Visual Studio 18 2026",
+      "binaryDir": "${sourceDir}/build"
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "windows-msvc-default",
+      "configurePreset": "windows-msvc-default",
+      "configuration": "Debug",
+      "jobs": 4
+    },
+    {
+      "name": "windows-clangcl-llvmcov",
+      "configurePreset": "windows-clangcl-llvmcov",
+      "jobs": 4
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "windows-msvc-default",
+      "configurePreset": "windows-msvc-default",
+      "configuration": "Debug",
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": true,
+        "timeout": 20
+      }
+    },
+    {
+      "name": "windows-clangcl-llvmcov",
+      "configurePreset": "windows-clangcl-llvmcov",
+      "output": {
+        "outputOnFailure": true
+      },
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": true,
+        "timeout": 20
+      }
+    }
+  ]
 }

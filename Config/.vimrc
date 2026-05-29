@@ -20,7 +20,8 @@ set nocompatible
 " set backspace=2
 set backspace=indent,eol,start
 
-" 设置默认终端为 pwsh.exe
+" Windows 下使用 PowerShell Core 作为 Vim 外部命令 shell。
+" 注意: 会影响 :!, :make, 插件 system()/job 调用的命令解析和引号规则。
 if has('win32')
     set shell=pwsh.exe
     set shellcmdflag=-NoLogo\ -NoProfile\ -ExecutionPolicy\ RemoteSigned\ -Command
@@ -71,16 +72,70 @@ filetype plugin on
 filetype indent on
 filetype plugin indent on
 
-" Commenting blocks of code.
-" augroup visual_commenting
-"     autocmd!
-"     autocmd FileType c,cpp,java,rust  let b:comment_symbol = '// '
-"     autocmd FileType vim              let b:comment_symbol = '" '
-"     autocmd FileType sh,vim,python    let b:comment_symbol = '# '
-"     autocmd FileType tex              let b:comment_symbol = '% '
-"     autocmd BufEnter * silent! vnoremap <silent> <C-_> :<C-u>keepp '<,'>s@^@\=b:comment_symbol<CR>
-"     autocmd BufEnter * silent! exec 'vnoremap <silent> <C-?> :<C-u>keepp ''<,''>s@^' . b:comment_symbol . '@<CR>'
-" augroup END
+" Toggle line comments with Ctrl+/.
+" In terminal Vim, Ctrl+/ is commonly reported as Ctrl+_.
+function! s:CommentPrefix() abort
+  let l:prefixes = {
+        \ 'c': '// ',
+        \ 'cpp': '// ',
+        \ 'java': '// ',
+        \ 'rust': '// ',
+        \ 'vim': '" ',
+        \ 'sh': '# ',
+        \ 'python': '# ',
+        \ 'tex': '% ',
+        \ }
+
+  if has_key(l:prefixes, &filetype)
+    return l:prefixes[&filetype]
+  endif
+
+  if &commentstring =~# '%s'
+    let l:prefix = substitute(&commentstring, '\V%s\m.*$', '', '')
+    let l:prefix = substitute(l:prefix, '\s*$', ' ', '')
+    if l:prefix !~# '^\s*$'
+      return l:prefix
+    endif
+  endif
+
+  return '# '
+endfunction
+
+function! s:ToggleComment(line1, line2) abort
+  let l:prefix = s:CommentPrefix()
+  let l:prefix_pattern = escape(l:prefix, '\.^$*[]~')
+  let l:prefix_replacement = escape(l:prefix, '\&')
+  let l:should_uncomment = 1
+
+  for l:lnum in range(a:line1, a:line2)
+    let l:line = getline(l:lnum)
+    if l:line =~# '^\s*$'
+      continue
+    endif
+    if l:line !~# '^\s*' . l:prefix_pattern
+      let l:should_uncomment = 0
+      break
+    endif
+  endfor
+
+  for l:lnum in range(a:line1, a:line2)
+    let l:line = getline(l:lnum)
+    if l:line =~# '^\s*$'
+      continue
+    endif
+
+    if l:should_uncomment
+      call setline(l:lnum, substitute(l:line, '^\(\s*\)' . l:prefix_pattern, '\1', ''))
+    else
+      call setline(l:lnum, substitute(l:line, '^\(\s*\)', '\1' . l:prefix_replacement, ''))
+    endif
+  endfor
+endfunction
+
+nnoremap <silent> <C-/> :<C-u>call <SID>ToggleComment(line('.'), line('.'))<CR>
+nnoremap <silent> <C-_> :<C-u>call <SID>ToggleComment(line('.'), line('.'))<CR>
+xnoremap <silent> <C-/> :<C-u>call <SID>ToggleComment(line("'<"), line("'>"))<CR>
+xnoremap <silent> <C-_> :<C-u>call <SID>ToggleComment(line("'<"), line("'>"))<CR>
 
 " ---------- 插件: vim-plug ----------
 " 不指定目录时, vim-plug 会在 Linux/WSL 用 ~/.vim/plugged,
@@ -103,8 +158,11 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call CocActionAsync('doHover')<CR>
 
-" 保存时格式化
-autocmd BufWritePre *.c,*.h,*.cpp,*.hpp,*.cc,*.ixx :silent! call CocAction('format')
+" 保存时格式化, 需要时取消注释
+" augroup coc_format_on_save
+"   autocmd!
+"   autocmd BufWritePre *.c,*.h,*.cpp,*.hpp,*.cc,*.ixx silent! call CocAction('format')
+" augroup END
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
@@ -119,8 +177,10 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <CR>
+      \ coc#pum#visible()
+      \ ? coc#pum#confirm()
+      \ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! CheckBackspace() abort
   let col = col('.') - 1

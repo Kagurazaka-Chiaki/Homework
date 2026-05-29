@@ -18,3 +18,9 @@
 [submodule "ThirdParty/stb"]
 	path = ThirdParty/stb
 	url = https://github.com/nothings/stb.git
+[submodule "Algorithm/zeta-algo01"]
+	path = Algorithm/zeta-algo01
+	url = https://github.com/Kagurazaka-Chiaki/zeta-algo01
+[submodule "Agent/iota-agnt01"]
+	path = Agent/iota-agnt01
+	url = https://github.com/Kagurazaka-Chiaki/iota-agnt01

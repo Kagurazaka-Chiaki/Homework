@@ -22,7 +22,7 @@ namespace math {
     class mat;
 
     template<int N>
-    class vec {
+    class [[deprecated("Use epsilon::math::Vec<T, N>")]] vec {
       private:
         //        1            15
         //        v             v

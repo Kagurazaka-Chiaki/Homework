@@ -1,5 +1,3 @@
-
-
 #include "geometry.hpp"
 #include "vec.hpp"
 #include <catch2/catch_approx.hpp>

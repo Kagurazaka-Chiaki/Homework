@@ -1,6 +1,7 @@
 #
 
-set(CMAKE_VERSION 3.31)
+cmake_minimum_required(VERSION 3.31)
+
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -11,8 +12,6 @@ set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20")
 # set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
-
-cmake_minimum_required(VERSION ${CMAKE_VERSION})
 
 if(UNIX)
     message(STATUS "Linux/Unix")
@@ -47,7 +46,9 @@ if(MSVC)
     add_compile_options("/EHsc") # "/source-charset:utf-8" "/execution-charset:utf-8"
     message(STATUS "VCPKG_ROOT=$ENV{VCPKG_ROOT}")
     # 多核编译
-    add_compile_options("/MP")
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+        add_compile_options("/MP")
+    endif()
     # 设置 C++ 标准
     # add_compile_options("/std:c++20")
     # 使 MSVC 的 __cplusplus 宏符合实际的 C++ 标准
@@ -112,6 +113,7 @@ message(STATUS "Enter Project ${PROJECT_NAME_STR}")
 # add_library(Homework Homework.cpp)
 
 homework_add_module(Math HOMEWORK_ENABLE_SUPPORT_MODULES)
+homework_add_module(Algorithm HOMEWORK_ENABLE_ALGO_MODULES)
 homework_add_module(Structure HOMEWORK_ENABLE_ALGO_MODULES)
 homework_add_module(LeetCode HOMEWORK_ENABLE_ALGO_MODULES)
 homework_add_module(Luogu HOMEWORK_ENABLE_ALGO_MODULES)

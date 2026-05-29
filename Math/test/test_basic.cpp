@@ -1,5 +1,3 @@
-//
-
 
 #include "mat.hpp"
 #include "vec.hpp"

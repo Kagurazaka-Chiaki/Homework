@@ -14,7 +14,7 @@ namespace math {
 
 
     template<int N>
-    class matrix {
+    class [[deprecated("Use epsilon::math::Mat<T, Rows, Cols>")]] matrix {
       private:
         //        1            15
         //        v             v
@@ -46,7 +46,7 @@ namespace math {
     class vec;
 
     template<int N>
-    class mat {
+    class [[deprecated("Use epsilon::math::Mat<T, Rows, Cols>")]] mat {
       private:
         //        1            15
         //        v             v

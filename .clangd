@@ -1,0 +1,8 @@
+CompileFlags:
+  CompilationDatabase: build/windows-clangcl-llvmcov
+  Remove:
+    - /MP
+    - /cgthreads*
+
+Index:
+  Background: Build

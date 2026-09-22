@@ -114,8 +114,6 @@ message(STATUS "Enter Project ${PROJECT_NAME_STR}")
 
 homework_add_module(Math HOMEWORK_ENABLE_SUPPORT_MODULES)
 homework_add_module(Algorithm HOMEWORK_ENABLE_ALGO_MODULES)
-homework_add_module(Structure HOMEWORK_ENABLE_ALGO_MODULES)
-homework_add_module(LeetCode HOMEWORK_ENABLE_ALGO_MODULES)
 homework_add_module(Luogu HOMEWORK_ENABLE_ALGO_MODULES)
 homework_add_module(NowCoder HOMEWORK_ENABLE_ALGO_MODULES)
 homework_add_module(Templates HOMEWORK_ENABLE_SUPPORT_MODULES)
